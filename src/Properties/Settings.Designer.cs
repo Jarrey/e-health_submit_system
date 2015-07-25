@@ -22,5 +22,14 @@ namespace SubmitSys.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DebugTool {
+            get {
+                return ((bool)(this["DebugTool"]));
+            }
+        }
     }
 }

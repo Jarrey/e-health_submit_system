@@ -2,7 +2,7 @@
 {
     using CefSharp.WinForms;
 
-    partial class frmMain
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -39,6 +39,7 @@
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnSubmit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainFrame)).BeginInit();
             this.mainFrame.Panel1.SuspendLayout();
             this.mainFrame.Panel2.SuspendLayout();
@@ -82,15 +83,22 @@
             // 
             // dgvData
             // 
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
+            this.dgvData.AllowUserToOrderColumns = true;
+            this.dgvData.AllowUserToResizeRows = false;
+            this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.Location = new System.Drawing.Point(0, 106);
             this.dgvData.Name = "dgvData";
+            this.dgvData.RowHeadersVisible = false;
             this.dgvData.Size = new System.Drawing.Size(1000, 196);
             this.dgvData.TabIndex = 2;
             // 
             // pnlTool
             // 
+            this.pnlTool.Controls.Add(this.btnSubmit);
             this.pnlTool.Controls.Add(this.chkSelectAll);
             this.pnlTool.Controls.Add(this.btnImport);
             this.pnlTool.Dock = System.Windows.Forms.DockStyle.Top;
@@ -108,6 +116,7 @@
             this.chkSelectAll.TabIndex = 5;
             this.chkSelectAll.Text = "全选";
             this.chkSelectAll.UseVisualStyleBackColor = true;
+            this.chkSelectAll.CheckedChanged += new System.EventHandler(this.ChkSelectAllCheckedChanged);
             // 
             // btnImport
             // 
@@ -117,6 +126,7 @@
             this.btnImport.TabIndex = 4;
             this.btnImport.Text = "导入上传数据文件...";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.BtnImportClick);
             // 
             // pnlLogo
             // 
@@ -143,14 +153,24 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // frmMain
+            // btnSubmit
+            // 
+            this.btnSubmit.Location = new System.Drawing.Point(815, 6);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(173, 23);
+            this.btnSubmit.TabIndex = 6;
+            this.btnSubmit.Text = "上传";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.BtnSubmitClick);
+            // 
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 604);
             this.Controls.Add(this.mainFrame);
             this.MinimumSize = new System.Drawing.Size(400, 350);
-            this.Name = "frmMain";
+            this.Name = "FrmMain";
             this.Text = "国家免费孕前优生健康检查项目信息上传系统";
             this.mainFrame.Panel1.ResumeLayout(false);
             this.mainFrame.Panel2.ResumeLayout(false);
@@ -176,6 +196,7 @@
         private System.Windows.Forms.Panel pnlTool;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.CheckBox chkSelectAll;
+        private System.Windows.Forms.Button btnSubmit;
     }
 }
 

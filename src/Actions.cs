@@ -9,14 +9,14 @@
     {
         public Actions()
         {
-            Steps = new List<Step>();
+            Steps = new Dictionary<string, Step>();
         }
 
         [JsonProperty("login_url")]
         public string LoginUrl { get; set; }
 
         [JsonProperty("steps")]
-        public List<Step> Steps { get; set; }
+        public Dictionary<string, Step> Steps { get; set; }
     }
 
     public class Step
@@ -28,10 +28,10 @@
         public string Script { get; set; }
 
         [JsonProperty("pre_status")]
-        public Status PreStatus { get; set; }
+        public int PreStatus { get; set; }
 
         [JsonProperty("next_status")]
-        public Status NextStatus { get; set; }
+        public int NextStatus { get; set; }
 
         [JsonProperty("has_data")]
         public bool HasData { get; set; }

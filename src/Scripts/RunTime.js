@@ -1,95 +1,90 @@
-﻿function ClickTreeNode(root, nodeName) {
+﻿function ClickTreeNode(r, n) {
     while (true) {
-        var treeNodes = root.getElementsByClassName('x-tree-node');
-        for (var i in treeNodes) {
-            if (treeNodes[i].getElementsByClassName) {
-                var anchorNode = treeNodes[i].getElementsByClassName('x-tree-node-anchor')[0];
-                if (anchorNode && anchorNode.innerText == nodeName) {
-                    anchorNode.click();
-                    return treeNodes[i];
-                }
-            }
+        var a = $(r).find('.x-tree-node-anchor:contains("' + n + '")');
+        if (a.length > 0) {
+            a[0].click();
+            return a[0].closest('.x-tree-node');
         }
     }
 }
 
-function ClickTab(root, tabName) {
+function ClickTab(r, n) {
     while (true) {
-        var tabs = root.getElementsByClassName('x-tab-strip-closable');
-        for (var i in tabs) {
-            if (tabs[i].getElementsByClassName) {
-                var tab = tabs[i].getElementsByClassName('x-tab-strip-text')[0];
-                if (tab && tab.innerText == tabName) {
-                    tab.click();
-                    return tabs[i];
-                }
-            }
+        var t = $(r).find('.x-tab-strip-closable:contains("' + n + '")');
+        if (t.length > 0) {
+            t[0].click();
+            return t[0];
         }
     }
 }
 
-function ClickToolbarButton(root, buttonName) {
-    while (true) {
-        var buttons = root.getElementsByTagName('button');
-        for (var i in buttons) {
-            var button = buttons[i];
-            if (button && button.innerText == buttonName) {
-                button.click();
-                return;
-            }
+function ClickButton(r, n) {
+    var b = $(r).contents().find('button:contains("' + n + '")');
+    if (b.length > 0) {
+        b[0].click();
+    }
+}
+
+function GetFieldSet(r, n) {
+    var fs = $(r).contents().find('fieldset:contains("' + n + '")');
+    if (fs.length > 0) {
+        return fs[0];
+    }
+}
+
+function GetInputControl(r, f, t, n) {
+    var ext = f.contentWindow.Ext;
+    var item = $(r).contents().find('label:contains("' + n + '")').closest('.x-form-item');
+    if (t == "combo") {
+        var combo = item.find('.x-combo-noedit');
+        if (combo.length > 0) {
+            combo = combo[0];
+            return ext.getCmp(combo.id);
+        }
+    }
+
+    if (t == "text" || t == "date") {
+        var txt = item.find('.x-form-field');
+        if (txt.length > 0) {
+            txt = txt[0];
+            return ext.getCmp(txt.id);
         }
     }
 }
 
-function GetInputControl(root, type, labelName) {
-    while (true) {
-        var labels = root.getElementsByTagName("label");
-        for(var i in labels) {
-            if (labels[i] && labels[i].innerText && labels[i].innerText.indexOf(labelName) >= 0) {
-                var p = labels[i].parentElement;
-                if (p && p.getElementsByClassName) {
-                    if (type == "ComboBox") {
-                        var comboBox = p.getElementsByClassName('x-form-text x-form-field x-combo-noedit')[0];
-                        if (comboBox) return comboBox;
-                    }
-
-                    if (type == "TextBox") {
-                        var textbox = p.getElementsByClassName('x-form-text x-form-field')[0];
-                        if (textbox) return textbox;
-                    }
-                }
+function Enter(r, f, t, n, v) {
+    try {
+        var c = GetInputControl(r, f, t, n);
+        if (t == 'combo') {
+            try {
+                c.initValue();
+                c.expand();
+            } catch (ex) {
+                console.log(ex);
             }
+            var i = c.store.find(c.displayField, new RegExp('.*' + v + '.*'));
+            var field = c.store.data.itemAt(i);
+            if (field && field.data) {
+                v = field.data[c.valueField];
+            }
+                c.collapse();
         }
+
+        if (t == "date") {
+            v = /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/.exec(v)[0];
+        }
+
+        c.setValue(v);
+    } catch (ex) {
+        console.log(ex);
     }
 }
 
-function SelectComboBoxItem(root, combobox, selectText) {
-    combobox.nextElementSibling.click();
-    var items = root.getElementsByClassName("x-combo-list-item");
-    for (var i in items) {
-        if (items[i] && items[i].innerText && items[i].innerText.indexOf(selectText) >= 0) {
-            items[i].click();
-        }
-    }
-}
-
-function TypeTextBox(textbox, text) {
-    textbox.value = text;
-}
-
-function Enter(root, type, labelName, value) {
-    var control = GetInputControl(root, type, labelName);
-    if (type == "ComboBox") SelectComboBoxItem(root, control, value);
-    else if (type == "TextBox") TypeTextBox(control, value);
-}
-
-function GetFrame(frameKey) {
+function GetFrame(k) {
     while (true) {
-        var iFrames = document.getElementsByTagName('iframe');
-        for (var i in iFrames) {
-            if (iFrames[i].src.indexOf(frameKey) >= 0) {
-                return iFrames[i].contentDocument;
-            }
+        var f = $('iframe[src*="' + k + '"]');
+        if (f.length > 0) {
+            return f[0];
         }
     }
 }

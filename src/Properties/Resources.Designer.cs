@@ -61,6 +61,33 @@ namespace SubmitSys.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 错误.
+        /// </summary>
+        internal static string ErrorTitle {
+            get {
+                return ResourceManager.GetString("ErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} 文件不存在，请检查....
+        /// </summary>
+        internal static string FileNotExistError {
+            get {
+                return ResourceManager.GetString("FileNotExistError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 信息.
+        /// </summary>
+        internal static string InfoTitle {
+            get {
+                return ResourceManager.GetString("InfoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to function TypeText(id, text) {
         ///    var textbox = document.getElementById(id);
         ///    if (textbox)
@@ -73,6 +100,42 @@ namespace SubmitSys.Properties {
         internal static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 请先登录国家孕检系统....
+        /// </summary>
+        internal static string LoginInfoMessage {
+            get {
+                return ResourceManager.GetString("LoginInfoMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 选择需要上传的数据文件.
+        /// </summary>
+        internal static string OpenFileTitle {
+            get {
+                return ResourceManager.GetString("OpenFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 读取文件 {0} 失败，请检查文件格式和内容....
+        /// </summary>
+        internal static string ReadFileError {
+            get {
+                return ResourceManager.GetString("ReadFileError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 无法读取字段影射文件 {0}.
+        /// </summary>
+        internal static string ReadMapFileError {
+            get {
+                return ResourceManager.GetString("ReadMapFileError", resourceCulture);
             }
         }
         
@@ -93,6 +156,24 @@ namespace SubmitSys.Properties {
         internal static string RunTime {
             get {
                 return ResourceManager.GetString("RunTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 选择.
+        /// </summary>
+        internal static string SelectColumnName {
+            get {
+                return ResourceManager.GetString("SelectColumnName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 数据文件 (*.csv)|*.csv.
+        /// </summary>
+        internal static string SubmitFileFilter {
+            get {
+                return ResourceManager.GetString("SubmitFileFilter", resourceCulture);
             }
         }
     }
