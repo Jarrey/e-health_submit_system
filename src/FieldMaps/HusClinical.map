@@ -1,0 +1,20 @@
+﻿{
+	"DABH" : "档案编号",
+	"ZFXM" : "丈夫姓名",
+	"ABO" : "血型",
+	"RH" : "RH",
+	"NCG" : "尿常规",
+	"NCGYC" : "尿常规异常",
+	"TPDNA" : "梅毒螺旋体筛查",
+	"HBsAg" : "HBs-Ag",
+	"HBsAb" : "HBs-Ab",
+	"HBeAg" : "HBe-Ag",
+	"HBeAb" : "HBe-Ab",
+	"HBcAb" : "HBc-Ab",
+	"ALT" : "谷丙转氨酶",
+	"CRE" : "肌酐",
+	"QT" : "其他检查",
+	"JCSJ" : "检查时间",
+	"YSQM" : "医生签名",
+	"WCBZ" : "完成标志"
+}
