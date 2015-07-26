@@ -56,4 +56,7 @@ ext.onReady(function() {
     Enter(f, f, "text", "座机号码", "{固定电话}");
     Enter(f, f, "text", "医师签名", "{医生签名}");
     Enter(f, f, "date", "填写日期", "{填写日期}");
+
+    CloseTab("新建档案");
+    CloseTab("临床医生系统");
 });

@@ -140,18 +140,28 @@ namespace SubmitSys.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to function ClickTreeNode(root, nodeName) {
+        ///   Looks up a localized string similar to function ClickTreeNode(r, n) {
         ///    while (true) {
-        ///        var treeNodes = root.getElementsByClassName(&apos;x-tree-node&apos;);
-        ///        for (var i in treeNodes) {
-        ///            if (treeNodes[i].getElementsByClassName) {
-        ///                var anchorNode = treeNodes[i].getElementsByClassName(&apos;x-tree-node-anchor&apos;)[0];
-        ///                if (anchorNode &amp;&amp; anchorNode.innerText == nodeName) {
-        ///                    anchorNode.click();
-        ///                    return treeNodes[i];
-        ///                }
-        ///            }
-        ///      [rest of string was truncated]&quot;;.
+        ///        var a = $(r).find(&apos;.x-tree-node-anchor:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
+        ///        if (a.length &gt; 0) {
+        ///            a[0].click();
+        ///            return a[0].closest(&apos;.x-tree-node&apos;);
+        ///        }
+        ///    }
+        ///}
+        ///
+        ///function ClickTab(r, n) {
+        ///    while (true) {
+        ///        var t = $(r).find(&apos;.x-tab-strip-closable:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
+        ///        if (t.length &gt; 0) {
+        ///            t[0].click();
+        ///            return t[0];
+        ///        }
+        ///    }
+        ///}
+        ///
+        ///function CloseTab(n) {
+        ///    whi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string RunTime {
             get {
@@ -165,6 +175,15 @@ namespace SubmitSys.Properties {
         internal static string SelectColumnName {
             get {
                 return ResourceManager.GetString("SelectColumnName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 请选择需要上传的数据.
+        /// </summary>
+        internal static string SelectRecordsMessage {
+            get {
+                return ResourceManager.GetString("SelectRecordsMessage", resourceCulture);
             }
         }
         

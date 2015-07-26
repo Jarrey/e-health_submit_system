@@ -151,4 +151,7 @@
   <data name="LoginInfoMessage" xml:space="preserve">
     <value>请先登录国家孕检系统...</value>
   </data>
+  <data name="SelectRecordsMessage" xml:space="preserve">
+    <value>请选择需要上传的数据</value>
+  </data>
 </root>

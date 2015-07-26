@@ -18,6 +18,21 @@ function ClickTab(r, n) {
     }
 }
 
+function CloseTab(n) {
+    while (true) {
+        var tabs = Ext.getCmp('center');
+        if (tabs.items && tabs.items.items && tabs.items.items.length > 0) {
+            for (var i in tabs.items.items) {
+                console.log(tabs.items.items[i]);
+                if (tabs.items.items[i].title == n) {
+                    closeTab(tabs.items.items[i].id);
+                    return;
+                }
+            }
+        }
+    }
+}
+
 function ClickButton(r, n) {
     var b = $(r).contents().find('button:contains("' + n + '")');
     if (b.length > 0) {

@@ -1,6 +1,7 @@
 ﻿namespace SubmitSys
 {
     using System;
+    using System.Collections.Generic;
     using System.Data;
     using System.IO;
     using System.Linq;
@@ -20,11 +21,15 @@
     {
         private readonly ChromiumWebBrowser webView = new ChromiumWebBrowser("about:blank");
 
+        private readonly List<DataRow> selectedRows = new List<DataRow>();
+
         private DataTable datatable;
 
         private readonly Actions actions;
 
         private int currentStatus;
+
+        private int currentIndex = -1;
 
         public FrmMain()
         {
@@ -82,43 +87,7 @@
 
                     try
                     {
-                        var mapper = new FieldMapper("FieldMaps/BasicInfo.map");
-                        datatable = new DataTable();
-                        var csvConfig = new CsvConfiguration { Delimiter = ",", TrimHeaders = true, TrimFields = true };
-                        using (var textReader = new StreamReader(fileName))
-                        {
-                            var csv = new CsvReader(textReader, csvConfig);
-                            var isHeaderRead = false;
-                            var hasRecord = true;
-                            while (hasRecord)
-                            {
-                                hasRecord = csv.Read();
-                                if (!isHeaderRead)
-                                {
-                                    datatable.Columns.Add(Resources.SelectColumnName, typeof(bool));
-                                    foreach (var column in csv.FieldHeaders)
-                                    {
-                                        datatable.Columns.Add(mapper.Map(column));
-                                    }
-
-                                    isHeaderRead = true;
-                                }
-
-                                if (hasRecord)
-                                {
-                                    var row = datatable.NewRow();
-                                    row[Resources.SelectColumnName] = false;
-                                    foreach (var columnName in csv.FieldHeaders)
-                                    {
-                                        var value = csv.GetField(columnName);
-                                        row[mapper.Map(columnName)] = value;
-                                    }
-
-                                    datatable.Rows.Add(row);
-                                }
-                            }
-                        }
-
+                        datatable = Utility.ReadCsvToDataTable(fileName, "FieldMaps/BasicInfo.map");
                         this.dgvData.DataSource = datatable;
                     }
                     catch (Exception)
@@ -150,16 +119,36 @@
                 return;
             }
 
+            selectedRows.Clear();
+            currentIndex = -1;
+            foreach (DataRow row in this.datatable.Rows)
+            {
+                if ((bool)row[Resources.SelectColumnName])
+                {
+                    selectedRows.Add(row);
+                }
+            }
+
+            if (selectedRows.Count == 0)
+            {
+                MessageBox.Show(Resources.SelectRecordsMessage, Resources.InfoTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             this.webView.ExecuteScriptAsync(Resources.RunTime);
 
             this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
+            this.CreateNewDoc();
+        }
+
+
+        private void CreateNewDoc()
+        {
             var openNewDocStep = this.actions.Steps["OpenNewDocumentTab"];
             var script = File.ReadAllText(Path.Combine("Scripts", openNewDocStep.Script));
             this.webView.ExecuteScriptAsync(script);
             this.currentStatus = openNewDocStep.NextStatus;
         }
-
 
         private void WebViewOnFrameLoadEnd(object sender, FrameLoadEndEventArgs frameLoadEndEventArgs)
         {
@@ -176,22 +165,26 @@
 
                             if (step.Value.HasData)
                             {
-                                if (datatable != null)
+                                currentIndex++;
+                                if (currentIndex >= selectedRows.Count)
                                 {
-                                    var row = datatable.Rows[0];
-                                    foreach (DataColumn column in datatable.Columns)
-                                    {
-                                        script = script.Replace("{" + column.ColumnName + "}", row[column.ColumnName].ToString());
-                                    }
+                                    this.webView.FrameLoadEnd -= WebViewOnFrameLoadEnd;
+                                    return;
+                                }
+
+                                var row = selectedRows[currentIndex];
+                                foreach (DataColumn column in datatable.Columns)
+                                {
+                                    script = script.Replace("{" + column.ColumnName + "}", row[column.ColumnName].ToString());
                                 }
                             }
 
                             this.webView.ExecuteScriptAsync(script);
                             this.currentStatus = step.Value.NextStatus;
 
-                            if (this.currentStatus == 3)
+                            if (this.currentStatus == 3 && currentIndex < selectedRows.Count - 1)
                             {
-                                this.webView.FrameLoadEnd -= WebViewOnFrameLoadEnd;
+                                this.CreateNewDoc();
                             }
                         }
                     }
