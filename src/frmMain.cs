@@ -1,4 +1,13 @@
-﻿namespace SubmitSys
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="frmMain.cs" company="Jarrey, jar_bob@163.com">
+//   Copyright © Jarrey, jar_bob@163.com
+// </copyright>
+// <summary>
+//   The main form.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace SubmitSys
 {
     using System;
     using System.Collections.Generic;
@@ -10,38 +19,47 @@
     using CefSharp;
     using CefSharp.WinForms;
 
-    using CsvHelper;
-    using CsvHelper.Configuration;
-
     using Newtonsoft.Json;
 
     using SubmitSys.Properties;
 
+    /// <summary> The main form. </summary>
     public partial class FrmMain : Form
     {
-        private readonly ChromiumWebBrowser webView = new ChromiumWebBrowser("about:blank");
+        #region Fields
+
+        private readonly ChromiumWebBrowser webView;
+
+        private readonly JsObj jsObj = new JsObj();
 
         private readonly List<DataRow> selectedRows = new List<DataRow>();
 
-        private DataTable datatable;
+        private readonly List<string> selectedColumns = new List<string>();
+
+        private DataTable documentDatatable;
 
         private readonly Actions actions;
 
-        private int currentStatus;
+        private StepStatus currentStatus;
 
         private int currentIndex = -1;
 
+        #endregion
+
         public FrmMain()
         {
-            this.InitializeComponent();
-
+            this.webView = new ChromiumWebBrowser("about:blank");
+            this.webView.RegisterJsObject("submitSys", jsObj);
             var actionsJson = File.ReadAllText("Scripts/ActionDefinition.js");
             actions = JsonConvert.DeserializeObject<Actions>(actionsJson);
+            this.InitializeComponent();
             this.webView.FrameLoadEnd += WebViewOnLoginFrameLoadEnd;
             this.webView.Dock = DockStyle.Fill;
             this.pnlWebView.Controls.Add(webView);
             this.webView.Load(actions.LoginUrl);
         }
+
+        #region Event Handlers
 
         private void WebViewOnLoginFrameLoadEnd(object sender, FrameLoadEndEventArgs frameLoadEndEventArgs)
         {
@@ -87,8 +105,8 @@
 
                     try
                     {
-                        datatable = Utility.ReadCsvToDataTable(fileName, "FieldMaps/BasicInfo.map");
-                        this.dgvData.DataSource = datatable;
+                        documentDatatable = Utility.ReadCsvToDataTable(fileName, "FieldMaps/BasicInfo.map");
+                        this.dgvData.DataSource = documentDatatable;
                     }
                     catch (Exception)
                     {
@@ -113,41 +131,22 @@
 
         private void BtnSubmitClick(object sender, EventArgs e)
         {
-            if (this.webView.Address.Contains("login/ssoLogin_doctor.action"))
-            {
-                MessageBox.Show(Resources.LoginInfoMessage, Resources.InfoTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            selectedRows.Clear();
-            currentIndex = -1;
-            foreach (DataRow row in this.datatable.Rows)
-            {
-                if ((bool)row[Resources.SelectColumnName])
-                {
-                    selectedRows.Add(row);
-                }
-            }
-
-            if (selectedRows.Count == 0)
-            {
-                MessageBox.Show(Resources.SelectRecordsMessage, Resources.InfoTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (!VerifyLoginPage()) return;
+            if (!GetSelectedData(this.documentDatatable)) return;
 
             this.webView.ExecuteScriptAsync(Resources.RunTime);
-
             this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
-            this.CreateNewDoc();
+            this.OpenDocumentTab(StepStatus.OpenDocTabForNew);
         }
 
-
-        private void CreateNewDoc()
+        private void BtnModifyClick(object sender, EventArgs e)
         {
-            var openNewDocStep = this.actions.Steps["OpenNewDocumentTab"];
-            var script = File.ReadAllText(Path.Combine("Scripts", openNewDocStep.Script));
-            this.webView.ExecuteScriptAsync(script);
-            this.currentStatus = openNewDocStep.NextStatus;
+            if (!VerifyLoginPage()) return;
+            if (!GetSelectedData(this.documentDatatable)) return;
+
+            this.webView.ExecuteScriptAsync(Resources.RunTime);
+            this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
+            this.OpenDocumentTab(StepStatus.OpenDocTabForModify);
         }
 
         private void WebViewOnFrameLoadEnd(object sender, FrameLoadEndEventArgs frameLoadEndEventArgs)
@@ -165,7 +164,7 @@
 
                             if (step.Value.HasData)
                             {
-                                currentIndex++;
+                                if (step.Value.DataIncrease) currentIndex++;
                                 if (currentIndex >= selectedRows.Count)
                                 {
                                     this.webView.FrameLoadEnd -= WebViewOnFrameLoadEnd;
@@ -173,18 +172,18 @@
                                 }
 
                                 var row = selectedRows[currentIndex];
-                                foreach (DataColumn column in datatable.Columns)
-                                {
-                                    script = script.Replace("{" + column.ColumnName + "}", row[column.ColumnName].ToString());
-                                }
+                                script = this.selectedColumns.Aggregate(script, (c, column) => c.Replace("{" + column + "}", row[column].ToString()));
                             }
 
                             this.webView.ExecuteScriptAsync(script);
                             this.currentStatus = step.Value.NextStatus;
 
-                            if (this.currentStatus == 3 && currentIndex < selectedRows.Count - 1)
+                            if (step.Value.NextStatus == StepStatus.Init && currentIndex < selectedRows.Count - 1)
                             {
-                                this.CreateNewDoc();
+                                if (step.Value.PreStatus == StepStatus.ClickNewDoc)
+                                    this.OpenDocumentTab(StepStatus.OpenDocTabForNew);
+                                if (step.Value.PreStatus == StepStatus.ClickModifyDocBasicInfo)
+                                    this.OpenDocumentTab(StepStatus.OpenDocTabForModify);
                             }
                         }
                     }
@@ -195,5 +194,57 @@
                 throw;
             }
         }
+
+        #endregion
+
+        #region Private Methods
+
+        private bool GetSelectedData(DataTable table)
+        {
+            selectedRows.Clear();
+            selectedColumns.Clear();
+            currentIndex = -1;
+            foreach (DataRow row in table.Rows)
+            {
+                if ((bool)row[Resources.SelectColumnName])
+                {
+                    selectedRows.Add(row);
+                }
+            }
+
+            foreach (DataColumn column in table.Columns)
+            {
+                selectedColumns.Add(column.ColumnName);
+            }
+
+            if (selectedRows.Count == 0 || selectedColumns.Count == 0)
+            {
+                MessageBox.Show(Resources.SelectRecordsMessage, Resources.InfoTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void OpenDocumentTab(StepStatus stepStatus)
+        {
+            var openNewDocStep = this.actions.Steps["OpenDocumentTab"];
+            var script = File.ReadAllText(Path.Combine("Scripts", openNewDocStep.Script));
+            this.webView.ExecuteScriptAsync(script);
+            this.currentStatus = stepStatus;
+        }
+
+        private bool VerifyLoginPage()
+        {
+            if (this.webView.Address.Contains("login/ssoLogin_doctor.action"))
+            {
+                MessageBox.Show(Resources.LoginInfoMessage, Resources.InfoTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
     }
 }

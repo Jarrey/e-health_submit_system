@@ -10,14 +10,15 @@ ext.onReady(function() {
     var i = setInterval(function() {
         if (!IsLoadingData(d)) {
             window.clearInterval(i);
-            if (CheckDataExist(d, "{丈夫证件号码}") && CheckDataExist(d, "{妻子证件号码}")) {
-                window.submitSys.popupMsg('数据 - 丈夫证件号码: {丈夫证件号码}, 妻子证件号码: {妻子证件号码} 已存在');
+            if (!CheckDataExist(d, "{丈夫证件号码}") || !CheckDataExist(d, "{妻子证件号码}")) {
+                window.submitSys.popupMsg('数据 - 丈夫证件号码: {丈夫证件号码}, 妻子证件号码: {妻子证件号码} 不存在');
                 CloseTab("临床医生系统");
                 return;
             }
 
-            ClickButton(f, "新建档案");
-            ClickTab(document, "新建档案");
+            SelectData(d, f, "{丈夫证件号码}");
+            ClickButton(f, "完善档案");
+            ClickTab(document, "完善档案");
         }
     }, 1000);
 });

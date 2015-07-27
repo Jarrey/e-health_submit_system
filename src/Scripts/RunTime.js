@@ -103,3 +103,34 @@ function GetFrame(k) {
         }
     }
 }
+
+function IsLoadingData(r) {
+    var l = $(r).find('.x-mask-loading');
+    return l && l.length > 0;
+}
+
+/* Grid data operations */
+function CheckDataExist(r, d) {
+    var g = $(r).find('.x-grid3');
+    if (g.length > 0) {
+        var td = $(g[0]).find('td:contains("' + d + '")');
+        return td && td.length > 0;
+    }
+}
+
+function SelectData(r, f, d) {
+    var ext = f.contentWindow.Ext;
+    var t = $(r).find('.x-toolbar');
+    var rs = $(r).find('.x-grid3-row').find('tr');
+    for (var i in rs) {
+        if ($(rs[i]).find('td:contains("' + d + '")').length > 0) {
+            if (t.length > 0) {
+                var g = ext.getCmp(t[0].id).ownerCt;
+                if (g && g.selModel) {
+                    g.selModel.selectRow(i);
+                }
+            }
+            break;
+        }
+    }
+}

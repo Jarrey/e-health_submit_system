@@ -28,13 +28,16 @@
         public string Script { get; set; }
 
         [JsonProperty("pre_status")]
-        public int PreStatus { get; set; }
+        public StepStatus PreStatus { get; set; }
 
         [JsonProperty("next_status")]
-        public int NextStatus { get; set; }
+        public StepStatus NextStatus { get; set; }
 
         [JsonProperty("has_data")]
         public bool HasData { get; set; }
+
+        [JsonProperty("increase")]
+        public bool DataIncrease { get; set; }
 
         [JsonIgnore]
         public DataSet Data { get; set; }
