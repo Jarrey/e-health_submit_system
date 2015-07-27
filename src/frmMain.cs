@@ -36,7 +36,7 @@ namespace SubmitSys
 
         private readonly List<string> selectedColumns = new List<string>();
 
-        private DataTable documentDatatable;
+        private List<DataFile> dataFiles;
 
         private readonly Actions actions;
 
@@ -49,14 +49,15 @@ namespace SubmitSys
         public FrmMain()
         {
             this.webView = new ChromiumWebBrowser("about:blank");
-            this.webView.RegisterJsObject("submitSys", jsObj);
+            this.webView.RegisterJsObject("submitSys", this.jsObj);
             var actionsJson = File.ReadAllText("Scripts/ActionDefinition.js");
-            actions = JsonConvert.DeserializeObject<Actions>(actionsJson);
+            this.actions = JsonConvert.DeserializeObject<Actions>(actionsJson);
             this.InitializeComponent();
-            this.webView.FrameLoadEnd += WebViewOnLoginFrameLoadEnd;
+            this.webView.FrameLoadEnd += this.WebViewOnLoginFrameLoadEnd;
             this.webView.Dock = DockStyle.Fill;
-            this.pnlWebView.Controls.Add(webView);
-            this.webView.Load(actions.LoginUrl);
+            this.pnlWebView.Controls.Add(this.webView);
+            this.webView.Load(this.actions.LoginUrl);
+            this.dataFiles = new List<DataFile>();
         }
 
         #region Event Handlers
@@ -105,8 +106,15 @@ namespace SubmitSys
 
                     try
                     {
-                        documentDatatable = Utility.ReadCsvToDataTable(fileName, "FieldMaps/BasicInfo.map");
-                        this.dgvData.DataSource = documentDatatable;
+                        this.lstCategory.DataSource = null;
+                        var file = new DataFile(fileName);
+                        if (this.dataFiles.Any(f => f.Key == file.Key))
+                        {
+                            this.dataFiles.Remove(this.dataFiles.First(f => f.Key == file.Key));
+                        }
+                        this.dataFiles.Add(file);
+                        this.lstCategory.DataSource = this.dataFiles;
+                        this.lstCategory.SelectedItem = file;
                     }
                     catch (Exception)
                     {
@@ -132,21 +140,31 @@ namespace SubmitSys
         private void BtnSubmitClick(object sender, EventArgs e)
         {
             if (!VerifyLoginPage()) return;
-            if (!GetSelectedData(this.documentDatatable)) return;
 
-            this.webView.ExecuteScriptAsync(Resources.RunTime);
-            this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
-            this.OpenDocumentTab(StepStatus.OpenDocTabForNew);
+            var file = this.lstCategory.SelectedItem as DataFile;
+            if (file != null)
+            {
+                if (!this.GetSelectedData(file.Table)) return;
+
+                this.webView.ExecuteScriptAsync(Resources.RunTime);
+                this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
+                this.OpenDocumentTab(StepStatus.OpenDocTabForNew);
+            }
         }
 
         private void BtnModifyClick(object sender, EventArgs e)
         {
             if (!VerifyLoginPage()) return;
-            if (!GetSelectedData(this.documentDatatable)) return;
 
-            this.webView.ExecuteScriptAsync(Resources.RunTime);
-            this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
-            this.OpenDocumentTab(StepStatus.OpenDocTabForModify);
+            var file = this.lstCategory.SelectedItem as DataFile;
+            if (file != null)
+            {
+                if (!GetSelectedData(file.Table)) return;
+
+                this.webView.ExecuteScriptAsync(Resources.RunTime);
+                this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
+                this.OpenDocumentTab(StepStatus.OpenDocTabForModify);
+            }
         }
 
         private void WebViewOnFrameLoadEnd(object sender, FrameLoadEndEventArgs frameLoadEndEventArgs)
@@ -156,35 +174,32 @@ namespace SubmitSys
             {
                 foreach (var step in this.actions.Steps)
                 {
-                    if (frameLoadEndEventArgs.Url.Contains(step.Value.FrameUrlKey))
+                    if (frameLoadEndEventArgs.Url.Contains(step.Value.FrameUrlKey) && this.currentStatus == step.Value.PreStatus)
                     {
-                        if (this.currentStatus == step.Value.PreStatus)
+                        var script = File.ReadAllText(Path.Combine("Scripts", step.Value.Script));
+
+                        if (step.Value.HasData)
                         {
-                            var script = File.ReadAllText(Path.Combine("Scripts", step.Value.Script));
-
-                            if (step.Value.HasData)
+                            if (step.Value.DataIncrease) currentIndex++;
+                            if (currentIndex >= selectedRows.Count)
                             {
-                                if (step.Value.DataIncrease) currentIndex++;
-                                if (currentIndex >= selectedRows.Count)
-                                {
-                                    this.webView.FrameLoadEnd -= WebViewOnFrameLoadEnd;
-                                    return;
-                                }
-
-                                var row = selectedRows[currentIndex];
-                                script = this.selectedColumns.Aggregate(script, (c, column) => c.Replace("{" + column + "}", row[column].ToString()));
+                                this.webView.FrameLoadEnd -= WebViewOnFrameLoadEnd;
+                                return;
                             }
 
-                            this.webView.ExecuteScriptAsync(script);
-                            this.currentStatus = step.Value.NextStatus;
+                            var row = selectedRows[currentIndex];
+                            script = this.selectedColumns.Aggregate(script, (c, column) => c.Replace("{" + column + "}", row[column].ToString()));
+                        }
 
-                            if (step.Value.NextStatus == StepStatus.Init && currentIndex < selectedRows.Count - 1)
-                            {
-                                if (step.Value.PreStatus == StepStatus.ClickNewDoc)
-                                    this.OpenDocumentTab(StepStatus.OpenDocTabForNew);
-                                if (step.Value.PreStatus == StepStatus.ClickModifyDocBasicInfo)
-                                    this.OpenDocumentTab(StepStatus.OpenDocTabForModify);
-                            }
+                        this.webView.EvaluateScriptAsync(script).Wait();
+                        this.currentStatus = step.Value.NextStatus;
+
+                        if (step.Value.NextStatus == StepStatus.Init && currentIndex < selectedRows.Count - 1)
+                        {
+                            if (step.Value.PreStatus == StepStatus.ClickNewDoc)
+                                this.OpenDocumentTab(StepStatus.OpenDocTabForNew);
+                            if (step.Value.PreStatus == StepStatus.ClickModifyDoc)
+                                this.OpenDocumentTab(StepStatus.OpenDocTabForModify);
                         }
                     }
                 }
@@ -246,5 +261,14 @@ namespace SubmitSys
         }
 
         #endregion
+
+        private void LstCategorySelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.lstCategory.SelectedItem is DataFile)
+            {
+                var file = this.lstCategory.SelectedItem as DataFile;
+                this.dgvData.DataSource = file.Table;
+            }
+        }
     }
 }

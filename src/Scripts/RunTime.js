@@ -9,25 +9,23 @@
 }
 
 function ClickTab(r, n) {
-    while (true) {
-        var t = $(r).find('.x-tab-strip-closable:contains("' + n + '")');
-        if (t.length > 0) {
-            t[0].click();
-            return t[0];
-        }
+    var t = $(r).find('.x-tab-strip-closable:contains("' + n + '")');
+    if (t.length > 0) {
+        t[0].click();
+        return t[0];
+    } else {
+        return undefined;
     }
 }
 
 function CloseTab(n) {
-    while (true) {
-        var tabs = Ext.getCmp('center');
-        if (tabs.items && tabs.items.items && tabs.items.items.length > 0) {
-            for (var i in tabs.items.items) {
-                console.log(tabs.items.items[i]);
-                if (tabs.items.items[i].title == n) {
-                    closeTab(tabs.items.items[i].id);
-                    return;
-                }
+    var tabs = Ext.getCmp('center');
+    if (tabs.items && tabs.items.items && tabs.items.items.length > 0) {
+        for (var i in tabs.items.items) {
+            console.log(tabs.items.items[i]);
+            if (tabs.items.items[i].title == n) {
+                closeTab(tabs.items.items[i].id);
+                return;
             }
         }
     }
@@ -96,11 +94,9 @@ function Enter(r, f, t, n, v) {
 }
 
 function GetFrame(k) {
-    while (true) {
-        var f = $('iframe[src*="' + k + '"]');
-        if (f.length > 0) {
-            return f[0];
-        }
+    var f = $('iframe[src*="' + k + '"]');
+    if (f.length > 0) {
+        return f[0];
     }
 }
 

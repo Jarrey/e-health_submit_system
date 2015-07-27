@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions.cs" />
+    <Compile Include="DataFile.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +85,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="FieldMaps\BasicInfo.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="FieldMaps\DataFile.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="FieldMaps\GynaecologyBUltrasonic.map">

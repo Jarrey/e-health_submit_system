@@ -16,7 +16,6 @@ namespace SubmitSys
         OpenDocTabForNew,
         OpenDocTabForModify,
         ClickNewDoc,
-        ClickModifyDoc,
-        ClickModifyDocBasicInfo
+        ClickModifyDoc
     }
 }

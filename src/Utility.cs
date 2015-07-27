@@ -10,12 +10,11 @@
 
     internal static class Utility
     {
-        internal static DataTable ReadCsvToDataTable(string fileName, string mapperFile)
+        internal static DataTable ReadCsvToDataTable(FileInfo file, FieldMapper mapper)
         {
-            var mapper = new FieldMapper(mapperFile);
             var datatable = new DataTable();
             var csvConfig = new CsvConfiguration { Delimiter = ",", TrimHeaders = true, TrimFields = true };
-            using (var textReader = new StreamReader(fileName))
+            using (var textReader = new StreamReader(file.FullName))
             {
                 var csv = new CsvReader(textReader, csvConfig);
                 var isHeaderRead = false;

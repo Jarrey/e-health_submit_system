@@ -32,37 +32,27 @@
         {
             this.pnlWebView = new System.Windows.Forms.Panel();
             this.mainFrame = new System.Windows.Forms.SplitContainer();
-            this.tabActions = new System.Windows.Forms.TabControl();
-            this.tabNewDoc = new System.Windows.Forms.TabPage();
+            this.categoryDataFrame = new System.Windows.Forms.SplitContainer();
+            this.grbCategory = new System.Windows.Forms.GroupBox();
+            this.lstCategory = new System.Windows.Forms.ListBox();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.pnlTool = new System.Windows.Forms.Panel();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.btnImport = new System.Windows.Forms.Button();
-            this.tabModifyDoc = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.pnlLogo = new System.Windows.Forms.Panel();
-            this.picLogo = new System.Windows.Forms.PictureBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.mainFrame)).BeginInit();
             this.mainFrame.Panel1.SuspendLayout();
             this.mainFrame.Panel2.SuspendLayout();
             this.mainFrame.SuspendLayout();
-            this.tabActions.SuspendLayout();
-            this.tabNewDoc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryDataFrame)).BeginInit();
+            this.categoryDataFrame.Panel1.SuspendLayout();
+            this.categoryDataFrame.Panel2.SuspendLayout();
+            this.categoryDataFrame.SuspendLayout();
+            this.grbCategory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.pnlTool.SuspendLayout();
-            this.tabModifyDoc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.pnlLogo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlWebView
@@ -83,8 +73,7 @@
             // 
             // mainFrame.Panel1
             // 
-            this.mainFrame.Panel1.Controls.Add(this.tabActions);
-            this.mainFrame.Panel1.Controls.Add(this.pnlLogo);
+            this.mainFrame.Panel1.Controls.Add(this.categoryDataFrame);
             this.mainFrame.Panel1MinSize = 150;
             // 
             // mainFrame.Panel2
@@ -95,28 +84,50 @@
             this.mainFrame.SplitterDistance = 264;
             this.mainFrame.TabIndex = 6;
             // 
-            // tabActions
+            // categoryDataFrame
             // 
-            this.tabActions.Controls.Add(this.tabNewDoc);
-            this.tabActions.Controls.Add(this.tabModifyDoc);
-            this.tabActions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabActions.Location = new System.Drawing.Point(0, 70);
-            this.tabActions.Name = "tabActions";
-            this.tabActions.SelectedIndex = 0;
-            this.tabActions.Size = new System.Drawing.Size(1007, 194);
-            this.tabActions.TabIndex = 7;
+            this.categoryDataFrame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.categoryDataFrame.Location = new System.Drawing.Point(0, 0);
+            this.categoryDataFrame.Name = "categoryDataFrame";
             // 
-            // tabNewDoc
+            // categoryDataFrame.Panel1
             // 
-            this.tabNewDoc.Controls.Add(this.dgvData);
-            this.tabNewDoc.Controls.Add(this.pnlTool);
-            this.tabNewDoc.Location = new System.Drawing.Point(4, 22);
-            this.tabNewDoc.Name = "tabNewDoc";
-            this.tabNewDoc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabNewDoc.Size = new System.Drawing.Size(999, 168);
-            this.tabNewDoc.TabIndex = 0;
-            this.tabNewDoc.Text = "新建档案";
-            this.tabNewDoc.UseVisualStyleBackColor = true;
+            this.categoryDataFrame.Panel1.Controls.Add(this.grbCategory);
+            this.categoryDataFrame.Panel1MinSize = 100;
+            // 
+            // categoryDataFrame.Panel2
+            // 
+            this.categoryDataFrame.Panel2.Controls.Add(this.dgvData);
+            this.categoryDataFrame.Panel2.Controls.Add(this.pnlTool);
+            this.categoryDataFrame.Panel2MinSize = 300;
+            this.categoryDataFrame.Size = new System.Drawing.Size(1007, 264);
+            this.categoryDataFrame.SplitterDistance = 150;
+            this.categoryDataFrame.TabIndex = 7;
+            // 
+            // grbCategory
+            // 
+            this.grbCategory.Controls.Add(this.lstCategory);
+            this.grbCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbCategory.Location = new System.Drawing.Point(0, 0);
+            this.grbCategory.Name = "grbCategory";
+            this.grbCategory.Size = new System.Drawing.Size(150, 264);
+            this.grbCategory.TabIndex = 1;
+            this.grbCategory.TabStop = false;
+            this.grbCategory.Text = "数据类别";
+            // 
+            // lstCategory
+            // 
+            this.lstCategory.DisplayMember = "DisplayName";
+            this.lstCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstCategory.FormattingEnabled = true;
+            this.lstCategory.ItemHeight = 20;
+            this.lstCategory.Location = new System.Drawing.Point(3, 16);
+            this.lstCategory.Name = "lstCategory";
+            this.lstCategory.Size = new System.Drawing.Size(144, 245);
+            this.lstCategory.TabIndex = 0;
+            this.lstCategory.ValueMember = "Key";
+            this.lstCategory.SelectedIndexChanged += new System.EventHandler(this.LstCategorySelectedIndexChanged);
             // 
             // dgvData
             // 
@@ -127,10 +138,10 @@
             this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvData.Location = new System.Drawing.Point(3, 39);
+            this.dgvData.Location = new System.Drawing.Point(0, 36);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
-            this.dgvData.Size = new System.Drawing.Size(993, 126);
+            this.dgvData.Size = new System.Drawing.Size(853, 228);
             this.dgvData.TabIndex = 2;
             // 
             // pnlTool
@@ -140,17 +151,18 @@
             this.pnlTool.Controls.Add(this.chkSelectAll);
             this.pnlTool.Controls.Add(this.btnImport);
             this.pnlTool.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTool.Location = new System.Drawing.Point(3, 3);
+            this.pnlTool.Location = new System.Drawing.Point(0, 0);
             this.pnlTool.Name = "pnlTool";
-            this.pnlTool.Size = new System.Drawing.Size(993, 36);
+            this.pnlTool.Size = new System.Drawing.Size(853, 36);
             this.pnlTool.TabIndex = 3;
             // 
             // btnModify
             // 
             this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModify.Location = new System.Drawing.Point(815, 6);
+            this.btnModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModify.Location = new System.Drawing.Point(675, 3);
             this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(173, 23);
+            this.btnModify.Size = new System.Drawing.Size(173, 30);
             this.btnModify.TabIndex = 6;
             this.btnModify.Text = "上传 && 修改档案";
             this.btnModify.UseVisualStyleBackColor = true;
@@ -159,9 +171,10 @@
             // btnSubmit
             // 
             this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSubmit.Location = new System.Drawing.Point(636, 6);
+            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmit.Location = new System.Drawing.Point(496, 3);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(173, 23);
+            this.btnSubmit.Size = new System.Drawing.Size(173, 30);
             this.btnSubmit.TabIndex = 6;
             this.btnSubmit.Text = "上传 && 创建档案";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -170,9 +183,10 @@
             // chkSelectAll
             // 
             this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(192, 9);
+            this.chkSelectAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSelectAll.Location = new System.Drawing.Point(192, 6);
             this.chkSelectAll.Name = "chkSelectAll";
-            this.chkSelectAll.Size = new System.Drawing.Size(50, 17);
+            this.chkSelectAll.Size = new System.Drawing.Size(60, 24);
             this.chkSelectAll.TabIndex = 5;
             this.chkSelectAll.Text = "全选";
             this.chkSelectAll.UseVisualStyleBackColor = true;
@@ -180,111 +194,14 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(12, 6);
+            this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImport.Location = new System.Drawing.Point(4, 3);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(173, 23);
+            this.btnImport.Size = new System.Drawing.Size(173, 30);
             this.btnImport.TabIndex = 4;
             this.btnImport.Text = "导入上传数据文件...";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.BtnImportClick);
-            // 
-            // tabModifyDoc
-            // 
-            this.tabModifyDoc.Controls.Add(this.dataGridView1);
-            this.tabModifyDoc.Controls.Add(this.panel1);
-            this.tabModifyDoc.Location = new System.Drawing.Point(4, 22);
-            this.tabModifyDoc.Name = "tabModifyDoc";
-            this.tabModifyDoc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabModifyDoc.Size = new System.Drawing.Size(999, 168);
-            this.tabModifyDoc.TabIndex = 1;
-            this.tabModifyDoc.Text = "完善档案";
-            this.tabModifyDoc.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 39);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(993, 126);
-            this.dataGridView1.TabIndex = 5;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(993, 36);
-            this.panel1.TabIndex = 4;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(815, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "上传 && 修改档案";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(636, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(173, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "上传 && 创建档案";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(192, 9);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(50, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "全选";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(12, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(173, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "导入上传数据文件...";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // pnlLogo
-            // 
-            this.pnlLogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlLogo.Controls.Add(this.picLogo);
-            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
-            this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(1007, 70);
-            this.pnlLogo.TabIndex = 0;
-            // 
-            // picLogo
-            // 
-            this.picLogo.BackColor = System.Drawing.Color.White;
-            this.picLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLogo.Location = new System.Drawing.Point(0, 0);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(1003, 66);
-            this.picLogo.TabIndex = 0;
-            this.picLogo.TabStop = false;
             // 
             // toolStripSeparator1
             // 
@@ -305,17 +222,14 @@
             this.mainFrame.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainFrame)).EndInit();
             this.mainFrame.ResumeLayout(false);
-            this.tabActions.ResumeLayout(false);
-            this.tabNewDoc.ResumeLayout(false);
+            this.categoryDataFrame.Panel1.ResumeLayout(false);
+            this.categoryDataFrame.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.categoryDataFrame)).EndInit();
+            this.categoryDataFrame.ResumeLayout(false);
+            this.grbCategory.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.pnlTool.ResumeLayout(false);
             this.pnlTool.PerformLayout();
-            this.tabModifyDoc.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.pnlLogo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -325,23 +239,15 @@
         private System.Windows.Forms.Panel pnlWebView;
         private System.Windows.Forms.SplitContainer mainFrame;
         private System.Windows.Forms.DataGridView dgvData;
-        private System.Windows.Forms.Panel pnlLogo;
-        private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Panel pnlTool;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.CheckBox chkSelectAll;
         private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.TabControl tabActions;
-        private System.Windows.Forms.TabPage tabNewDoc;
-        private System.Windows.Forms.TabPage tabModifyDoc;
         private System.Windows.Forms.Button btnModify;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.SplitContainer categoryDataFrame;
+        private System.Windows.Forms.GroupBox grbCategory;
+        private System.Windows.Forms.ListBox lstCategory;
     }
 }
 

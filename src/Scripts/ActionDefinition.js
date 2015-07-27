@@ -34,12 +34,12 @@
             "frame_url" : "/entity/archives/editArchives.action?",
             "script" : "ClickModifyDocumentBasicInfo.js",
             "pre_status" : "ClickModifyDoc",
-            "next_status" : "ClickModifyDocBasicInfo"
+            "next_status" : "ClickModifyDoc"
         },
         "ModifyDocumentBasicInfo" : {
             "frame_url" : "/entity/archives/basicInfoDetail_input.action?",
             "script" : "ModifyDocumentBasicInfo.js",
-            "pre_status" : "ClickModifyDocBasicInfo",
+            "pre_status" : "ClickModifyDoc",
             "next_status" : "Init",
             "has_data" : true
         }
