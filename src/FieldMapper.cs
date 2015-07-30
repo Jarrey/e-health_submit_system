@@ -10,6 +10,8 @@
 
     internal class FieldMapper
     {
+        internal static FieldMapper Default= new FieldMapper();
+
         private IDictionary<string, string> mapper;
         public FieldMapper(string mapFile)
         {
@@ -22,6 +24,11 @@
             {
                 MessageBox.Show(string.Format(Resources.ReadMapFileError, mapFile), Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private FieldMapper()
+        {
+            mapper = new Dictionary<string, string>();
         }
 
         internal string Map(string fieldName)

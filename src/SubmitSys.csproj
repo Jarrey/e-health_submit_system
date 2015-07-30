@@ -41,6 +41,12 @@
     <Reference Include="CsvHelper">
       <HintPath>packages\CsvHelper.2.13.2.0\lib\net40-client\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -67,12 +73,21 @@
     </Compile>
     <Compile Include="FieldMapper.cs" />
     <Compile Include="JsObj.cs" />
+    <Compile Include="LoadingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingDialog.Designer.cs">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepStatus.cs" />
     <Compile Include="Utility.cs" />
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingDialog.resx">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,6 +108,9 @@
     <None Include="FieldMaps\GynaecologyBUltrasonic.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="FieldMaps\HusCheck.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="FieldMaps\HusClinical.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -100,6 +118,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="FieldMaps\WifeBasicInfo.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="FieldMaps\WifeCheck.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="FieldMaps\WifeClinical.map">
@@ -118,6 +139,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -132,9 +154,9 @@
     <Content Include="Scripts\EnterNewDocumentBasicInfo.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\ActionDefinition.js">
+    <None Include="Scripts\ActionDefinition.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="Scripts\ClickModifyDocumentButton.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

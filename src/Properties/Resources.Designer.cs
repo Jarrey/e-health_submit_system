@@ -151,17 +151,17 @@ namespace SubmitSys.Properties {
         ///}
         ///
         ///function ClickTab(r, n) {
-        ///    while (true) {
-        ///        var t = $(r).find(&apos;.x-tab-strip-closable:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
-        ///        if (t.length &gt; 0) {
-        ///            t[0].click();
-        ///            return t[0];
-        ///        }
+        ///    var t = $(r).find(&apos;.x-tab-strip-closable:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
+        ///    if (t.length &gt; 0) {
+        ///        t[0].click();
+        ///        return t[0];
+        ///    } else {
+        ///        return undefined;
         ///    }
         ///}
         ///
         ///function CloseTab(n) {
-        ///    whi [rest of string was truncated]&quot;;.
+        ///    var tabs  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string RunTime {
             get {
@@ -188,7 +188,7 @@ namespace SubmitSys.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 数据文件 (*.csv)|*.csv.
+        ///   Looks up a localized string similar to 数据文件 (*.csv; *.zip)|*.csv; *.zip.
         /// </summary>
         internal static string SubmitFileFilter {
             get {

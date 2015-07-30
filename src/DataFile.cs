@@ -29,15 +29,18 @@ namespace SubmitSys
             }
         }
 
-        /// <summary>
-        /// The file info.
-        /// </summary>
-        private readonly FileInfo fileInfo;
+        private string name;
+
+        public DataFile(Stream stream, string name)
+        {
+            this.name = name;
+            this.Table = Utility.ReadCsvToDataTable(stream, Mapper);
+        }
 
         public DataFile(string file)
         {
-            this.fileInfo = new FileInfo(file);
-            this.Table = Utility.ReadCsvToDataTable(fileInfo, Mapper);
+            this.name = Path.GetFileName(file);
+            this.Table = Utility.ReadCsvToDataTable(new FileInfo(file), Mapper);
         }
 
         public string Key
@@ -46,13 +49,29 @@ namespace SubmitSys
             {
                 foreach (dynamic map in DataFileMapper)
                 {
-                    if (fileInfo.Name.Contains(map.Key.ToString()))
+                    if (name.Contains(map.Key.ToString()))
                     {
                         return map.Key.ToString();
                     }
                 }
 
-                return null;
+                return name;
+            }
+        }
+
+        public bool CanNew
+        {
+            get
+            {
+                foreach (dynamic map in DataFileMapper)
+                {
+                    if (name.Contains(map.Key.ToString()))
+                    {
+                        return (bool)map.CanNew;
+                    }
+                }
+
+                return false;
             }
         }
 
@@ -62,13 +81,13 @@ namespace SubmitSys
             {
                 foreach (dynamic map in DataFileMapper)
                 {
-                    if (fileInfo.Name.Contains(map.Key.ToString()))
+                    if (name.Contains(map.Key.ToString()))
                     {
                         return map.DisplayName.ToString();
                     }
                 }
 
-                return null;
+                return name;
             }
         }
 
@@ -80,13 +99,13 @@ namespace SubmitSys
             {
                 foreach (dynamic map in DataFileMapper)
                 {
-                    if (fileInfo.Name.Contains(map.Key.ToString()))
+                    if (name.Contains(map.Key.ToString()))
                     {
                         return new FieldMapper(map.Mapper.ToString()); 
                     }
                 }
 
-                return null;
+                return FieldMapper.Default;
             }
         }
     }

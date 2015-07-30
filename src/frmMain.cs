@@ -12,12 +12,17 @@ namespace SubmitSys
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Security.AccessControl;
     using System.Windows.Forms;
 
     using CefSharp;
     using CefSharp.WinForms;
+
+    using ICSharpCode.SharpZipLib.Zip;
 
     using Newtonsoft.Json;
 
@@ -36,6 +41,8 @@ namespace SubmitSys
 
         private readonly List<string> selectedColumns = new List<string>();
 
+        private LoadingDialog loading = null;
+
         private List<DataFile> dataFiles;
 
         private readonly Actions actions;
@@ -48,9 +55,10 @@ namespace SubmitSys
 
         public FrmMain()
         {
+            this.jsObj.OnContinue += OnContinue;
             this.webView = new ChromiumWebBrowser("about:blank");
             this.webView.RegisterJsObject("submitSys", this.jsObj);
-            var actionsJson = File.ReadAllText("Scripts/ActionDefinition.js");
+            var actionsJson = File.ReadAllText("Scripts/ActionDefinition.json");
             this.actions = JsonConvert.DeserializeObject<Actions>(actionsJson);
             this.InitializeComponent();
             this.webView.FrameLoadEnd += this.WebViewOnLoginFrameLoadEnd;
@@ -104,23 +112,43 @@ namespace SubmitSys
                         return;
                     }
 
+                    this.Enabled = false;
+                    this.loading = new LoadingDialog(this.Handle, "正在读取文件数据, 请稍等...");
+                    this.loading.ShowModeless(this);
+                    this.loading.Refresh();
                     try
                     {
-                        this.lstCategory.DataSource = null;
-                        var file = new DataFile(fileName);
-                        if (this.dataFiles.Any(f => f.Key == file.Key))
+                        if (string.Compare(Path.GetExtension(fileName), ".zip", StringComparison.OrdinalIgnoreCase) == 0)
                         {
-                            this.dataFiles.Remove(this.dataFiles.First(f => f.Key == file.Key));
+                            using (var fs = File.OpenRead(fileName))
+                            {
+                                var zf = new ZipFile(fs);
+                                foreach (ZipEntry zipEntry in zf)
+                                {
+                                    if (!zipEntry.IsFile)
+                                    {
+                                        continue; // Ignore directories
+                                    }
+
+                                    var zipStream = zf.GetInputStream(zipEntry);
+                                    this.AddDataFile(new DataFile(zipStream, zipEntry.Name));
+                                }
+                            }
                         }
-                        this.dataFiles.Add(file);
-                        this.lstCategory.DataSource = this.dataFiles;
-                        this.lstCategory.SelectedItem = file;
+                        else if (string.Compare(Path.GetExtension(fileName), ".csv", StringComparison.OrdinalIgnoreCase) == 0)
+                        {
+                            this.AddDataFile(new DataFile(fileName));
+                        }
+
                     }
                     catch (Exception)
                     {
                         MessageBox.Show(string.Format(Resources.ReadFileError, fileName), Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+
+                    this.loading.Close();
+                    this.Enabled = true;
                 }
             }
         }
@@ -141,6 +169,10 @@ namespace SubmitSys
         {
             if (!VerifyLoginPage()) return;
 
+            this.Enabled = false;
+            this.loading = new LoadingDialog(this.Handle, "正在上传数据, 请稍等...");
+            this.loading.ShowModeless(this);
+            this.loading.Refresh();
             var file = this.lstCategory.SelectedItem as DataFile;
             if (file != null)
             {
@@ -156,6 +188,10 @@ namespace SubmitSys
         {
             if (!VerifyLoginPage()) return;
 
+            this.Enabled = false;
+            this.loading = new LoadingDialog(this.Handle, "正在上传数据, 请稍等...");
+            this.loading.ShowModeless(this);
+            this.loading.Refresh();
             var file = this.lstCategory.SelectedItem as DataFile;
             if (file != null)
             {
@@ -183,7 +219,7 @@ namespace SubmitSys
                             if (step.Value.DataIncrease) currentIndex++;
                             if (currentIndex >= selectedRows.Count)
                             {
-                                this.webView.FrameLoadEnd -= WebViewOnFrameLoadEnd;
+                                this.CloseLoading();
                                 return;
                             }
 
@@ -193,26 +229,69 @@ namespace SubmitSys
 
                         this.webView.EvaluateScriptAsync(script).Wait();
                         this.currentStatus = step.Value.NextStatus;
-
-                        if (step.Value.NextStatus == StepStatus.Init && currentIndex < selectedRows.Count - 1)
-                        {
-                            if (step.Value.PreStatus == StepStatus.ClickNewDoc)
-                                this.OpenDocumentTab(StepStatus.OpenDocTabForNew);
-                            if (step.Value.PreStatus == StepStatus.ClickModifyDoc)
-                                this.OpenDocumentTab(StepStatus.OpenDocTabForModify);
-                        }
                     }
                 }
             }
             catch (Exception)
             {
+                this.CloseLoading();
                 throw;
+            }
+        }
+
+        private void LstCategorySelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.lstCategory.SelectedItem is DataFile)
+            {
+                var file = this.lstCategory.SelectedItem as DataFile;
+                this.dgvData.DataSource = file.Table;
+                this.btnSubmit.Enabled = file.CanNew;
+            }
+        }
+
+        private void DgvDataSelectionChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in this.dgvData.Rows)
+            {
+                var checkBoxCell = row.Cells[0] as DataGridViewCheckBoxCell;
+                if (checkBoxCell != null)
+                {
+                    checkBoxCell.Value = this.dgvData.SelectedRows.Contains(row);
+                }
+            }
+        }
+
+        private void OnContinue(object sender, ContinueEventArgs e)
+        {
+            if (currentIndex >= selectedRows.Count - 1)
+            {
+                this.CloseLoading();
+                return;
+            }
+
+            if (currentIndex < selectedRows.Count - 1)
+            {
+                this.OpenDocumentTab(e.Step);
             }
         }
 
         #endregion
 
         #region Private Methods
+
+        private void AddDataFile(DataFile dataFile)
+        {
+            this.lstCategory.DataSource = null;
+            if (this.dataFiles.Any(f => f.Key == dataFile.Key))
+            {
+                this.dataFiles.Remove(this.dataFiles.First(f => f.Key == dataFile.Key));
+            }
+            this.dataFiles.Add(dataFile);
+            this.lstCategory.DataSource = this.dataFiles;
+            this.lstCategory.ValueMember = "Key";
+            this.lstCategory.DisplayMember = "DisplayName";
+            this.lstCategory.SelectedItem = dataFile;
+        }
 
         private bool GetSelectedData(DataTable table)
         {
@@ -260,15 +339,16 @@ namespace SubmitSys
             return true;
         }
 
-        #endregion
-
-        private void LstCategorySelectedIndexChanged(object sender, EventArgs e)
+        private void CloseLoading()
         {
-            if (this.lstCategory.SelectedItem is DataFile)
+            this.Invoke(new Action(() =>
             {
-                var file = this.lstCategory.SelectedItem as DataFile;
-                this.dgvData.DataSource = file.Table;
-            }
+                this.webView.FrameLoadEnd -= WebViewOnFrameLoadEnd;
+                this.loading.Close();
+                this.Enabled = true;
+            }));
         }
+
+        #endregion
     }
 }

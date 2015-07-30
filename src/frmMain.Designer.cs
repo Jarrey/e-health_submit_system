@@ -140,9 +140,12 @@
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.Location = new System.Drawing.Point(0, 36);
             this.dgvData.Name = "dgvData";
+            this.dgvData.ReadOnly = true;
             this.dgvData.RowHeadersVisible = false;
+            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(853, 228);
             this.dgvData.TabIndex = 2;
+            this.dgvData.SelectionChanged += new System.EventHandler(this.DgvDataSelectionChanged);
             // 
             // pnlTool
             // 
