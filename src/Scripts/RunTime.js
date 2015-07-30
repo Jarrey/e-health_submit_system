@@ -18,11 +18,21 @@ function ClickTab(r, n) {
     }
 }
 
+function CloseAllTabs() {
+    var tabs = Ext.getCmp('center');
+    if (tabs.items && tabs.items.items && tabs.items.items.length > 0) {
+        for (var i in tabs.items.items) {
+            // console.log(tabs.items.items[i]);
+            closeTab(tabs.items.items[i].id);
+        }
+    }
+}
+
 function CloseTab(n) {
     var tabs = Ext.getCmp('center');
     if (tabs.items && tabs.items.items && tabs.items.items.length > 0) {
         for (var i in tabs.items.items) {
-            console.log(tabs.items.items[i]);
+            // console.log(tabs.items.items[i]);
             if (tabs.items.items[i].title.indexOf(n) >= 0) {
                 closeTab(tabs.items.items[i].id);
                 return;
