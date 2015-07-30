@@ -6,6 +6,8 @@
             "script": "OpenDocumentTab.js",
             "pre_status": "Init"
         },
+
+        // Create new basic document steps
         "ClickNewDocumentButton": {
             "frame_url": "/entity/basic/prePregnancyService.action",
             "script": "ClickNewDocumentButton.js",
@@ -21,6 +23,8 @@
             "next_status": "OpenDocTabForNew",
             "has_data": true
         },
+
+        // Modify basic document steps
         "ClickModifyDocumentButton": {
             "frame_url": "/entity/basic/prePregnancyService.action",
             "script": "ClickModifyDocumentButton.js",
@@ -40,6 +44,53 @@
             "script": "ModifyDocumentBasicInfo.js",
             "pre_status": "ClickModifyDoc",
             "next_status": "OpenDocTabForModify",
+            "has_data": true
+        },
+
+        // Create and update B-Mod result
+        "ClickModifyDocumentButtonForBMod": {
+            "frame_url": "/entity/basic/prePregnancyService.action",
+            "script": "ClickModifyDocumentButtonForBMod.js",
+            "pre_status": "OpenDocTabForBMod",
+            "next_status": "ClickBMod",
+            "has_data": true,
+            "increase": true
+        },
+        "ClickModifyBMod": {
+            "frame_url": "/entity/archives/editArchives.action?",
+            "script": "ClickBModButton.js",
+            "pre_status": "ClickBMod",
+            "next_status": "ClickBMod"
+        },
+        "ModifyBMod": {
+            "frame_url": "/entity/image/bmodResult_watch.action?",
+            "script": "ModifyBMod.js",
+            "pre_status": "ClickBMod",
+            "next_status": "OpenDocTabForBMod",
+            "has_data": true
+        },
+
+        // Create or update wife basic information
+        "ClickModifyDocumentButtonForWifeBasicInfo": {
+            "frame_url": "/entity/basic/prePregnancyService.action",
+            "script": "ClickModifyDocumentButtonForWifeBasicInfo.js",
+            "pre_status": "OpenDocTabForWifeBasicInfo",
+            "next_status": "ClickWifeBasicInfo",
+            "has_data": true,
+            "increase": true
+        },
+        "ClickWifeBasicInfo": {
+            "frame_url": "/entity/archives/editArchives.action?",
+            "script": "ClickWifeBasicInfoButton.js",
+            "pre_status": "ClickWifeBasicInfo",
+            "next_status": "ClickWifeBasicInfo",
+            "has_data": true
+        },        
+        "ModifyWifeBasicInfo": {
+            "frame_url": "/entity/basic/generalInfoW_input.action?",
+            "script": "ModifyWifeBasicInfo.js",
+            "pre_status": "ClickWifeBasicInfo",
+            "next_status": "OpenDocTabForWifeBasicInfo",
             "has_data": true
         }
     }

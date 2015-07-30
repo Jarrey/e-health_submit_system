@@ -11,7 +11,7 @@ ext.onReady(function() {
         if (!IsLoadingData(d)) {
             window.clearInterval(i);
             if (!CheckDataExist(d, "{丈夫证件号码}") || !CheckDataExist(d, "{妻子证件号码}")) {
-                window.submitSys.popupMsg('数据 - 丈夫证件号码: {丈夫证件号码}, 妻子证件号码: {妻子证件号码} 不存在', true, "OpenDocTabForModify");
+                window.submitSys.popupMsg('数据 - 丈夫姓名: {丈夫姓名}, 丈夫证件号码: {丈夫证件号码}, 妻子姓名: {妻子姓名}, 妻子证件号码: {妻子证件号码} 不存在', true, "OpenDocTabForModify");
                 CloseTab("临床医生系统");
                 return;
             }

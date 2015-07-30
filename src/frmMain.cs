@@ -165,44 +165,6 @@ namespace SubmitSys
             }
         }
 
-        private void BtnSubmitClick(object sender, EventArgs e)
-        {
-            if (!VerifyLoginPage()) return;
-
-            this.Enabled = false;
-            this.loading = new LoadingDialog(this.Handle, "正在上传数据, 请稍等...");
-            this.loading.ShowModeless(this);
-            this.loading.Refresh();
-            var file = this.lstCategory.SelectedItem as DataFile;
-            if (file != null)
-            {
-                if (!this.GetSelectedData(file.Table)) return;
-
-                this.webView.ExecuteScriptAsync(Resources.RunTime);
-                this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
-                this.OpenDocumentTab(StepStatus.OpenDocTabForNew);
-            }
-        }
-
-        private void BtnModifyClick(object sender, EventArgs e)
-        {
-            if (!VerifyLoginPage()) return;
-
-            this.Enabled = false;
-            this.loading = new LoadingDialog(this.Handle, "正在上传数据, 请稍等...");
-            this.loading.ShowModeless(this);
-            this.loading.Refresh();
-            var file = this.lstCategory.SelectedItem as DataFile;
-            if (file != null)
-            {
-                if (!GetSelectedData(file.Table)) return;
-
-                this.webView.ExecuteScriptAsync(Resources.RunTime);
-                this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
-                this.OpenDocumentTab(StepStatus.OpenDocTabForModify);
-            }
-        }
-
         private void WebViewOnFrameLoadEnd(object sender, FrameLoadEndEventArgs frameLoadEndEventArgs)
         {
             this.webView.ExecuteScriptAsync(Resources.RunTime);
@@ -275,6 +237,46 @@ namespace SubmitSys
             }
         }
 
+        private void BtnSubmitClick(object sender, EventArgs e)
+        {
+            if (!VerifyLoginPage()) return;
+
+            var file = this.lstCategory.SelectedItem as DataFile;
+            if (file != null)
+            {
+                if (!this.GetSelectedData(file.Table)) return;
+
+                this.Enabled = false;
+                this.loading = new LoadingDialog(this.Handle, Resources.Uploading);
+                this.loading.ShowModeless(this);
+                this.loading.Refresh();
+
+                this.webView.ExecuteScriptAsync(Resources.RunTime);
+                this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
+                this.OpenDocumentTab(file.NewStep);
+            }
+        }
+
+        private void BtnModifyClick(object sender, EventArgs e)
+        {
+            if (!VerifyLoginPage()) return;
+
+            var file = this.lstCategory.SelectedItem as DataFile;
+            if (file != null)
+            {
+                if (!GetSelectedData(file.Table)) return;
+
+                this.Enabled = false;
+                this.loading = new LoadingDialog(this.Handle, Resources.Uploading);
+                this.loading.ShowModeless(this);
+                this.loading.Refresh();
+
+                this.webView.ExecuteScriptAsync(Resources.RunTime);
+                this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
+                this.OpenDocumentTab(file.ModifyStep);
+            }
+        }
+
         #endregion
 
         #region Private Methods
@@ -322,6 +324,7 @@ namespace SubmitSys
 
         private void OpenDocumentTab(StepStatus stepStatus)
         {
+            if (stepStatus == StepStatus.Init) return;
             var openNewDocStep = this.actions.Steps["OpenDocumentTab"];
             var script = File.ReadAllText(Path.Combine("Scripts", openNewDocStep.Script));
             this.webView.ExecuteScriptAsync(script);
@@ -346,6 +349,7 @@ namespace SubmitSys
                 this.webView.FrameLoadEnd -= WebViewOnFrameLoadEnd;
                 this.loading.Close();
                 this.Enabled = true;
+                this.jsObj.ShowMessages();
             }));
         }
 

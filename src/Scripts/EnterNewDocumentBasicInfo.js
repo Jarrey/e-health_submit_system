@@ -59,5 +59,5 @@ ext.onReady(function() {
 
     CloseTab("新建档案");
     CloseTab("临床医生系统");
-    window.submitSys.popupMsg('完成档案: {丈夫姓名}, {妻子姓名} 的创建', true, "OpenDocTabForNew");
+    window.submitSys.popupMsg('完成档案: 丈夫:{丈夫姓名}, 妻子: {妻子姓名} 的创建', true, "OpenDocTabForNew");
 });

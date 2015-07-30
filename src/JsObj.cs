@@ -10,18 +10,32 @@
 namespace SubmitSys
 {
     using System;
+    using System.Collections.Generic;
 
     internal class JsObj
     {
+        public List<string> Messages = new List<string>();
+
         public event EventHandler<ContinueEventArgs> OnContinue;
 
         public void PopupMsg(string msg, bool isContinue, string step)
         {
-            //MessageBox.Show(msg, Resources.InfoTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            Messages.Add(DateTime.Now.ToLocalTime() + "\t" + msg);
             if (OnContinue != null && isContinue)
             {
                 OnContinue(this, new ContinueEventArgs(step));
+            }
+
+
+        }
+
+        internal void ShowMessages()
+        {
+            using (var msgForm = new FrmMessages())
+            {
+                msgForm.Messages.AddRange(Messages);
+                Messages.Clear();
+                msgForm.ShowDialog();
             }
         }
     }

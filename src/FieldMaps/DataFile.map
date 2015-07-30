@@ -1,12 +1,12 @@
 ﻿[
-	{ "Key": "yjdab", "DisplayName": "孕检档案表", "Mapper": "FieldMaps/BasicInfo.map", "CanNew": true },
-	{ "Key": "fkbc", "DisplayName": "妻子妇科B超检查表", "Mapper": "FieldMaps/GynaecologyBUltrasonic.map", "CanNew": false },
-	{ "Key": "qzfk", "DisplayName": "妻子妇科检查表", "Mapper": "FieldMaps/WifeCheck.map", "CanNew": false },
+	{ "Key": "yjdab", "DisplayName": "孕检档案表", "Mapper": "FieldMaps/BasicInfo.map", "CanNew": true, "NewStep": "OpenDocTabForNew", "ModifyStep": "OpenDocTabForModify" },
+	{ "Key": "fkbc", "DisplayName": "妻子妇科B超检查表", "Mapper": "FieldMaps/GynaecologyBMod.map", "CanNew": false, "NewStep": "Init", "ModifyStep": "OpenDocTabForBMod" },
+	{ "Key": "qzfk", "DisplayName": "妻子妇科检查表", "Mapper": "FieldMaps/WifeCheck.map", "CanNew": false, "NewStep": "Init", "ModifyStep": "OpenDocTabForWifeCheck" },
 	{ "Key": "qzlj", "DisplayName": "妻子临床检验表", "Mapper": "FieldMaps/WifeClinical.map", "CanNew": false },
-	{ "Key": "qztg", "DisplayName": "妻子体格检查表", "Mapper": "FieldMaps/WifePhysique.map", "CanNew": false },
-	{ "Key": "qzybqk", "DisplayName": "妻子一般情况表", "Mapper": "FieldMaps/WifeBasicInfo.map", "CanNew": false },
-	{ "Key": "zflj", "DisplayName": "丈夫临床检验表", "Mapper": "FieldMaps/HusClinical.map", "CanNew": false },
+	{ "Key": "qztg", "DisplayName": "妻子体格检查表", "Mapper": "FieldMaps/WifePhysique.map", "CanNew": false, "NewStep": "Init", "ModifyStep": "OpenDocTabForWifeBodyCheck" },
+	{ "Key": "qzybqk", "DisplayName": "妻子一般情况表", "Mapper": "FieldMaps/WifeBasicInfo.map", "CanNew": false, "NewStep": "Init", "ModifyStep": "OpenDocTabForWifeBasicInfo" },
+	{ "Key": "zflj", "DisplayName": "丈夫临床检验表", "Mapper": "FieldMaps/HusClinical.map", "CanNew": false, "NewStep": "Init", "ModifyStep": "OpenDocTabForHusCheck" },
 	{ "Key": "zfnk", "DisplayName": "丈夫男科检查表", "Mapper": "FieldMaps/HusCheck.map", "CanNew": false },
-	{ "Key": "zfybqk", "DisplayName": "丈夫一般情况表", "Mapper": "FieldMaps/HusBasicInfo.map", "CanNew": false },
-	{ "Key": "zftg", "DisplayName": "丈夫体格检查表", "Mapper": "FieldMaps/HusPhysique.map", "CanNew": false }
+	{ "Key": "zfybqk", "DisplayName": "丈夫一般情况表", "Mapper": "FieldMaps/HusBasicInfo.map", "CanNew": false, "NewStep": "Init", "ModifyStep": "OpenDocTabForHusBodyCheck" },
+	{ "Key": "zftg", "DisplayName": "丈夫体格检查表", "Mapper": "FieldMaps/HusPhysique.map", "CanNew": false, "NewStep": "Init", "ModifyStep": "OpenDocTabForHusBasicInfo" }
 ]

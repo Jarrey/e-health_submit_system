@@ -13,9 +13,28 @@ namespace SubmitSys
     public enum StepStatus
     {
         Init,
+
         OpenDocTabForNew,
-        OpenDocTabForModify,
         ClickNewDoc,
-        ClickModifyDoc
+        OpenDocTabForModify,
+        ClickModifyDoc,
+
+        OpenDocTabForBMod,
+        ClickBMod,
+
+        OpenDocTabForWifeCheck,
+
+        OpenDocTabForWifeBodyCheck,
+
+        OpenDocTabForWifeBasicInfo,
+        ClickWifeBasicInfo,
+
+        /* --------------------------------------- */
+
+        OpenDocTabForHusCheck,
+
+        OpenDocTabForHusBodyCheck,
+
+        OpenDocTabForHusBasicInfo
     }
 }

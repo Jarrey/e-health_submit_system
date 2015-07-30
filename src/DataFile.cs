@@ -9,6 +9,7 @@
 
 namespace SubmitSys
 {
+    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.IO;
@@ -20,6 +21,8 @@ namespace SubmitSys
     /// </summary>
     internal class DataFile
     {
+        private readonly string name;
+
         private static dynamic DataFileMapper
         {
             get
@@ -28,8 +31,6 @@ namespace SubmitSys
                 return JsonConvert.DeserializeObject<List<dynamic>>(mapperJson);
             }
         }
-
-        private string name;
 
         public DataFile(Stream stream, string name)
         {
@@ -101,11 +102,47 @@ namespace SubmitSys
                 {
                     if (name.Contains(map.Key.ToString()))
                     {
-                        return new FieldMapper(map.Mapper.ToString()); 
+                        return new FieldMapper(map.Mapper.ToString());
                     }
                 }
 
                 return FieldMapper.Default;
+            }
+        }
+
+        public StepStatus NewStep
+        {
+            get
+            {
+                var step = StepStatus.OpenDocTabForNew;
+                foreach (dynamic map in DataFileMapper)
+                {
+                    if (name.Contains(map.Key.ToString()))
+                    {
+                        Enum.TryParse(map.NewStep.ToString(), true, out step);
+                        break;
+                    }
+                }
+
+                return step;
+            }
+        }
+
+        public StepStatus ModifyStep
+        {
+            get
+            {
+                var step = StepStatus.OpenDocTabForModify;
+                foreach (dynamic map in DataFileMapper)
+                {
+                    if (name.Contains(map.Key.ToString()))
+                    {
+                        Enum.TryParse(map.ModifyStep.ToString(), true, out step);
+                        break;
+                    }
+                }
+
+                return step;
             }
         }
     }

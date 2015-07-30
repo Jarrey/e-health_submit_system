@@ -117,44 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Scripts\Login.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="RunTime" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Scripts\RunTime.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="OpenFileTitle" xml:space="preserve">
-    <value>选择需要上传的数据文件</value>
-  </data>
-  <data name="SubmitFileFilter" xml:space="preserve">
-    <value>数据文件 (*.csv; *.zip)|*.csv; *.zip</value>
-  </data>
-  <data name="FileNotExistError" xml:space="preserve">
-    <value>{0} 文件不存在，请检查...</value>
-  </data>
-  <data name="ErrorTitle" xml:space="preserve">
-    <value>错误</value>
-  </data>
-  <data name="ReadFileError" xml:space="preserve">
-    <value>读取文件 {0} 失败，请检查文件格式和内容...</value>
-  </data>
-  <data name="ReadMapFileError" xml:space="preserve">
-    <value>无法读取字段影射文件 {0}</value>
-  </data>
-  <data name="SelectColumnName" xml:space="preserve">
-    <value>选择</value>
-  </data>
-  <data name="InfoTitle" xml:space="preserve">
-    <value>信息</value>
-  </data>
-  <data name="LoginInfoMessage" xml:space="preserve">
-    <value>请先登录国家孕检系统...</value>
-  </data>
-  <data name="SelectRecordsMessage" xml:space="preserve">
-    <value>请选择需要上传的数据</value>
-  </data>
-  <data name="Uploading" xml:space="preserve">
-    <value>正在上传数据, 请稍等...</value>
-  </data>
 </root>

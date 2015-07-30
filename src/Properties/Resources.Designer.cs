@@ -195,5 +195,14 @@ namespace SubmitSys.Properties {
                 return ResourceManager.GetString("SubmitFileFilter", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 正在上传数据, 请稍等....
+        /// </summary>
+        internal static string Uploading {
+            get {
+                return ResourceManager.GetString("Uploading", resourceCulture);
+            }
+        }
     }
 }
