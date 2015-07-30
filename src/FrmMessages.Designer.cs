@@ -37,7 +37,7 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(588, 316);
+            this.btnClose.Location = new System.Drawing.Point(679, 316);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(106, 27);
             this.btnClose.TabIndex = 0;
@@ -51,10 +51,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstMsg.FormattingEnabled = true;
+            this.lstMsg.HorizontalScrollbar = true;
             this.lstMsg.ItemHeight = 18;
             this.lstMsg.Location = new System.Drawing.Point(0, 0);
             this.lstMsg.Name = "lstMsg";
-            this.lstMsg.Size = new System.Drawing.Size(705, 310);
+            this.lstMsg.Size = new System.Drawing.Size(796, 310);
             this.lstMsg.TabIndex = 1;
             // 
             // FrmMessages
@@ -62,7 +63,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(706, 349);
+            this.ClientSize = new System.Drawing.Size(797, 349);
             this.Controls.Add(this.lstMsg);
             this.Controls.Add(this.btnClose);
             this.MinimizeBox = false;

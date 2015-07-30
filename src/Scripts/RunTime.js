@@ -55,29 +55,46 @@ function GetFieldSet(r, n) {
     }
 }
 
-function GetInputControl(r, f, t, n) {
+function GetInputControl(r, f, t, n, i) {
     var ext = f.contentWindow.Ext;
     var item = $(r).contents().find('label:contains("' + n + '")').closest('.x-form-item');
     if (t == "combo") {
         var combo = item.find('.x-combo-noedit');
-        if (combo.length > 0) {
-            combo = combo[0];
+        if (combo.length > i) {
+            combo = combo[i];
             return ext.getCmp(combo.id);
         }
     }
 
     if (t == "text" || t == "date") {
-        var txt = item.find('.x-form-field');
-        if (txt.length > 0) {
-            txt = txt[0];
+        var txt = item.find('.x-form-text.x-form-field');
+        if (txt.length > i) {
+            txt = txt[i];
             return ext.getCmp(txt.id);
+        }
+    }
+
+    if (t == "radio") {
+        var radio = item.find('input.x-form-radio');
+        if (radio.length > i) {
+            radio = radio[i];
+            return ext.getCmp(radio.id);
+        }
+    }
+
+    if (t == "check") {
+        var check = item.find('input.x-form-checkbox.x-form-field');
+        if (check.length > i) {
+            check = check[i];
+            return ext.getCmp(check.id);
         }
     }
 }
 
-function Enter(r, f, t, n, v) {
+function Enter(r, f, t, n, v, i) {
+    i = typeof i !== 'undefined' ? i : 0;
     try {
-        var c = GetInputControl(r, f, t, n);
+        var c = GetInputControl(r, f, t, n, i);
         if (t == 'combo') {
             try {
                 c.initValue();

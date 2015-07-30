@@ -146,9 +146,11 @@ namespace SubmitSys
                         MessageBox.Show(string.Format(Resources.ReadFileError, fileName), Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-
-                    this.loading.Close();
-                    this.Enabled = true;
+                    finally
+                    {
+                        this.loading.Close();
+                        this.Enabled = true;
+                    }
                 }
             }
         }

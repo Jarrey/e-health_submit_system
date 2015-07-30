@@ -20,9 +20,12 @@
 
         internal static DataTable ReadCsvToDataTable(FileInfo file, FieldMapper mapper)
         {
-            using (var textReader = new StreamReader(file.FullName))
+            using (var fs = new FileStream(file.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
-                return ReadCore(textReader, mapper);
+                using (var textReader = new StreamReader(fs))
+                {
+                    return ReadCore(textReader, mapper);
+                }
             }
         }
 
