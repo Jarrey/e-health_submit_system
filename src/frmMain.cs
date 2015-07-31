@@ -12,11 +12,8 @@ namespace SubmitSys
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using System.IO;
     using System.Linq;
-    using System.Security.AccessControl;
     using System.Windows.Forms;
 
     using CefSharp;
@@ -56,6 +53,7 @@ namespace SubmitSys
         public FrmMain()
         {
             this.jsObj.OnContinue += OnContinue;
+            this.jsObj.OnException+= OnException;
             this.webView = new ChromiumWebBrowser("about:blank");
             this.webView.RegisterJsObject("submitSys", this.jsObj);
             var actionsJson = File.ReadAllText("Scripts/ActionDefinition.json");
@@ -199,6 +197,7 @@ namespace SubmitSys
                             var row = selectedRows[currentIndex];
                             script = this.selectedColumns.Aggregate(script, (c, column) => c.Replace("{" + column + "}", row[column].ToString()));
                             script = script.Replace(@"{Status}", file.ModifyStep.ToString());
+                            script = script.Replace(@"{Parameter}", file.Parameter);
                         }
 
                         this.webView.EvaluateScriptAsync(script).Wait();
@@ -247,6 +246,12 @@ namespace SubmitSys
             {
                 this.OpenDocumentTab(e.Step);
             }
+        }
+
+        private void OnException(object sender, ExceptionEventArgs e)
+        {
+            this.CloseLoading();
+            MessageBox.Show(e.Ex.Message, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void BtnSubmitClick(object sender, EventArgs e)

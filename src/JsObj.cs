@@ -18,12 +18,25 @@ namespace SubmitSys
 
         public event EventHandler<ContinueEventArgs> OnContinue;
 
+        public event EventHandler<ExceptionEventArgs> OnException; 
+
         public void PopupMsg(string msg, bool isContinue, string step)
         {
             Messages.Add(DateTime.Now.ToLocalTime() + "\t" + msg);
-            if (OnContinue != null && isContinue)
+
+            if (isContinue)
             {
-                OnContinue(this, new ContinueEventArgs(step));
+                if (OnContinue != null)
+                {
+                    OnContinue(this, new ContinueEventArgs(step));
+                }
+            }
+            else
+            {
+                if (OnException != null)
+                {
+                    OnException(this, new ExceptionEventArgs(new Exception(msg)));
+                }
             }
 
 
@@ -49,6 +62,16 @@ namespace SubmitSys
             var result = StepStatus.Init;
             Enum.TryParse(step, true, out result);
             this.Step = result;
+        }
+    }
+
+    internal class ExceptionEventArgs : EventArgs
+    {
+        public Exception Ex { get; set; }
+
+        public ExceptionEventArgs(Exception ex)
+        {
+            this.Ex = ex;
         }
     }
 }

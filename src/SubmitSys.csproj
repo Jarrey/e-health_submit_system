@@ -117,7 +117,7 @@
     <None Include="FieldMaps\GynaecologyBMod.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="FieldMaps\HusCheck.map">
+    <None Include="FieldMaps\HusAndrologyCheck.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="FieldMaps\HusClinical.map">
@@ -160,10 +160,19 @@
     <Content Include="Scripts\ClickBModButton.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\ClickModifyDocumentButtonForHus.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\ClickModifyDocumentButtonForWife.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\ClickHusBasicInfoButton.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\ClickWifeBasicInfoButton.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\ClickHusCheckButton.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\ClickWifeCheckButton.js">
@@ -190,10 +199,19 @@
     <Content Include="Scripts\ClickModifyDocumentBasicInfo.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\ModifyHusBasicInfo.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\ModifyWifeBasicInfo.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\ModifyHusBodyCheck.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\ModifyWifeBodyCheck.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\ModifyHusAndrologyCheck.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\ModifyWifeGynecologyCheck.js">

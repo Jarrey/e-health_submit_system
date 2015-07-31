@@ -24,6 +24,7 @@
             "has_data": true
         },
 
+
         // Modify basic document steps
         "ClickModifyDocumentButton": {
             "frame_url": "/entity/basic/prePregnancyService.action",
@@ -47,6 +48,7 @@
             "has_data": true
         },
 
+
         // Create and update B-Mod result
         "ClickModifyDocumentButtonForBMod": {
             "frame_url": "/entity/basic/prePregnancyService.action",
@@ -69,6 +71,7 @@
             "next_status": "OpenDocTabForBMod",
             "has_data": true
         },
+
 
         // Create or update wife basic information
         "ClickModifyDocumentButtonForWifeBasicInfo": {
@@ -95,7 +98,7 @@
         },
 
 
-        // Create or update wife body check result        
+        // Create or update wife body check result
         "ClickModifyDocumentButtonForWifeCheck": {
             "frame_url": "/entity/basic/prePregnancyService.action",
             "script": "ClickModifyDocumentButtonForWife.js",
@@ -142,7 +145,58 @@
             "pre_status": "ClickWifeClinical",
             "next_status": "OpenDocTabForWifeClinical",
             "has_data": true
+        },
+
+
+        // Create or update husband basic information
+        "ClickModifyDocumentButtonForHusBasicInfo": {
+            "frame_url": "/entity/basic/prePregnancyService.action",
+            "script": "ClickModifyDocumentButtonForHus.js",
+            "pre_status": "OpenDocTabForHusBasicInfo",
+            "next_status": "ClickHusBasicInfo",
+            "has_data": true,
+            "increase": true
+        },
+        "ClickHusBasicInfo": {
+            "frame_url": "/entity/archives/editArchives.action?",
+            "script": "ClickHusBasicInfoButton.js",
+            "pre_status": "ClickHusBasicInfo",
+            "next_status": "ClickHusBasicInfo",
+            "has_data": true
+        },
+        "ModifyHusBasicInfo": {
+            "frame_url": "/entity/archives/generalInfoM_input.action?",
+            "script": "ModifyHusBasicInfo.js",
+            "pre_status": "ClickHusBasicInfo",
+            "next_status": "OpenDocTabForHusBasicInfo",
+            "has_data": true
+        },
+
+
+        // Create or update husband body check result
+        "ClickModifyDocumentButtonForHusCheck": {
+            "frame_url": "/entity/basic/prePregnancyService.action",
+            "script": "ClickModifyDocumentButtonForHus.js",
+            "pre_status": "OpenDocTabForHusCheck",
+            "next_status": "ClickHusCheck",
+            "has_data": true,
+            "increase": true
+        },
+        "ClickHusCheck": {
+            "frame_url": "/entity/archives/editArchives.action?",
+            "script": "ClickHusCheckButton.js",
+            "pre_status": "ClickHusCheck",
+            "next_status": "ClickHusCheck",
+            "has_data": true
+        },
+        "ModifyHusCheck": {
+            "frame_url": "/entity/archives/physicalExamM_input.action?",
+            "script": "ModifyHus{Parameter}.js",
+            "pre_status": "ClickHusCheck",
+            "next_status": "OpenDocTabForHusCheck",
+            "has_data": true
         }
+
 
     }
 }

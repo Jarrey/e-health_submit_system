@@ -8,7 +8,7 @@ ext.onReady(function() {
 
             var t = ext.getCmp($(d).find('.x-tab-panel:contains("女性一般体格检查")')[0].id);
             t.activate(1);
-            b = $(d).find('.x-tab-panel-body')[0];
+            b = $(d).find('#physical2')[0];
 
             field = $(d).find(".x-plain-body:contains('阴毛')")[0];
             if ("{阴毛}" == "0") {
@@ -90,16 +90,24 @@ ext.onReady(function() {
                 Enter(b, f, "text", "双侧附件描述", "{附件异常}");
             }
 
-            Enter(b, f, "textarea", "其他检查", "{其他检查}", 1);
+            Enter(b, f, "textarea", "其他检查", "{其他检查}");
             ext.getCmp('done2').setValue({完成标志});
-            Enter(b, f, "text", "医师签名", "{医生签名}", 1);
-            Enter(b, f, "date", "检查日期", "{检查时间}", 1);
+            Enter(b, f, "text", "医师签名", "{医生签名}");
+            Enter(b, f, "date", "检查日期", "{检查时间}");
 
 
-            //CloseTab("妻子体格检查结果");
-            //CloseTab("完善档案");
-            //CloseTab("临床医生系统");
-            window.submitSys.popupMsg('完成妻子体格检查 - 妇科结果: 妻子:{妻子姓名}, 妻子证件号码: {妻子证件号码}  的修改', true, "OpenDocTabForWifeCheck");
+            //ClickButton(b, "保存");
+            //$(d).find('.x-window:contains("您已确认无误，要提交？")').find('button:contains("是")').click();
+            //var save = setInterval(function() {
+            //    if ($(d).find('.x-window:contains("保存成功！是否关闭？")').length > 0) {
+            //        window.clearInterval(save);
+            //        $(d).find('.x-window:contains("保存成功！是否关闭？")').find('button:contains("是")').click();
+            //        CloseTab("完善档案");
+            //        CloseTab("临床医生系统");
+                    window.submitSys.popupMsg('完成妻子体格检查 - 一般结果: 妻子:{妻子姓名}, 妻子证件号码: {妻子证件号码}  的修改', true, "OpenDocTabForWifeCheck");
+            //    }
+            //}, 1000);
+
         }
     }, 1000);
 });

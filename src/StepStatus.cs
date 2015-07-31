@@ -34,9 +34,9 @@ namespace SubmitSys
         /* --------------------------------------- */
 
         OpenDocTabForHusCheck,
+        ClickHusCheck,
 
-        OpenDocTabForHusBodyCheck,
-
-        OpenDocTabForHusBasicInfo
+        OpenDocTabForHusBasicInfo,
+        ClickHusBasicInfo
     }
 }

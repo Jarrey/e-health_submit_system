@@ -1,4 +1,4 @@
-﻿var f = GetFrame("/entity/basic/generalInfoW_input.action?");
+﻿var f = GetFrame("/entity/archives/generalInfoM_input.action?");
 var d = f.contentDocument;
 var ext = f.contentWindow.Ext;
 ext.onReady(function() {
@@ -9,7 +9,7 @@ ext.onReady(function() {
             // 疾病史
             ClickButton(d, "疾病史");
             var fieldSet = GetFieldSet(d, "疾病史");
-            var fields = GetFieldSet(fieldSet, "是否患有或曾经患过以下疾病");
+            /*var fields = GetFieldSet(fieldSet, "是否患有或曾经患过以下疾病");
             if ("{疾病史}" == "1") {
                 Enter(fields, f, "radio", "是", 1);
                 var list = GetFieldSet(fields, "疾病列表");
@@ -29,9 +29,9 @@ ext.onReady(function() {
                 if ("{是否有其他疾病}" == "1") Enter(list, f, "text", ":", "{其他疾病}");
             } else {
                 Enter(fields, f, "radio", "是", 0);
-            }
+            }*/
 
-            fields = GetFieldSet(fieldSet, "是否患有出生缺陷,如先天畸形、遗传病等");
+            var fields = GetFieldSet(fieldSet, "是否患有出生缺陷,如先天畸形、遗传病等");
             if ("{患有出生缺陷}" == "1") {
                 Enter(fields, f, "radio", "有,注明具体病名", 1);
                 Enter(fields, f, "text", ":", "{出生缺陷病名}");
@@ -39,14 +39,16 @@ ext.onReady(function() {
                 Enter(fields, f, "radio", "有,注明具体病名", 0);
             }
 
-            fields = GetFieldSet(fieldSet, "是否有以下妇科疾病");
-            if ("{妇科疾病}" == "0") {
+            fields = GetFieldSet(fieldSet, "是否有以下男科疾病");
+            if ("{男科疾病}" == "0") {
                 Enter(fields, f, "radio", "是", 1);
-                list = GetFieldSet(fields, "妇科疾病列表");
-                Enter(list, f, "check", "子宫附件炎症", {子宫附件炎});
-                Enter(list, f, "check", "不孕不育症", {不孕不育症});
-                Enter(list, f, "check", "其他", {其他妇科疾病});
-                if ("{其他妇科疾病}" == "1") Enter(list, f, "text", ":", "{其他妇科疾病描述}");
+                var list = GetFieldSet(fields, "男科疾病列表");
+                Enter(list, f, "check", "睾丸炎、附睾炎", {睾丸炎});
+                Enter(list, f, "check", "精索静脉曲张", {精索静脉曲张});
+                Enter(list, f, "check", "不育症", {不育症});
+                Enter(list, f, "check", "腮腺炎", {腮腺炎});
+                Enter(list, f, "check", "其他", {其他男科疾病});
+                if ("{其他男科疾病}" == "1") Enter(list, f, "text", ":", "{其他男科疾病描述}");
             }else {
                 Enter(fields, f, "radio", "是", 0);
             }
@@ -75,109 +77,10 @@ ext.onReady(function() {
                 Enter(fields, f, "radio", "是", 0);
             }
 
-            fields = GetFieldSet(fieldSet, "是否正在使用或曾经使用避孕措施");
-            if ("{是否采用避孕措施}" == "1") {
-                Enter(fields, f, "radio", "是", 1);
-                list = GetFieldSet(fields, "现用避孕措施或目前终止避孕者原避孕措施");
-                Enter(list, f, "check", "宫内节育器", {宫内节育器});
-                Enter(list, f, "check", "皮下埋植剂", {皮下埋植剂});
-                Enter(list, f, "check", "口服避孕药", {口服避孕药});
-                Enter(list, f, "check", "避孕套", {避孕套});
-                Enter(list, f, "check", "外用药", {外用药});
-                Enter(list, f, "check", "自然避孕", {自然避孕});
-                Enter(list, f, "check", "其他", {是否采用其他避孕措施});
-                if ("{是否采用其他避孕措施}" == "1") Enter(list, f, "text", ":", "{其他避孕措施说明}");
-                Enter(list, f, "text", "避孕措施持续使用时间", "{避孕时间}");
-                if ("{避孕停止时间}" > "0") {
-                    Enter(list, f, "check", "目前是否停用避孕措施", 1);
-                    var now = new Date();
-                    var date = new Date(now.setMonth(now.getMonth() - {避孕停止时间}));
-                    Enter(list, f, "date", "避孕措施停用时间", ext.util.Format.date(date,"Y-m-d"));
-                } else {
-                    Enter(list, f, "check", "目前是否停用避孕措施", 0);
-                }
-            } else {
-                Enter(fields, f, "radio", "是", 0);
-            }
-
-
-            // 孕育史
-            ClickButton(d, "孕育史");
-            fieldSet = GetFieldSet(d, "孕育史");
-            Enter(fieldSet, f, "text", "初潮年龄(岁)", "{初潮年龄}");
-            Enter(fieldSet, f, "date", "末次月经日期", "{末次月经}");
-            fields = GetFieldSet(fieldSet, "月经周期是否规律");
-            Enter(fields, f, "radio", "是", {月经是否规律});
-            fields = GetFieldSet(fieldSet, "月经规律列表");
-            Enter(fields, f, "text", "经期", "{经期天数1}");
-            Enter(fields, f, "text", "至", "{经期天数2}", 0);
-            Enter(fields, f, "text", "周期", "{月经周期1}");
-            Enter(fields, f, "text", "至", "{月经周期2}", 1);
-            fields = GetFieldSet(fieldSet, "月经量");
-            Enter(fields, f, "radio", "多", {月经量});
-            fields = GetFieldSet(fieldSet, "痛    经");
-            Enter(fields, f, "radio", "无", {痛经});
-
-            fields = GetFieldSet(fieldSet, "是否曾经怀孕");
-            if ("{是否曾经怀孕}" == "1") {
-                Enter(fields, f, "radio", "是", 1);
-                list = GetFieldSet(fields, "怀孕情况列表");
-                Enter(list, f, "text", "怀孕次数", "{怀孕次数}");
-                Enter(list, f, "text", "活产次数", "{活产次数}");
-                Enter(list, f, "text", "足月活产次数", "{足月次数}");
-                Enter(list, f, "text", "早产次数", "{早产次数}");
-            } else {
-                Enter(fields, f, "radio", "是", 0);
-            }
-
-            fields = GetFieldSet(fieldSet, "是否有以下不良妊娠结局");
-            if ("{是否有不良妊娠}" == "1") {
-                Enter(fields, f, "radio", "是", 1);
-                list = GetFieldSet(fields, "不良妊娠结局列表");
-                Enter(list, f, "check", "死产死胎", {死胎死产});
-                Enter(list, f, "check", "自然流产", {自然流产});
-                Enter(list, f, "check", "人工流产", {人工流产});
-                if ("{其他不良妊娠}" > "0") {
-                    Enter(list, f, "check", "其他", 1);
-                    Enter(list, f, "text", ":", "{其他不良妊娠}");
-                } else {
-                    Enter(list, f, "check", "其他", 0);
-                }
-            } else {
-                Enter(fields, f, "radio", "是", 0);
-            }
-
-            fields = GetFieldSet(fieldSet, "是否分娩过出生缺陷儿");
-            if ("{是否分娩过缺陷儿}" == "1") {
-                Enter(fields, f, "radio", "是", 1);
-                list = GetFieldSet(fields, "出生缺陷儿情况列表");
-                Enter(list, f, "text", "病种", "{缺陷儿病种}");
-                Enter(list, f, "text", "详细情况", "{缺陷儿详情}");
-            } else {
-                Enter(fields, f, "radio", "是", 0);
-            }
-
-            fields = GetFieldSet(fieldSet, "子女情况");
-            Enter(fields, f, "text", "现有子女数", "{子女数}");
-            list = GetFieldSet(fields, "子女身体状况");
-            if ("{子女身体状况}" == "1") {
-                Enter(fields, f, "radio", "疾病，注明具体病名", 1);
-                Enter(list, f, "text", ":", "{子女疾病名}");
-            } else {
-                Enter(fields, f, "radio", "疾病，注明具体病名", 0);
-            }
-
 
             // 家族史
             ClickButton(d, "家族史");
             fieldSet = GetFieldSet(d, "家族史");
-            fields = GetFieldSet(fieldSet, "夫妻是否近亲结婚");
-            if ("{是否近亲结婚}" == "1") {
-                Enter(fields, f, "radio", "是", 1);
-                Enter(fields, f, "text", ":", "{近亲关系}");
-            } else {
-                Enter(fields, f, "radio", "是", 0);
-            }
             fields = GetFieldSet(fieldSet, "祖父母/外祖父母、父母两代家族内近亲结婚史");
             if ("{家族是否有近亲结婚}" == "1") {
                 Enter(fields, f, "radio", "是", 1);
@@ -245,10 +148,10 @@ ext.onReady(function() {
             } else {
                 Enter(fields, f, "radio", "是", 0);
             }
-            fields = GetFieldSet(fieldSet, "是否口臭");
+            /*fields = GetFieldSet(fieldSet, "是否口臭");
             Enter(fields, f, "radio", "是", {口臭});
             fields = GetFieldSet(fieldSet, "是否牙龈出血");
-            Enter(fields, f, "radio", "是", {牙龈出血});
+            Enter(fields, f, "radio", "是", {牙龈出血});*/
             fields = GetFieldSet(fieldSet, "生活或工作环境中是否接触以下因素");
             if ("{未接触不良环境}" == "0") {
                 Enter(fields, f, "radio", "是", 1);
@@ -287,17 +190,17 @@ ext.onReady(function() {
             Enter(d, f, "date", "询问日期", "{询问时间}");
 
 
-            //ClickButton(d, "保存");
-            //$(d).find('.x-window:contains("您已确认无误，要提交？")').find('button:contains("是")').click();
-            //var save = setInterval(function() {
-            //    if ($(d).find('.x-window:contains("成功！关闭当前标签页？")').length > 0) {
-            //        window.clearInterval(save);
-            //        $(d).find('.x-window:contains("成功！关闭当前标签页？")').find('button:contains("是")').click();
-            //        CloseTab("完善档案");
-            //        CloseTab("临床医生系统");
-                    window.submitSys.popupMsg('完成妻子一般情况: 妻子:{妻子姓名}, 妻子证件号码: {妻子证件号码}  的修改', true, "OpenDocTabForWifeBasicInfo");
-            //    }
-            //}, 1000);
+            ClickButton(d, "保存");
+            $(d).find('.x-window:contains("您已确认无误，要提交？")').find('button:contains("是")').click();
+            var save = setInterval(function() {
+                if ($(d).find('.x-window:contains("成功！关闭当前标签页？")').length > 0) {
+                    window.clearInterval(save);
+                    $(d).find('.x-window:contains("成功！关闭当前标签页？")').find('button:contains("是")').click();
+                    CloseTab("完善档案");
+                    CloseTab("临床医生系统");
+                    window.submitSys.popupMsg('完成丈夫一般情况: 丈夫:{丈夫姓名}, 丈夫证件号码: {丈夫证件号码}  的修改', true, "OpenDocTabForHusBasicInfo");
+                }
+            }, 1000);
 
         }
     }, 1000);
