@@ -2,7 +2,7 @@
 var ext = f.contentWindow.Ext;
 ext.onReady(function() {
     var i = setInterval(function() {
-        if (!IsLoadingData(d)) {
+        if (!IsLoadingData(d) && ext.isReady) {
             window.clearInterval(i);
             Enter(f, f, "combo", "是否签署知情同意书", "男女双方都签署");
 

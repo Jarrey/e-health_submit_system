@@ -23,11 +23,13 @@ namespace SubmitSys
         ClickBMod,
 
         OpenDocTabForWifeCheck,
-
-        OpenDocTabForWifeBodyCheck,
+        ClickWifeCheck,
 
         OpenDocTabForWifeBasicInfo,
         ClickWifeBasicInfo,
+
+        OpenDocTabForWifeClinical,
+        ClickWifeClinical,
 
         /* --------------------------------------- */
 

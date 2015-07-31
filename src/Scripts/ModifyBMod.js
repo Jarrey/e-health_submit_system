@@ -2,7 +2,7 @@
 var ext = f.contentWindow.Ext;
 ext.onReady(function() {
     var i = setInterval(function() {
-        if (!IsLoadingData(d)) {
+        if (!IsLoadingData(d) && ext.isReady) {
             window.clearInterval(i);
 
             // TODO: Enter b-mod result

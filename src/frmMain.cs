@@ -169,14 +169,23 @@ namespace SubmitSys
 
         private void WebViewOnFrameLoadEnd(object sender, FrameLoadEndEventArgs frameLoadEndEventArgs)
         {
+            DataFile file = null;
+            this.Invoke(new Action(() => { file = this.lstCategory.SelectedItem as DataFile; }));
+
             this.webView.ExecuteScriptAsync(Resources.RunTime);
             try
             {
+                if (file == null)
+                {
+                    throw new NullReferenceException("Selected file is null");
+                }
+
                 foreach (var step in this.actions.Steps)
                 {
                     if (frameLoadEndEventArgs.Url.Contains(step.Value.FrameUrlKey) && this.currentStatus == step.Value.PreStatus)
                     {
-                        var script = File.ReadAllText(Path.Combine("Scripts", step.Value.Script));
+                        var scriptFile = step.Value.Script.Replace(@"{Parameter}", file.Parameter);
+                        var script = File.ReadAllText(Path.Combine("Scripts", scriptFile));
 
                         if (step.Value.HasData)
                         {
@@ -189,6 +198,7 @@ namespace SubmitSys
 
                             var row = selectedRows[currentIndex];
                             script = this.selectedColumns.Aggregate(script, (c, column) => c.Replace("{" + column + "}", row[column].ToString()));
+                            script = script.Replace(@"{Status}", file.ModifyStep.ToString());
                         }
 
                         this.webView.EvaluateScriptAsync(script).Wait();

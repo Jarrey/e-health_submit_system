@@ -9,7 +9,7 @@
 }
 
 function ClickTab(r, n) {
-    var t = $(r).find('.x-tab-strip-closable:contains("' + n + '")');
+    var t = $(r).find('.x-tab-strip').find('li:contains("' + n + '")');
     if (t.length > 0) {
         t[0].click();
         return t[0];
@@ -71,6 +71,14 @@ function GetInputControl(r, f, t, n, i) {
         if (txt.length > i) {
             txt = txt[i];
             return ext.getCmp(txt.id);
+        }
+    }
+
+    if (t == "textarea") {
+        var txtarea = item.find('.x-form-textarea.x-form-field');
+        if (txtarea.length > i) {
+            txtarea = txtarea[i];
+            return ext.getCmp(txtarea.id);
         }
     }
 

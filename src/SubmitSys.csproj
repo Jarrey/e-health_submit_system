@@ -129,7 +129,7 @@
     <None Include="FieldMaps\WifeBasicInfo.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="FieldMaps\WifeCheck.map">
+    <None Include="FieldMaps\WifeGynecologyCheck.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="FieldMaps\WifeClinical.map">
@@ -160,13 +160,16 @@
     <Content Include="Scripts\ClickBModButton.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\ClickModifyDocumentButtonForBMod.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\ClickModifyDocumentButtonForWifeBasicInfo.js">
+    <Content Include="Scripts\ClickModifyDocumentButtonForWife.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\ClickWifeBasicInfoButton.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\ClickWifeCheckButton.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\ClickWifeClinicalButton.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\ModifyBMod.js">
@@ -188,6 +191,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\ModifyWifeBasicInfo.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\ModifyWifeBodyCheck.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\ModifyWifeGynecologyCheck.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\ModifyWifeClinical.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\OpenDocumentTab.js">

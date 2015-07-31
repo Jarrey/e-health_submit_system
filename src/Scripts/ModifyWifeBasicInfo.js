@@ -3,7 +3,7 @@ var d = f.contentDocument;
 var ext = f.contentWindow.Ext;
 ext.onReady(function() {
     var i = setInterval(function() {
-        if (!IsLoadingData(d)) {
+        if (ext.isReady) {
             window.clearInterval(i);
 
             // 疾病史

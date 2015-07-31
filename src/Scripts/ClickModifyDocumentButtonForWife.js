@@ -10,7 +10,7 @@ ext.onReady(function() {
         if (!IsLoadingData(d)) {
             window.clearInterval(i);
             if (!CheckDataExist(d, "{妻子证件号码}")) {
-                window.submitSys.popupMsg('数据 - 妻子姓名: {妻子姓名}, 妻子证件号码: {妻子证件号码} 不存在', true, "OpenDocTabForWifeBasicInfo");
+                window.submitSys.popupMsg('数据 - 妻子姓名: {妻子姓名}, 妻子证件号码: {妻子证件号码} 不存在', true, "{Status}");
                 CloseTab("临床医生系统");
                 return;
             }

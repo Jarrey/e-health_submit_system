@@ -145,5 +145,24 @@ namespace SubmitSys
                 return step;
             }
         }
+
+        public string Parameter
+        {
+            get
+            {
+                foreach (dynamic map in DataFileMapper)
+                {
+                    if (name.Contains(map.Key.ToString()))
+                    {
+                        if (map.Parameter != null)
+                        {
+                            return map.Parameter.ToString();
+                        }
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
     }
 }

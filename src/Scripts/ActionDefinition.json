@@ -73,7 +73,7 @@
         // Create or update wife basic information
         "ClickModifyDocumentButtonForWifeBasicInfo": {
             "frame_url": "/entity/basic/prePregnancyService.action",
-            "script": "ClickModifyDocumentButtonForWifeBasicInfo.js",
+            "script": "ClickModifyDocumentButtonForWife.js",
             "pre_status": "OpenDocTabForWifeBasicInfo",
             "next_status": "ClickWifeBasicInfo",
             "has_data": true,
@@ -85,13 +85,64 @@
             "pre_status": "ClickWifeBasicInfo",
             "next_status": "ClickWifeBasicInfo",
             "has_data": true
-        },        
+        },
         "ModifyWifeBasicInfo": {
             "frame_url": "/entity/basic/generalInfoW_input.action?",
             "script": "ModifyWifeBasicInfo.js",
             "pre_status": "ClickWifeBasicInfo",
             "next_status": "OpenDocTabForWifeBasicInfo",
             "has_data": true
+        },
+
+
+        // Create or update wife body check result        
+        "ClickModifyDocumentButtonForWifeCheck": {
+            "frame_url": "/entity/basic/prePregnancyService.action",
+            "script": "ClickModifyDocumentButtonForWife.js",
+            "pre_status": "OpenDocTabForWifeCheck",
+            "next_status": "ClickWifeCheck",
+            "has_data": true,
+            "increase": true
+        },
+        "ClickWifeCheck": {
+            "frame_url": "/entity/archives/editArchives.action?",
+            "script": "ClickWifeCheckButton.js",
+            "pre_status": "ClickWifeCheck",
+            "next_status": "ClickWifeCheck",
+            "has_data": true
+        },
+        "ModifyWifeCheck": {
+            "frame_url": "/entity/basic/physicalExamW_physicalExamW.action?",
+            "script": "ModifyWife{Parameter}.js",
+            "pre_status": "ClickWifeCheck",
+            "next_status": "OpenDocTabForWifeCheck",
+            "has_data": true
+        },
+
+
+        // Create or update wife clinical data
+        "ClickModifyDocumentButtonForWifeClinical": {
+            "frame_url": "/entity/basic/prePregnancyService.action",
+            "script": "ClickModifyDocumentButtonForWife.js",
+            "pre_status": "OpenDocTabForWifeClinical",
+            "next_status": "ClickWifeClinical",
+            "has_data": true,
+            "increase": true
+        },
+        "ClickWifeClinical": {
+            "frame_url": "/entity/archives/editArchives.action?",
+            "script": "ClickWifeClinicalButton.js",
+            "pre_status": "ClickWifeClinical",
+            "next_status": "ClickWifeClinical",
+            "has_data": true
+        },
+        "ModifyWifeClinical": {
+            "frame_url": "#",
+            "script": "ModifyWifeClinical.js",
+            "pre_status": "ClickWifeClinical",
+            "next_status": "OpenDocTabForWifeClinical",
+            "has_data": true
         }
+
     }
 }
