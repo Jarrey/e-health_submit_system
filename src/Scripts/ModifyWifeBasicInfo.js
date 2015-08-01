@@ -10,7 +10,7 @@ ext.onReady(function() {
             ClickButton(d, "疾病史");
             var fieldSet = GetFieldSet(d, "疾病史");
             var fields = GetFieldSet(fieldSet, "是否患有或曾经患过以下疾病");
-            if ("{疾病史}" == "1") {
+            if ("{疾病史}" == "0") {
                 Enter(fields, f, "radio", "是", 1);
                 var list = GetFieldSet(fields, "疾病列表");
                 Enter(list, f, "check", "贫血", {贫血});
@@ -76,7 +76,7 @@ ext.onReady(function() {
             }
 
             fields = GetFieldSet(fieldSet, "是否正在使用或曾经使用避孕措施");
-            if ("{是否采用避孕措施}" == "1") {
+            if ("{是否采用避孕措施}" == "0") {
                 Enter(fields, f, "radio", "是", 1);
                 list = GetFieldSet(fields, "现用避孕措施或目前终止避孕者原避孕措施");
                 Enter(list, f, "check", "宫内节育器", {宫内节育器});
@@ -131,7 +131,7 @@ ext.onReady(function() {
             }
 
             fields = GetFieldSet(fieldSet, "是否有以下不良妊娠结局");
-            if ("{是否有不良妊娠}" == "1") {
+            if ("{是否有不良妊娠}" == "0") {
                 Enter(fields, f, "radio", "是", 1);
                 list = GetFieldSet(fields, "不良妊娠结局列表");
                 Enter(list, f, "check", "死产死胎", {死胎死产});

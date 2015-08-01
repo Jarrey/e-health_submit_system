@@ -10,7 +10,7 @@ ext.onReady(function() {
             ClickButton(d, "疾病史");
             var fieldSet = GetFieldSet(d, "疾病史");
             /*var fields = GetFieldSet(fieldSet, "是否患有或曾经患过以下疾病");
-            if ("{疾病史}" == "1") {
+            if ("{疾病史}" == "0") {
                 Enter(fields, f, "radio", "是", 1);
                 var list = GetFieldSet(fields, "疾病列表");
                 Enter(list, f, "check", "贫血", {贫血});
@@ -148,10 +148,12 @@ ext.onReady(function() {
             } else {
                 Enter(fields, f, "radio", "是", 0);
             }
+
             /*fields = GetFieldSet(fieldSet, "是否口臭");
             Enter(fields, f, "radio", "是", {口臭});
             fields = GetFieldSet(fieldSet, "是否牙龈出血");
             Enter(fields, f, "radio", "是", {牙龈出血});*/
+
             fields = GetFieldSet(fieldSet, "生活或工作环境中是否接触以下因素");
             if ("{未接触不良环境}" == "0") {
                 Enter(fields, f, "radio", "是", 1);
