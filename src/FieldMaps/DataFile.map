@@ -5,7 +5,8 @@
         "Mapper": "FieldMaps/BasicInfo.map",
         "CanNew": true,
         "NewStep": "OpenDocTabForNew",
-        "ModifyStep": "OpenDocTabForModify"
+        "ModifyStep": "OpenDocTabForModify",
+        "Account": { "Admin": "上传 && 创建档案|上传 && 修改档案" }
     },
     {
         "Key": "fkbc",
@@ -13,7 +14,8 @@
         "Mapper": "FieldMaps/GynaecologyBMod.map",
         "CanNew": false,
         "NewStep": "Init",
-        "ModifyStep": "OpenDocTabForBMod"
+        "ModifyStep": "OpenDocTabForBMod",
+        "Account": { "Admin": "上传 && 修改档案" }
     },
     {
         "Key": "qzybqk",
@@ -21,7 +23,8 @@
         "Mapper": "FieldMaps/WifeBasicInfo.map",
         "CanNew": false,
         "NewStep": "Init",
-        "ModifyStep": "OpenDocTabForWifeBasicInfo"
+        "ModifyStep": "OpenDocTabForWifeBasicInfo",
+        "Account": { "Admin": "修改一般情况表" }
     },
     {
         "Key": "qztg",
@@ -30,7 +33,8 @@
         "CanNew": false,
         "NewStep": "Init",
         "ModifyStep": "OpenDocTabForWifeCheck",
-        "Parameter": "BodyCheck"
+        "Parameter": "BodyCheck",
+        "Account": { "Admin": "修改体格检查表" }
     },
     {
         "Key": "qzfk",
@@ -39,13 +43,15 @@
         "CanNew": false,
         "NewStep": "Init",
         "ModifyStep": "OpenDocTabForWifeCheck",
-        "Parameter": "GynecologyCheck"
+        "Parameter": "GynecologyCheck",
+        "Account": { "Admin": "修改妇科检查表" }
     },
     {
         "Key": "qzlj",
         "DisplayName": "妻子临床检验表",
         "Mapper": "FieldMaps/WifeClinical.map",
-        "CanNew": false
+        "CanNew": false,
+        "Account": { "Admin": "临床检验开单", "Clinical": "完善临床检验" }
     },
     {
         "Key": "zfybqk",
@@ -53,7 +59,8 @@
         "Mapper": "FieldMaps/HusBasicInfo.map",
         "CanNew": false,
         "NewStep": "Init",
-        "ModifyStep": "OpenDocTabForHusBasicInfo"
+        "ModifyStep": "OpenDocTabForHusBasicInfo",
+        "Account": { "Admin": "修改一般情况表" }
     },
     {
         "Key": "zftg",
@@ -62,7 +69,8 @@
         "CanNew": false,
         "NewStep": "Init",
         "ModifyStep": "OpenDocTabForHusCheck",
-        "Parameter": "BodyCheck"
+        "Parameter": "BodyCheck",
+        "Account": { "Admin": "修改体格检查表" }
     },
     {
         "Key": "zfnk",
@@ -71,12 +79,14 @@
         "CanNew": false,
         "NewStep": "Init",
         "ModifyStep": "OpenDocTabForHusCheck",
-        "Parameter": "AndrologyCheck"
+        "Parameter": "AndrologyCheck",
+        "Account": { "Admin": "修改男科检查表" }
     },
     {
         "Key": "zflj",
         "DisplayName": "丈夫临床检验表",
         "Mapper": "FieldMaps/HusClinical.map",
-        "CanNew": false
+        "CanNew": false,
+        "Account": { "Admin": "临床检验开单", "Clinical": "完善临床检验" }
     }
 ]

@@ -1,10 +1,10 @@
 ﻿function ClickTreeNode(r, n) {
-    while (true) {
-        var a = $(r).find('.x-tree-node-anchor:contains("' + n + '")');
-        if (a.length > 0) {
-            a[0].click();
-            return a[0].closest('.x-tree-node');
-        }
+    var a = $(r).find('.x-tree-node-anchor:contains("' + n + '")');
+    if (a.length > 0) {
+        a[0].click();
+        return a[0].closest('.x-tree-node');
+    } else {
+        return undefined;
     }
 }
 

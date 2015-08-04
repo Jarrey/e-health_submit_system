@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>yj.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CsvHelper">
       <HintPath>packages\CsvHelper.2.13.2.0\lib\net40-client\CsvHelper.dll</HintPath>
@@ -63,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountTypes.cs" />
     <Compile Include="Actions.cs" />
     <Compile Include="DataFile.cs" />
     <Compile Include="FrmMain.cs">
@@ -154,9 +158,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="yj.ico" />
     <None Include="FieldMaps\HusBasicInfo.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="Scripts\AfterLogin.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\ClickBModButton.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

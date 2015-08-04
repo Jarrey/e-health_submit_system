@@ -30,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.pnlWebView = new System.Windows.Forms.Panel();
             this.mainFrame = new System.Windows.Forms.SplitContainer();
             this.categoryDataFrame = new System.Windows.Forms.SplitContainer();
@@ -169,6 +170,7 @@
             this.btnModify.TabIndex = 6;
             this.btnModify.Text = "上传 && 修改档案";
             this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Visible = false;
             this.btnModify.Click += new System.EventHandler(this.BtnModifyClick);
             // 
             // btnSubmit
@@ -181,6 +183,7 @@
             this.btnSubmit.TabIndex = 6;
             this.btnSubmit.Text = "上传 && 创建档案";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Visible = false;
             this.btnSubmit.Click += new System.EventHandler(this.BtnSubmitClick);
             // 
             // chkSelectAll
@@ -217,9 +220,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1007, 662);
             this.Controls.Add(this.mainFrame);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(400, 350);
             this.Name = "FrmMain";
-            this.Text = "国家免费孕前优生健康检查项目信息上传系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.mainFrame.Panel1.ResumeLayout(false);
             this.mainFrame.Panel2.ResumeLayout(false);

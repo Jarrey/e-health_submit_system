@@ -46,14 +46,18 @@ namespace SubmitSys
 
         private StepStatus currentStatus;
 
+        private AccountTypes account;
+
         private int currentIndex = -1;
 
         #endregion
 
         public FrmMain()
         {
+            this.Text = Resources.FormTitle;
+            this.jsObj.OnLogin += OnLogin;
             this.jsObj.OnContinue += OnContinue;
-            this.jsObj.OnException+= OnException;
+            this.jsObj.OnException += OnException;
             this.webView = new ChromiumWebBrowser("about:blank");
             this.webView.RegisterJsObject("submitSys", this.jsObj);
             var actionsJson = File.ReadAllText("Scripts/ActionDefinition.json");
@@ -67,6 +71,16 @@ namespace SubmitSys
         }
 
         #region Event Handlers
+
+        private void OnLogin(object sender, MessageEventArgs e)
+        {
+            this.Invoke(new Action(() =>
+            {
+                this.Text = Resources.FormTitle + @" - " + e.Message;
+                this.account = e.Account;
+                this.LstCategorySelectedIndexChanged(this, EventArgs.Empty);
+            }));
+        }
 
         private void WebViewOnLoginFrameLoadEnd(object sender, FrameLoadEndEventArgs frameLoadEndEventArgs)
         {
@@ -84,8 +98,12 @@ namespace SubmitSys
 #endif
                 this.currentStatus = 0; // Initialize
             }
-            else
+            else if (frameLoadEndEventArgs.Url.Contains(this.actions.Steps["Login"].FrameUrlKey))
             {
+                this.webView.EvaluateScriptAsync(Resources.RunTime).Wait();
+                var step = this.actions.Steps["Login"];
+                var script = File.ReadAllText(Path.Combine("Scripts", step.Script));
+                this.webView.EvaluateScriptAsync(script).Wait();
                 this.webView.FrameLoadEnd -= WebViewOnLoginFrameLoadEnd;
             }
         }
@@ -218,7 +236,26 @@ namespace SubmitSys
             {
                 var file = this.lstCategory.SelectedItem as DataFile;
                 this.dgvData.DataSource = file.Table;
-                this.btnSubmit.Enabled = file.CanNew;
+                this.btnSubmit.Visible = false;
+                this.btnModify.Visible = false;
+
+                if (file.AccountSettings != null && file.AccountSettings[this.account.ToString()] != null)
+                {
+                    var btnNames = file.AccountSettings[this.account.ToString()].ToString().Split('|');
+                    if (btnNames.Length > 1)
+                    {
+                        this.btnSubmit.Visible = file.CanNew;
+                        this.btnModify.Visible = true;
+                        this.btnSubmit.Text = btnNames[0];
+                        this.btnModify.Text = btnNames[1];
+                    }
+                    else
+                    {
+                        this.btnSubmit.Visible = false;
+                        this.btnModify.Visible = true;
+                        this.btnModify.Text = btnNames[0];
+                    }
+                }
             }
         }
 
@@ -232,26 +269,6 @@ namespace SubmitSys
                     checkBoxCell.Value = this.dgvData.SelectedRows.Contains(row);
                 }
             }
-        }
-
-        private void OnContinue(object sender, ContinueEventArgs e)
-        {
-            if (currentIndex >= selectedRows.Count - 1)
-            {
-                this.CloseLoading();
-                return;
-            }
-
-            if (currentIndex < selectedRows.Count - 1)
-            {
-                this.OpenDocumentTab(e.Step);
-            }
-        }
-
-        private void OnException(object sender, ExceptionEventArgs e)
-        {
-            this.CloseLoading();
-            MessageBox.Show(e.Ex.Message, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void BtnSubmitClick(object sender, EventArgs e)
@@ -292,6 +309,26 @@ namespace SubmitSys
                 this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
                 this.OpenDocumentTab(file.ModifyStep);
             }
+        }
+
+        private void OnContinue(object sender, ContinueEventArgs e)
+        {
+            if (currentIndex >= selectedRows.Count - 1)
+            {
+                this.CloseLoading();
+                return;
+            }
+
+            if (currentIndex < selectedRows.Count - 1)
+            {
+                this.OpenDocumentTab(e.Step);
+            }
+        }
+
+        private void OnException(object sender, ExceptionEventArgs e)
+        {
+            this.CloseLoading();
+            MessageBox.Show(e.Ex.Message, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         #endregion

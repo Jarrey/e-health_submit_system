@@ -12,13 +12,25 @@ namespace SubmitSys
     using System;
     using System.Collections.Generic;
 
+    using CefSharp;
+
     internal class JsObj
     {
         public List<string> Messages = new List<string>();
 
         public event EventHandler<ContinueEventArgs> OnContinue;
 
-        public event EventHandler<ExceptionEventArgs> OnException; 
+        public event EventHandler<ExceptionEventArgs> OnException;
+
+        public event EventHandler<MessageEventArgs> OnLogin;
+
+        public void Login(string msg, string accountType)
+        {
+            if (OnLogin != null)
+            {
+                OnLogin(this, new MessageEventArgs(msg, accountType));
+            }
+        }
 
         public void PopupMsg(string msg, bool isContinue, string step)
         {
@@ -38,8 +50,6 @@ namespace SubmitSys
                     OnException(this, new ExceptionEventArgs(new Exception(msg)));
                 }
             }
-
-
         }
 
         internal void ShowMessages()
@@ -59,7 +69,7 @@ namespace SubmitSys
 
         public ContinueEventArgs(string step)
         {
-            var result = StepStatus.Init;
+            StepStatus result;
             Enum.TryParse(step, true, out result);
             this.Step = result;
         }
@@ -72,6 +82,21 @@ namespace SubmitSys
         public ExceptionEventArgs(Exception ex)
         {
             this.Ex = ex;
+        }
+    }
+
+    internal class MessageEventArgs : EventArgs
+    {
+        public string Message { get; set; }
+
+        public AccountTypes Account { get; set; }
+
+        public MessageEventArgs(string msg, string type)
+        {
+            this.Message = msg;
+            AccountTypes result;
+            Enum.TryParse(type, true, out result);
+            this.Account = result;
         }
     }
 }

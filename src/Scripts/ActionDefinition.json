@@ -1,6 +1,12 @@
 ﻿{
     "login_url": "http://mcm3.pc.e-health.org.cn/login/ssoLogin_doctor.action",
     "steps": {
+
+        "Login": {
+            "frame_url":  "entity/manager/index.jsp",
+            "script": "AfterLogin.js"
+        },
+
         "OpenDocumentTab": {
             "frame_url": "entity/manager/index.jsp",
             "script": "OpenDocumentTab.js",

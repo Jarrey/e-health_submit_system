@@ -12,6 +12,7 @@ namespace SubmitSys
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Dynamic;
     using System.IO;
 
     using Newtonsoft.Json;
@@ -164,5 +165,25 @@ namespace SubmitSys
                 return string.Empty;
             }
         }
+
+        public dynamic AccountSettings
+        {
+            get
+            {
+                
+                foreach (dynamic map in DataFileMapper)
+                {
+                    if (name.Contains(map.Key.ToString()))
+                    {
+                        if (map.Account != null)
+                        {
+                            return map.Account;
+                        }
+                    }
+                }
+
+                return null;
+            }
+        } 
     }
 }

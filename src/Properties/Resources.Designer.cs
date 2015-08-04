@@ -79,6 +79,15 @@ namespace SubmitSys.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 国家免费孕前优生健康检查项目信息上传系统.
+        /// </summary>
+        internal static string FormTitle {
+            get {
+                return ResourceManager.GetString("FormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 信息.
         /// </summary>
         internal static string InfoTitle {
@@ -94,8 +103,10 @@ namespace SubmitSys.Properties {
         ///        textbox.setAttribute(&quot;value&quot;, text);
         ///}
         ///
-        ///TypeText(&quot;username&quot;, &quot;D341302000&quot;);
-        ///TypeText(&quot;password&quot;, &quot;3727990.yq&quot;);.
+        ///// TypeText(&quot;username&quot;, &quot;D341302000&quot;);
+        ///// TypeText(&quot;password&quot;, &quot;3727990.yq&quot;);
+        ///TypeText(&quot;username&quot;, &quot;t341302000&quot;);
+        ///TypeText(&quot;password&quot;, &quot;3727990+yq&quot;);.
         /// </summary>
         internal static string Login {
             get {
@@ -141,17 +152,17 @@ namespace SubmitSys.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to function ClickTreeNode(r, n) {
-        ///    while (true) {
         ///        var a = $(r).find(&apos;.x-tree-node-anchor:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
-        ///        if (a.length &gt; 0) {
-        ///            a[0].click();
-        ///            return a[0].closest(&apos;.x-tree-node&apos;);
-        ///        }
+        ///    if (a.length &gt; 0) {
+        ///        a[0].click();
+        ///        return a[0].closest(&apos;.x-tree-node&apos;);
+        ///    } else {
+        ///        return undefined;
         ///    }
         ///}
         ///
         ///function ClickTab(r, n) {
-        ///    var t = $(r).find(&apos;.x-tab-strip-closable:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
+        ///    var t = $(r).find(&apos;.x-tab-strip&apos;).find(&apos;li:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
         ///    if (t.length &gt; 0) {
         ///        t[0].click();
         ///        return t[0];
@@ -160,8 +171,8 @@ namespace SubmitSys.Properties {
         ///    }
         ///}
         ///
-        ///function CloseTab(n) {
-        ///    var tabs  [rest of string was truncated]&quot;;.
+        ///function CloseAllTabs() {
+        ///    var ta [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string RunTime {
             get {
