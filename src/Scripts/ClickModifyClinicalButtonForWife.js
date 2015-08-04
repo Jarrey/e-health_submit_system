@@ -1,9 +1,9 @@
-﻿var f = GetFrame("/entity/basic/prePregnancyService.action");
+﻿var f = GetFrame("/entity/exam/labExamReport.action");
 var d = f.contentDocument;
 var ext = f.contentWindow.Ext;
 ext.onReady(function() {
 
-    Enter(d, f, "text", "妻子证件号码", "{妻子证件号码}");
+    Enter(d, f, "text", "女方证件号码", "{妻子证件号码}");
     ClickButton(d, "搜索");
 
     var times = 0;
@@ -20,13 +20,13 @@ ext.onReady(function() {
             window.clearInterval(i);
             if (!CheckDataExist(d, "{妻子证件号码}")) {
                 window.submitSys.popupMsg('数据 - 妻子姓名: {妻子姓名}, 妻子证件号码: {妻子证件号码} 不存在', true, "{Status}");
-                CloseTab("临床医生系统");
+                CloseAllTabs();
                 return;
             }
 
             SelectData(d, f, "{妻子证件号码}");
-            ClickButton(f, "完善档案");
-            ClickTab(document, "完善档案");
+            ClickButton(f, "完善检验结果");
+            ClickTab(document, "完善检验结果", 1);
         }
     }, 1000);
 });

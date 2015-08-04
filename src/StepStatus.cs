@@ -42,6 +42,7 @@ namespace SubmitSys
         ClickHusBasicInfo,
 
         OpenDocTabForHusClinical,
-        ClickHusClinical
+        ClickHusClinical,
+
     }
 }

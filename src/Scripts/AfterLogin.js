@@ -1,5 +1,14 @@
 ﻿Ext.onReady(function() {
+    var times = 0;
     var i = setInterval(function() {
+        times++;
+        if (times >= MaxRetryTimes) {
+            window.clearInterval(i);
+            window.submitSys.popupMsg("超时，无法找到页面元素", false, "");
+            CloseAllTabs();
+            return;
+        }
+
         if (ClickTreeNode(document, "个人信息操作")) {
             window.clearInterval(i);
             if (ClickTreeNode(document, "档案管理")) {

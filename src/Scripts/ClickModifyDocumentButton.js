@@ -7,7 +7,15 @@ ext.onReady(function() {
     Enter(d, f, "text", "妻子证件号码", "{妻子证件号码}");
     ClickButton(d, "搜索");
 
+    var times = 0;
     var i = setInterval(function() {
+        times++;
+        if (times >= MaxRetryTimes) {
+            window.clearInterval(i);
+            window.submitSys.popupMsg("超时，无法找到页面元素", false, "");
+            CloseAllTabs();
+            return;
+        }
         if (!IsLoadingData(d)) {
             window.clearInterval(i);
             if (!CheckDataExist(d, "{丈夫证件号码}") || !CheckDataExist(d, "{妻子证件号码}")) {

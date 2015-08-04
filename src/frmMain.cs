@@ -287,7 +287,7 @@ namespace SubmitSys
 
                 this.webView.ExecuteScriptAsync(Resources.RunTime);
                 this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
-                this.OpenDocumentTab(file.NewStep);
+                this.OpenTab(file.NewStep);
             }
         }
 
@@ -307,7 +307,7 @@ namespace SubmitSys
 
                 this.webView.ExecuteScriptAsync(Resources.RunTime);
                 this.webView.FrameLoadEnd += WebViewOnFrameLoadEnd;
-                this.OpenDocumentTab(file.ModifyStep);
+                this.OpenTab(file.ModifyStep);
             }
         }
 
@@ -321,7 +321,7 @@ namespace SubmitSys
 
             if (currentIndex < selectedRows.Count - 1)
             {
-                this.OpenDocumentTab(e.Step);
+                this.OpenTab(e.Step);
             }
         }
 
@@ -376,12 +376,23 @@ namespace SubmitSys
             return true;
         }
 
-        private void OpenDocumentTab(StepStatus stepStatus)
+        private void OpenTab(StepStatus stepStatus)
         {
             if (stepStatus == StepStatus.Init) return;
             var openNewDocStep = this.actions.Steps["OpenDocumentTab"];
-            var script = File.ReadAllText(Path.Combine("Scripts", openNewDocStep.Script));
-            this.webView.ExecuteScriptAsync(script);
+            var openClinicalStep = this.actions.Steps["OpenClinicalTab"];
+            if (this.account == AccountTypes.Admin)
+            {
+                var script = File.ReadAllText(Path.Combine("Scripts", openNewDocStep.Script));
+                this.webView.ExecuteScriptAsync(script);
+            }
+
+            if (this.account == AccountTypes.Clinical)
+            {
+                var script = File.ReadAllText(Path.Combine("Scripts", openClinicalStep.Script));
+                this.webView.ExecuteScriptAsync(script);
+            }
+
             this.currentStatus = stepStatus;
         }
 

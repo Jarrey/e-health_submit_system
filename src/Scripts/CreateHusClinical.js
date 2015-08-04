@@ -2,7 +2,16 @@
 var d = f.contentDocument;
 var ext = f.contentWindow.Ext;
 ext.onReady(function() {
+    var times = 0;
     var i = setInterval(function() {
+        times++;
+        if (times >= MaxRetryTimes) {
+            window.clearInterval(i);
+            window.submitSys.popupMsg("超时，无法找到页面元素", false, "");
+            CloseAllTabs();
+            return;
+        }
+
         if (!IsLoadingData(d) && ext.isReady) {
             window.clearInterval(i);
             try {

@@ -9,9 +9,9 @@ var i = setInterval(function() {
     }
 
     CloseAllTabs();
-    if (!ClickTab(document, "临床医生系统")) {
+    if (!ClickTab(document, "完善检验结果")) {
         window.clearInterval(i);
-        ClickTreeNode(ClickTreeNode(document, "档案管理"), "临床医生系统");
-        ClickTab(document, "临床医生系统");
+        ClickTreeNode(ClickTreeNode(document, "检验系统"), "完善检验结果");
+        ClickTab(document, "完善检验结果");
     }
 }, 1000);

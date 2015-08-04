@@ -1,7 +1,16 @@
 ﻿var f = GetFrame("/entity/archives/basicInfoDetail_input.action?");
 var ext = f.contentWindow.Ext;
 ext.onReady(function() {
+    var times = 0;
     var i = setInterval(function() {
+        times++;
+        if (times >= MaxRetryTimes) {
+            window.clearInterval(i);
+            window.submitSys.popupMsg("超时，无法找到页面元素", false, "");
+            CloseAllTabs();
+            return;
+        }
+
         if (ext.isReady) {
             window.clearInterval(i);
             Enter(f, f, "combo", "是否签署知情同意书", "男女双方都签署");

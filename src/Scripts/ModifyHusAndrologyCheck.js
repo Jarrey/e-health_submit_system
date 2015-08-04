@@ -2,7 +2,16 @@
 var d = f.contentDocument;
 var ext = f.contentWindow.Ext;
 ext.onReady(function() {
+    var times = 0;
     var i = setInterval(function() {
+        times++;
+        if (times >= MaxRetryTimes) {
+            window.clearInterval(i);
+            window.submitSys.popupMsg("超时，无法找到页面元素", false, "");
+            CloseAllTabs();
+            return;
+        }
+
         if (!IsLoadingData(d) && ext.isReady) {
             window.clearInterval(i);
             try {
@@ -90,7 +99,16 @@ ext.onReady(function() {
 
                 ClickButton(b, "保存");
                 $(d).find('.x-window:contains("您已确认无误，要提交？")').find('button:contains("是")').click();
+                times = 0;
                 var save = setInterval(function() {
+                    times++;
+                    if (times >= MaxRetryTimes) {
+                        window.clearInterval(save);
+                        window.submitSys.popupMsg("超时，无法找到页面元素", false, "");
+                        CloseAllTabs();
+                        return;
+                    }
+
                     if ($(d).find('.x-window:contains("保存成功！是否关闭？")').length > 0) {
                         window.clearInterval(save);
                         $(d).find('.x-window:contains("保存成功！是否关闭？")').find('button:contains("是")').click();

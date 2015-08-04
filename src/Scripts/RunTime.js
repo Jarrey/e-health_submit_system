@@ -1,4 +1,6 @@
-﻿function ClickTreeNode(r, n) {
+﻿var MaxRetryTimes = 10;
+
+function ClickTreeNode(r, n) {
     var a = $(r).find('.x-tree-node-anchor:contains("' + n + '")');
     if (a.length > 0) {
         a[0].click();
@@ -8,11 +10,12 @@
     }
 }
 
-function ClickTab(r, n) {
+function ClickTab(r, n, i) {
+    i = typeof i !== 'undefined' ? i : 0;
     var t = $(r).find('.x-tab-strip').find('li:contains("' + n + '")');
-    if (t.length > 0) {
-        t[0].click();
-        return t[0];
+    if (t.length > i) {
+        t[i].click();
+        return t[i];
     } else {
         return undefined;
     }
@@ -132,6 +135,8 @@ function GetFrame(k) {
     var f = $('iframe[src*="' + k + '"]');
     if (f.length > 0) {
         return f[0];
+    } else {
+        return undefined;
     }
 }
 

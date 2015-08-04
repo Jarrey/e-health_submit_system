@@ -2,7 +2,16 @@
 var d = f.contentDocument;
 var ext = f.contentWindow.Ext;
 ext.onReady(function() {
+    var times = 0;
     var i = setInterval(function() {
+        times++;
+        if (times >= MaxRetryTimes) {
+            window.clearInterval(i);
+            window.submitSys.popupMsg("超时，无法找到页面元素", false, "");
+            CloseAllTabs();
+            return;
+        }
+
         if (!IsLoadingData(d) && ext.isReady) {
             window.clearInterval(i);
             try {
@@ -14,7 +23,16 @@ ext.onReady(function() {
                 Enter(d, f, "check", "中值细胞", 1);
 
                 ClickButton(d, "保存");
+                times = 0;
                 var save = setInterval(function() {
+                    times++;
+                    if (times >= MaxRetryTimes) {
+                        window.clearInterval(save);
+                        window.submitSys.popupMsg("超时，无法找到页面元素", false, "");
+                        CloseAllTabs();
+                        return;
+                    }
+
                     if ($(d).find('.x-window:contains("成功！是否要关闭当前页面？")').length > 0) {
                         window.clearInterval(save);
                         $(d).find('.x-window:contains("成功！是否要关闭当前页面？")').find('button:contains("是")').click();

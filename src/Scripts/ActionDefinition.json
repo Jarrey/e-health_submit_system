@@ -3,13 +3,18 @@
     "steps": {
 
         "Login": {
-            "frame_url":  "entity/manager/index.jsp",
+            "frame_url": "entity/manager/index.jsp",
             "script": "AfterLogin.js"
         },
 
         "OpenDocumentTab": {
             "frame_url": "entity/manager/index.jsp",
             "script": "OpenDocumentTab.js",
+            "pre_status": "Init"
+        },
+        "OpenClinicalTab": {
+            "frame_url": "entity/manager/index.jsp",
+            "script": "OpenClinicalTab.js",
             "pre_status": "Init"
         },
 
@@ -203,7 +208,7 @@
             "has_data": true
         },
 
-        
+
         // Create husband clinical data
         "ClickModifyDocumentButtonForHusClinical": {
             "frame_url": "/entity/basic/prePregnancyService.action",
@@ -226,7 +231,39 @@
             "pre_status": "ClickHusClinical",
             "next_status": "OpenDocTabForHusClinical",
             "has_data": true
-        }
+        },
 
+        // --------------------------------------------------------------------
+
+        // Fill wife clinical result
+        "ClickModifyClinicalButtonForWife": {
+            "frame_url": "/entity/exam/labExamReport.action",
+            "script": "ClickModifyClinicalButtonForWife.js",
+            "pre_status": "OpenDocTabForWifeClinical",
+            "next_status": "ClickWifeClinical",
+            "has_data": true,
+            "increase": true
+        },
+        "ClickAddModifyWifeClinical": {
+            "frame_url": "/entity/exam/editExamResult.action?",
+            "script": "ClickAddModifyWifeClinical.js",
+            "pre_status": "ClickWifeClinical",
+            "next_status": "ClickWifeClinical",
+            "has_data": true
+        },
+        "AddWifeClinical": {
+            "frame_url": "/entity/basic/labExamW_inputF.action?",
+            "script": "AddModifyWifeClinical.js",
+            "pre_status": "ClickWifeClinical",
+            "next_status": "OpenDocTabForWifeClinical",
+            "has_data": true
+        },
+        "ModifyWifeClinical": {
+            "frame_url": "/entity/basic/labExamW_toUpdate.action?",
+            "script": "AddModifyWifeClinical.js",
+            "pre_status": "ClickWifeClinical",
+            "next_status": "OpenDocTabForWifeClinical",
+            "has_data": true
+        }
     }
 }
