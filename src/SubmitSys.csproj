@@ -158,6 +158,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\ClickHusClinicalButton.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\CreateHusClinical.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="yj.ico" />
     <None Include="FieldMaps\HusBasicInfo.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -225,7 +231,7 @@
     <Content Include="Scripts\ModifyWifeGynecologyCheck.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\ModifyWifeClinical.js">
+    <Content Include="Scripts\CreateWifeClinical.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\OpenDocumentTab.js">

@@ -129,7 +129,7 @@
         },
 
 
-        // Create or update wife clinical data
+        // Create wife clinical data
         "ClickModifyDocumentButtonForWifeClinical": {
             "frame_url": "/entity/basic/prePregnancyService.action",
             "script": "ClickModifyDocumentButtonForWife.js",
@@ -145,9 +145,9 @@
             "next_status": "ClickWifeClinical",
             "has_data": true
         },
-        "ModifyWifeClinical": {
-            "frame_url": "#",
-            "script": "ModifyWifeClinical.js",
+        "CreateWifeClinical": {
+            "frame_url": "/entity/basic/labCheckItemW_inputdzh1.action?",
+            "script": "CreateWifeClinical.js",
             "pre_status": "ClickWifeClinical",
             "next_status": "OpenDocTabForWifeClinical",
             "has_data": true
@@ -201,8 +201,32 @@
             "pre_status": "ClickHusCheck",
             "next_status": "OpenDocTabForHusCheck",
             "has_data": true
-        }
+        },
 
+        
+        // Create husband clinical data
+        "ClickModifyDocumentButtonForHusClinical": {
+            "frame_url": "/entity/basic/prePregnancyService.action",
+            "script": "ClickModifyDocumentButtonForHus.js",
+            "pre_status": "OpenDocTabForHusClinical",
+            "next_status": "ClickHusClinical",
+            "has_data": true,
+            "increase": true
+        },
+        "ClickHusClinical": {
+            "frame_url": "/entity/archives/editArchives.action?",
+            "script": "ClickHusClinicalButton.js",
+            "pre_status": "ClickHusClinical",
+            "next_status": "ClickHusClinical",
+            "has_data": true
+        },
+        "CreateHusClinical": {
+            "frame_url": "/entity/archives/labExamCheckItemM_inputdzh1.action?",
+            "script": "CreateHusClinical.js",
+            "pre_status": "ClickHusClinical",
+            "next_status": "OpenDocTabForHusClinical",
+            "has_data": true
+        }
 
     }
 }

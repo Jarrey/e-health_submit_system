@@ -19,6 +19,8 @@ namespace SubmitSys
         OpenDocTabForModify,
         ClickModifyDoc,
 
+        /* --------------------------------------- */
+
         OpenDocTabForBMod,
         ClickBMod,
 
@@ -37,6 +39,9 @@ namespace SubmitSys
         ClickHusCheck,
 
         OpenDocTabForHusBasicInfo,
-        ClickHusBasicInfo
+        ClickHusBasicInfo,
+
+        OpenDocTabForHusClinical,
+        ClickHusClinical
     }
 }

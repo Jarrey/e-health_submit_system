@@ -51,6 +51,8 @@
         "DisplayName": "妻子临床检验表",
         "Mapper": "FieldMaps/WifeClinical.map",
         "CanNew": false,
+        "NewStep": "Init",
+        "ModifyStep": "OpenDocTabForWifeClinical",
         "Account": { "Admin": "临床检验开单", "Clinical": "完善临床检验" }
     },
     {
@@ -87,6 +89,8 @@
         "DisplayName": "丈夫临床检验表",
         "Mapper": "FieldMaps/HusClinical.map",
         "CanNew": false,
+        "NewStep": "Init",
+        "ModifyStep": "OpenDocTabForHusClinical",
         "Account": { "Admin": "临床检验开单", "Clinical": "完善临床检验" }
     }
 ]
