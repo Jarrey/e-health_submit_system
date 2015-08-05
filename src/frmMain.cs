@@ -93,9 +93,11 @@ namespace SubmitSys
             if (frameLoadEndEventArgs.Url.Contains("login/ssoLogin"))
             {
                 this.webView.ExecuteScriptAsync("document.getElementById('form').scrollIntoView(false);");
-#if DEBUG
-                this.webView.ExecuteScriptAsync(Resources.Login);
-#endif
+                if (Settings.Default.AutoTextUserName)
+                {
+                    this.webView.ExecuteScriptAsync(File.ReadAllText(Path.Combine("Scripts", "Login.js")));
+                }
+
                 this.currentStatus = 0; // Initialize
             }
             else if (frameLoadEndEventArgs.Url.Contains(this.actions.Steps["Login"].FrameUrlKey))

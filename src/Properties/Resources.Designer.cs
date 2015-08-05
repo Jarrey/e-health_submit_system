@@ -97,24 +97,6 @@ namespace SubmitSys.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to function TypeText(id, text) {
-        ///    var textbox = document.getElementById(id);
-        ///    if (textbox)
-        ///        textbox.setAttribute(&quot;value&quot;, text);
-        ///}
-        ///
-        ///// TypeText(&quot;username&quot;, &quot;D341302000&quot;);
-        ///// TypeText(&quot;password&quot;, &quot;3727990.yq&quot;);
-        ///TypeText(&quot;username&quot;, &quot;t341302000&quot;);
-        ///TypeText(&quot;password&quot;, &quot;3727990+yq&quot;);.
-        /// </summary>
-        internal static string Login {
-            get {
-                return ResourceManager.GetString("Login", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 请先登录国家孕检系统....
         /// </summary>
         internal static string LoginInfoMessage {
@@ -151,8 +133,10 @@ namespace SubmitSys.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to function ClickTreeNode(r, n) {
-        ///        var a = $(r).find(&apos;.x-tree-node-anchor:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
+        ///   Looks up a localized string similar to var MaxRetryTimes = 10;
+        ///
+        ///function ClickTreeNode(r, n) {
+        ///    var a = $(r).find(&apos;.x-tree-node-anchor:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
         ///    if (a.length &gt; 0) {
         ///        a[0].click();
         ///        return a[0].closest(&apos;.x-tree-node&apos;);
@@ -161,18 +145,14 @@ namespace SubmitSys.Properties {
         ///    }
         ///}
         ///
-        ///function ClickTab(r, n) {
+        ///function ClickTab(r, n, i) {
+        ///    i = typeof i !== &apos;undefined&apos; ? i : 0;
         ///    var t = $(r).find(&apos;.x-tab-strip&apos;).find(&apos;li:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
-        ///    if (t.length &gt; 0) {
-        ///        t[0].click();
-        ///        return t[0];
+        ///    if (t.length &gt; i) {
+        ///        t[i].click();
+        ///        return t[i];
         ///    } else {
-        ///        return undefined;
-        ///    }
-        ///}
-        ///
-        ///function CloseAllTabs() {
-        ///    var ta [rest of string was truncated]&quot;;.
+        ///        [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string RunTime {
             get {
