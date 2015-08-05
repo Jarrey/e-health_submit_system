@@ -1,5 +1,5 @@
 ﻿{
-    "login_url": "http://mcm3.pc.e-health.org.cn/login/ssoLogin_doctor.action",
+    "login_url": "http://mcm.pc.e-health.org.cn/login/ssoLogin_doctor.action",
     "steps": {
 
         "Login": {
@@ -263,6 +263,37 @@
             "script": "AddModifyWifeClinical.js",
             "pre_status": "ClickWifeClinical",
             "next_status": "OpenDocTabForWifeClinical",
+            "has_data": true
+        },
+
+        // Fill husband clinical data
+        "ClickModifyClinicalButtonForHus": {
+            "frame_url": "/entity/exam/labExamReport.action",
+            "script": "ClickModifyClinicalButtonForHus.js",
+            "pre_status": "OpenDocTabForHusClinical",
+            "next_status": "ClickHusClinical",
+            "has_data": true,
+            "increase": true
+        },
+        "ClickAddModifyHusClinical": {
+            "frame_url": "/entity/exam/editExamResult.action?",
+            "script": "ClickAddModifyHusClinical.js",
+            "pre_status": "ClickHusClinical",
+            "next_status": "ClickHusClinical",
+            "has_data": true
+        },
+        "AddHusClinical": {
+            "frame_url": "/entity/exam/labExamM_input.action?",
+            "script": "AddModifyHusClinical.js",
+            "pre_status": "ClickHusClinical",
+            "next_status": "OpenDocTabForHusClinical",
+            "has_data": true
+        },
+        "ModifyHusClinical": {
+            "frame_url": "/entity/exam/labExamM_toUpdate.action?",
+            "script": "AddModifyHusClinical.js",
+            "pre_status": "ClickHusClinical",
+            "next_status": "OpenDocTabForHusClinical",
             "has_data": true
         }
     }
