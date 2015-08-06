@@ -97,6 +97,16 @@ namespace SubmitSys.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon installer {
+            get {
+                object obj = ResourceManager.GetObject("installer", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 请先登录国家孕检系统....
         /// </summary>
         internal static string LoginInfoMessage {
@@ -193,6 +203,16 @@ namespace SubmitSys.Properties {
         internal static string Uploading {
             get {
                 return ResourceManager.GetString("Uploading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon yj {
+            get {
+                object obj = ResourceManager.GetObject("yj", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

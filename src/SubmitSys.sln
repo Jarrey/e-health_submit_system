@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{789A81
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "..\installer\Installer\Installer.vdproj", "{558E0447-8E30-4F21-866C-2E033ED74992}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -22,6 +24,8 @@ Global
 		{3B73DAAF-210E-4972-9C09-0271236641C6}.Debug|x86.Build.0 = Debug|x86
 		{3B73DAAF-210E-4972-9C09-0271236641C6}.Release|x86.ActiveCfg = Release|x86
 		{3B73DAAF-210E-4972-9C09-0271236641C6}.Release|x86.Build.0 = Release|x86
+		{558E0447-8E30-4F21-866C-2E033ED74992}.Debug|x86.ActiveCfg = Debug
+		{558E0447-8E30-4F21-866C-2E033ED74992}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
