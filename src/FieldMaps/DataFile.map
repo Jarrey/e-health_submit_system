@@ -1,5 +1,5 @@
 ﻿[
-    {
+    /*{
         "Key": "yjdab",
         "DisplayName": "孕检档案表",
         "Mapper": "FieldMaps/BasicInfo.map",
@@ -7,7 +7,7 @@
         "NewStep": "OpenDocTabForNew",
         "ModifyStep": "OpenDocTabForModify",
         "Account": { "Admin": "上传 && 创建档案|上传 && 修改档案" }
-    },
+    },*/
     {
         "Key": "fkbc",
         "DisplayName": "妻子妇科B超检查表",

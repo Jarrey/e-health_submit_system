@@ -79,7 +79,7 @@ namespace SubmitSys.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 国家免费孕前优生健康检查项目信息上传系统.
+        ///   Looks up a localized string similar to 国家免费孕前优生健康检查项目信息数据传输系统.
         /// </summary>
         internal static string FormTitle {
             get {
@@ -203,6 +203,15 @@ namespace SubmitSys.Properties {
         internal static string Uploading {
             get {
                 return ResourceManager.GetString("Uploading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 请使用管理员账号登陆系统下载档案数据....
+        /// </summary>
+        internal static string UseAdminLoginMessage {
+            get {
+                return ResourceManager.GetString("UseAdminLoginMessage", resourceCulture);
             }
         }
         

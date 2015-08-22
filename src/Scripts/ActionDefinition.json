@@ -18,6 +18,7 @@
             "pre_status": "Init"
         },
 
+        /*
         // Create new basic document steps
         "ClickNewDocumentButton": {
             "frame_url": "/entity/basic/prePregnancyService.action",
@@ -58,7 +59,7 @@
             "next_status": "OpenDocTabForModify",
             "has_data": true
         },
-
+        */
 
         // Create and update B-Mod result
         "ClickModifyDocumentButtonForBMod": {

@@ -155,12 +155,15 @@
     <value>正在上传数据, 请稍等...</value>
   </data>
   <data name="FormTitle" xml:space="preserve">
-    <value>国家免费孕前优生健康检查项目信息上传系统</value>
+    <value>国家免费孕前优生健康检查项目信息数据传输系统</value>
   </data>
   <data name="installer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\installer.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="yj" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yj.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UseAdminLoginMessage" xml:space="preserve">
+    <value>请使用管理员账号登陆系统下载档案数据...</value>
   </data>
 </root>

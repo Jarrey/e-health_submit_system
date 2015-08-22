@@ -1,0 +1,10 @@
+﻿{
+    "login_url": "http://mcm.pc.e-health.org.cn/login/ssoLogin_doctor.action",
+    "steps": {
+
+        "Login": {
+            "frame_url": "entity/manager/index.jsp",
+            "script": "AfterLogin.js"
+        }
+    }
+}
