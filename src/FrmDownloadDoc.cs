@@ -1,21 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FrmDownloadDoc.cs" company="Jarrey, jar_bob@163.com">
+//   Copyright © Jarrey, jar_bob@163.com
+// </copyright>
+// <summary>
+//   Defines the FrmDownloadDoc type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace SubmitSys
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
     using System.IO;
+    using System.Windows.Forms;
 
     using CefSharp;
     using CefSharp.WinForms;
 
     using Newtonsoft.Json;
 
+    using SubmitSys.DAL;
     using SubmitSys.Properties;
 
     public partial class FrmDownloadDoc : Form
@@ -30,7 +35,7 @@ namespace SubmitSys
 
         private readonly Actions actions;
 
-        private StepStatus currentStatus;
+        private readonly DBDocTable dbDocTable;
 
         private AccountTypes account;
 
@@ -42,7 +47,7 @@ namespace SubmitSys
         {
             this.Text = Resources.FormTitle;
             this.jsObj.OnLogin += OnLogin;
-            //this.jsObj.OnContinue += OnContinue;
+            this.jsObj.OnContinue += OnContinue;
             this.jsObj.OnException += OnException;
             this.webView = new ChromiumWebBrowser("about:blank");
             this.webView.RegisterJsObject("submitSys", this.jsObj);
@@ -53,6 +58,8 @@ namespace SubmitSys
             this.webView.Dock = DockStyle.Fill;
             this.pnlWebView.Controls.Add(this.webView);
             this.webView.Load(this.actions.LoginUrl);
+
+            this.dbDocTable = new DBDocTable(File.ReadAllText("FieldMaps/DatabaseTable.map"));
         }
 
         #region Event Handlers
@@ -70,6 +77,8 @@ namespace SubmitSys
                     this.webView.FrameLoadEnd += this.WebViewOnLoginFrameLoadEnd;
                     this.webView.ExecuteScriptAsync("parent.logout();");
                 }
+
+                this.btnDownloadDoc.Enabled = this.account == AccountTypes.Admin;
             }));
         }
 
@@ -88,8 +97,6 @@ namespace SubmitSys
                 {
                     this.webView.ExecuteScriptAsync(File.ReadAllText(Path.Combine("Scripts", "Login.js")));
                 }
-
-                this.currentStatus = 0; // Initialize
             }
             else if (frameLoadEndEventArgs.Url.Contains(this.actions.Steps["Login"].FrameUrlKey))
             {
@@ -101,9 +108,47 @@ namespace SubmitSys
             }
         }
 
+        private void OnContinue(object sender, ContinueEventArgs e)
+        {
+            var fields = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText("FieldMaps/DBDocTable.map"));
+            var docTable = new DataTable();
+            foreach (var c in fields)
+            {
+                docTable.Columns.Add(c.Value);
+            }
+
+            var data = JsonConvert.DeserializeObject<dynamic>(e.Parameter);
+            foreach (var r in data)
+            {
+                var row = docTable.NewRow();
+                var cols = r.ToObject<IDictionary<string, string>>();
+                foreach (var c in fields)
+                {
+                    row[c.Value] = cols[c.Value];
+                }
+
+                docTable.Rows.Add(row);
+            }
+
+            this.dbDocTable.UpdateTable(docTable);
+            using (var view = new FrmGridDataView())
+            {
+                view.SetData(docTable);
+                view.ShowDialog();
+            }
+        }
+
         private void OnException(object sender, ExceptionEventArgs e)
         {
             MessageBox.Show(e.Ex.Message, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void BtnDownloadDocClick(object sender, EventArgs e)
+        {
+            this.webView.ExecuteScriptAsync(Resources.RunTime);
+            var step = this.actions.Steps["DownloadDocs"];
+            var script = File.ReadAllText(Path.Combine("Scripts", step.Script));
+            this.webView.EvaluateScriptAsync(script).Wait();
         }
 
         #endregion

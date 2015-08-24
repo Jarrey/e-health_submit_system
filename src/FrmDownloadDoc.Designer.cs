@@ -47,6 +47,7 @@
             // btnDownloadDoc
             // 
             this.btnDownloadDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDownloadDoc.Enabled = false;
             this.btnDownloadDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDownloadDoc.Location = new System.Drawing.Point(829, 3);
             this.btnDownloadDoc.Name = "btnDownloadDoc";
@@ -54,6 +55,7 @@
             this.btnDownloadDoc.TabIndex = 6;
             this.btnDownloadDoc.Text = "下载档案数据...";
             this.btnDownloadDoc.UseVisualStyleBackColor = true;
+            this.btnDownloadDoc.Click += new System.EventHandler(this.BtnDownloadDocClick);
             // 
             // pnlWebView
             // 

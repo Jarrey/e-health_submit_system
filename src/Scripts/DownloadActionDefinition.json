@@ -4,7 +4,12 @@
 
         "Login": {
             "frame_url": "entity/manager/index.jsp",
-            "script": "AfterLogin.js"
+            "script": "AfterLoginForDownloadDoc.js"
+        },
+
+        "DownloadDocs": { 
+            "frame_url": "entity/manager/index.jsp",
+            "script": "DownloadDocs.js"
         }
     }
 }

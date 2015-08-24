@@ -32,6 +32,14 @@ namespace SubmitSys
             }
         }
 
+        public void Continue(string parameter)
+        {
+            if (OnContinue != null)
+            {
+                OnContinue(this, new ContinueEventArgs("init", parameter));
+            }
+        }
+
         public void PopupMsg(string msg, bool isContinue, string step)
         {
             Messages.Add(DateTime.Now.ToLocalTime() + "\t" + msg);
@@ -67,11 +75,21 @@ namespace SubmitSys
     {
         public StepStatus Step { get; set; }
 
+        public string Parameter { get; set; }
+
         public ContinueEventArgs(string step)
         {
             StepStatus result;
             Enum.TryParse(step, true, out result);
             this.Step = result;
+        }
+
+        public ContinueEventArgs(string step, string parameter)
+        {
+            StepStatus result;
+            Enum.TryParse(step, true, out result);
+            this.Step = result;
+            this.Parameter = parameter;
         }
     }
 

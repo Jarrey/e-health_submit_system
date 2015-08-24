@@ -1,0 +1,11 @@
+﻿[
+	{
+        "Key": "DocumentTable",
+        "DisplayName": "档案信息表",
+        "DBTableName": "[e_health].[dbo].[Doc]",
+        "Commands": 
+        {
+            "Update": "Update {Name}"
+        }
+    }
+]

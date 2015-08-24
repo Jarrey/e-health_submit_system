@@ -71,12 +71,20 @@
   <ItemGroup>
     <Compile Include="AccountTypes.cs" />
     <Compile Include="Actions.cs" />
+    <Compile Include="DAL\DBDocTable.cs" />
+    <Compile Include="DAL\DBTableBase.cs" />
     <Compile Include="DataFile.cs" />
     <Compile Include="FrmDownloadDoc.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmDownloadDoc.Designer.cs">
       <DependentUpon>FrmDownloadDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGridDataView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGridDataView.Designer.cs">
+      <DependentUpon>FrmGridDataView.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -110,6 +118,9 @@
     <Compile Include="Utility.cs" />
     <EmbeddedResource Include="FrmDownloadDoc.resx">
       <DependentUpon>FrmDownloadDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGridDataView.resx">
+      <DependentUpon>FrmGridDataView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
@@ -163,6 +174,12 @@
     <Content Include="FieldMaps\WifePhysique.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="FieldMaps\DatabaseTable.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FieldMaps\DBDocTable.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -173,6 +190,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Scripts\AfterLoginForDownloadDoc.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\DownloadActionDefinition.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -184,7 +204,7 @@
   <ItemGroup>
     <None Include="Resources\installer.ico" />
     <None Include="Resources\yj.ico" />
-    <Content Include="installer.ico" />
+    <None Include="installer.ico" />
     <Content Include="Scripts\AddModifyHusClinical.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -207,6 +227,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\CreateHusClinical.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\DownloadDocs.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\OpenClinicalTab.js">

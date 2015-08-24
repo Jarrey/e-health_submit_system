@@ -508,7 +508,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EF5585A7B9496200A0728CC4F1187E9C"
+        "OwnerKey" = "8:_EC64916A3B1645B2A738A68A9461C10F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -521,12 +521,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_7D0984D6BC68D15A48CB2A41BF463739"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EC64916A3B1645B2A738A68A9461C10F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -565,6 +559,12 @@
         "OwnerKey" = "8:_D0233B9EF1FF5E1C8D7B135AEDC32CEE"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EF5585A7B9496200A0728CC4F1187E9C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -583,6 +583,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -590,7 +606,7 @@
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
         "OutputFilename" = "8:Release\\Installer.msi"
-        "PackageFilesAs" = "3:2"
+        "PackageFilesAs" = "3:4"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
         "Compression" = "3:2"
@@ -608,10 +624,15 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,KB2468871"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64) and Update for .NET Framework 4 (KB2468871)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.0,KB2468871"
+                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.4.5"
+                    {
+                    "Name" = "8:Windows Installer 4.5"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.4.5"
                     }
                 }
             }
@@ -2342,7 +2363,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:国家免费孕前优生健康检查项目信息上传系统"
         "ProductCode" = "8:{534D174B-1512-4518-AD27-0814F9C531B1}"
-        "PackageCode" = "8:{51A53C0D-756B-4610-BFAD-82A3C54659D1}"
+        "PackageCode" = "8:{9A9E5B27-1A98-4654-86B5-2F1B7378DD2B}"
         "UpgradeCode" = "8:{CB6BDCB3-0399-4C66-9344-8DC93F18E7A9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -2478,7 +2499,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7F4D0CCD23FB49588319CCD461587819"
             {
-            "Name" = "8:国家免费孕前优生健康检查项目信息上传系统"
+            "Name" = "8:孕检上传系统"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
