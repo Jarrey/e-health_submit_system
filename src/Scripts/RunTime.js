@@ -104,6 +104,7 @@ function GetInputControl(r, f, t, n, i) {
 }
 
 function Enter(r, f, t, n, v, i) {
+    var ext = f.contentWindow.Ext;
     i = typeof i !== 'undefined' ? i : 0;
     try {
         var c = GetInputControl(r, f, t, n, i);

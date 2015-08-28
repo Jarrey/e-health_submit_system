@@ -31,8 +31,6 @@ namespace SubmitSys
 
         private readonly JsObj jsObj = new JsObj();
 
-        private LoadingDialog loading = null;
-
         private readonly Actions actions;
 
         private readonly DBDocTable dbDocTable;
@@ -123,7 +121,9 @@ namespace SubmitSys
 
         private void OnContinue(object sender, ContinueEventArgs e)
         {
-            var fields = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText("FieldMaps/DBDocTable.map"));
+            var fields =
+                JsonConvert.DeserializeObject<Dictionary<string, string>>(
+                    File.ReadAllText("FieldMaps/DBDocTable.map"));
             var docTable = new DataTable();
             foreach (var c in fields)
             {

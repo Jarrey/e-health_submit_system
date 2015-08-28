@@ -61,6 +61,15 @@ namespace SubmitSys.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 正在下载数据, 请稍等....
+        /// </summary>
+        internal static string Downloading {
+            get {
+                return ResourceManager.GetString("Downloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 错误.
         /// </summary>
         internal static string ErrorTitle {
@@ -153,6 +162,7 @@ namespace SubmitSys.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to var MaxRetryTimes = 10;
+        ///var CompleteFlag = &quot;1&quot;;
         ///
         ///function ClickTreeNode(r, n) {
         ///    var a = $(r).find(&apos;.x-tree-node-anchor:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
@@ -169,9 +179,7 @@ namespace SubmitSys.Properties {
         ///    var t = $(r).find(&apos;.x-tab-strip&apos;).find(&apos;li:contains(&quot;&apos; + n + &apos;&quot;)&apos;);
         ///    if (t.length &gt; i) {
         ///        t[i].click();
-        ///        return t[i];
-        ///    } else {
-        ///        [rest of string was truncated]&quot;;.
+        ///        return t[i [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string RunTime {
             get {

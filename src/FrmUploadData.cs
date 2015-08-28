@@ -145,14 +145,7 @@ namespace SubmitSys
 
         private void ChkSelectAllCheckedChanged(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in this.dgvData.Rows)
-            {
-                var checkBoxCell = row.Cells[0] as DataGridViewCheckBoxCell;
-                if (checkBoxCell != null)
-                {
-                    checkBoxCell.Value = this.chkSelectAll.Checked;
-                }
-            }
+            this.SelectAllData();
         }
 
         private void WebViewOnFrameLoadEnd(object sender, FrameLoadEndEventArgs frameLoadEndEventArgs)
@@ -228,6 +221,9 @@ namespace SubmitSys
                         this.btnModify.Text = btnNames[0];
                     }
                 }
+
+                this.chkSelectAll.Checked = true;
+                this.SelectAllData();
             }
         }
 
@@ -306,6 +302,18 @@ namespace SubmitSys
         #endregion
 
         #region Private Methods
+
+        private void SelectAllData()
+        {
+            foreach (DataGridViewRow row in this.dgvData.Rows)
+            {
+                var checkBoxCell = row.Cells[0] as DataGridViewCheckBoxCell;
+                if (checkBoxCell != null)
+                {
+                    checkBoxCell.Value = this.chkSelectAll.Checked;
+                }
+            }
+        }
 
         private void AddDataFile(DataFile dataFile)
         {
