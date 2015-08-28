@@ -1,4 +1,5 @@
 ﻿var MaxRetryTimes = 10;
+var CompleteFlag = "1";
 
 function ClickTreeNode(r, n) {
     var a = $(r).find('.x-tree-node-anchor:contains("' + n + '")');
@@ -122,7 +123,7 @@ function Enter(r, f, t, n, v, i) {
         }
 
         if (t == "date") {
-            v = /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/.exec(v)[0];
+            v = ext.util.Format.date(new Date(v), "Y-m-d");
         }
 
         c.setValue(v);

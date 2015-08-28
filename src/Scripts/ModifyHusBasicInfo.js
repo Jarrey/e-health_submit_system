@@ -196,11 +196,11 @@ ext.onReady(function() {
                 Enter(fieldSet, f, "text", "其他（请描述）", "{其他心理因素}");
 
 
-                Enter(d, f, "check", "完成(注意：此项计入工作量统计，一旦选中并保存，则表格不能再修改！)", eval("{完成标志}"));
+                Enter(d, f, "check", "完成(注意：此项计入工作量统计，一旦选中并保存，则表格不能再修改！)", CompleteFlag);
                 Enter(d, f, "text", "医师签名", "{医生签名}");
                 Enter(d, f, "date", "询问日期", "{询问时间}");
 
-
+                /*
                 ClickButton(d, "保存");
                 $(d).find('.x-window:contains("您已确认无误，要提交？")').find('button:contains("是")').click();
                 times = 0;
@@ -221,6 +221,8 @@ ext.onReady(function() {
                         window.submitSys.popupMsg('完成丈夫一般情况: 丈夫:{丈夫姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForHusBasicInfo");
                     }
                 }, 1000);
+                */
+                window.submitSys.popupMsg('完成丈夫一般情况: 丈夫:{丈夫姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForHusBasicInfo");
 
             } catch (e) {
                 window.submitSys.popupMsg("发生错误: " + e.name + ":" + e.message, false, "");

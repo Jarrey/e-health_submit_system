@@ -24,7 +24,7 @@ ext.onReady(function() {
                 return;
             }
 
-            SelectData(d, f, "{丈夫证件号码}");
+            SelectData(d, f, "{档案编号}");
             ClickButton(f, "完善检验结果");
             ClickTab(document, "完善检验结果", 1);
         }

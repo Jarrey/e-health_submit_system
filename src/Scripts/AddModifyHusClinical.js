@@ -104,11 +104,11 @@ if (!f) {
                     Enter(fields, f, "text", "肌酐Cr(umol/L)", "{肌酐}");
                     
                     Enter(fieldSet, f, "textarea", "其他检查", "{其他检查}");
-                    Enter(fieldSet, f, "check", "完成", eval("{完成标志}"));
+                    Enter(fieldSet, f, "check", "完成", CompleteFlag);
                     Enter(d, f, "text", "医师签名", "{医生签名}");
                     Enter(d, f, "date", "检查日期", "{检查时间}");
 
-                    ClickButton(d, "提  交");
+                    ClickButton(d, "保  存");
 
                     times = 0;
                     var save = setInterval(function() {
@@ -120,10 +120,10 @@ if (!f) {
                             return;
                         }
                     
-                        if ($(d).find('.x-window:contains("选择框")').length > 0) {
+                        if ($(d).find('.x-window:contains("选择框"), .x-window:contains("提示")').length > 0) {
                             window.clearInterval(save);
                     
-                            var msgBox = $(d).find('.x-window:contains("选择框")');
+                            var msgBox = $(d).find('.x-window:contains("选择框"), .x-window:contains("提示")');
                             var msg = msgBox.find('span.ext-mb-text').text();
                             msgBox.find('button:contains("确定"), button:contains("是")').click();
                     

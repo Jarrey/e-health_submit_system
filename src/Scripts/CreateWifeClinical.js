@@ -40,6 +40,13 @@ ext.onReady(function() {
                         CloseTab("临床医生系统");
                         window.submitSys.popupMsg('完成开单妻子临床检验结果: 妻子:{妻子姓名}, 档案编号: {档案编号}', true, "OpenDocTabForWifeClinical");
                     }
+
+                    if ($(d).find('.x-window:contains("失败")').length > 0) {
+                        window.clearInterval(save);
+                        CloseTab("完善档案");
+                        CloseTab("临床医生系统");
+                        window.submitSys.popupMsg('开单妻子临床检验失败: 妻子:{妻子姓名}, 档案编号: {档案编号}', true, "OpenDocTabForWifeClinical");
+                    }
                 }, 1000);
 
             } catch (e) {

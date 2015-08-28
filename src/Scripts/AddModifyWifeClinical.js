@@ -223,7 +223,7 @@ if (!f) {
                     }
 
                     Enter(fieldSet, f, "textarea", "其他（请描述）", "{其他检查}");
-                    Enter(fieldSet, f, "check", "完成", eval("{完成标志}"));
+                    Enter(fieldSet, f, "check", "完成", CompleteFlag);
                     Enter(d, f, "text", "医师签名", "{医生签名}");
                     Enter(d, f, "date", "检查日期", "{检查时间}");
 
@@ -239,10 +239,10 @@ if (!f) {
                             return;
                         }
 
-                        if ($(d).find('.x-window:contains("选择框")').length > 0) {
+                        if ($(d).find('.x-window:contains("选择框"), .x-window:contains("提示")').length > 0) {
                             window.clearInterval(save);
                     
-                            var msgBox = $(d).find('.x-window:contains("选择框")');
+                            var msgBox = $(d).find('.x-window:contains("选择框"), .x-window:contains("提示")');
                             var msg = msgBox.find('span.ext-mb-text').text();
                             msgBox.find('button:contains("确定"), button:contains("是")').click();
 

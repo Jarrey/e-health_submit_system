@@ -124,7 +124,7 @@ ext.onReady(function() {
                 Enter(fields, f, "text", "至", "{月经周期2}", 1);
                 fields = GetFieldSet(fieldSet, "月经量");
                 Enter(fields, f, "radio", "多", eval("{月经量}"));
-                fields = GetFieldSet(fieldSet, "痛    经");
+                fields = GetFieldSet(fieldSet, "痛");
                 Enter(fields, f, "radio", "无", eval("{痛经}"));
 
                 fields = GetFieldSet(fieldSet, "是否曾经怀孕");
@@ -144,14 +144,13 @@ ext.onReady(function() {
                     Enter(fields, f, "radio", "是", 1);
                     list = GetFieldSet(fields, "不良妊娠结局列表");
                     Enter(list, f, "check", "死产死胎", eval("{死胎死产}"));
+                    if ("{死胎死产}" != "0") Enter(list, f, "text", ":", "{死产次数}", 0);
                     Enter(list, f, "check", "自然流产", eval("{自然流产}"));
+                    if ("{自然流产}" != "0") Enter(list, f, "text", ":", "{自然流产次数}", 1);
                     Enter(list, f, "check", "人工流产", eval("{人工流产}"));
-                    if ("{其他不良妊娠}" > "0") {
-                        Enter(list, f, "check", "其他", 1);
-                        Enter(list, f, "text", ":", "{其他不良妊娠}");
-                    } else {
-                        Enter(list, f, "check", "其他", 0);
-                    }
+                    if ("{人工流产}" != "0") Enter(list, f, "text", ":", "{人工流产次数}", 2);
+                    Enter(list, f, "check", "其他", eval("{其他不良妊娠}"));
+                    if ("{其他不良妊娠}" != "0") Enter(list, f, "text", ":", "{其他不良妊娠}", 3);
                 } else {
                     Enter(fields, f, "radio", "是", 0);
                 }
@@ -291,11 +290,11 @@ ext.onReady(function() {
                 Enter(fieldSet, f, "text", "其他（请描述）", "{其他心理因素}");
 
 
-                Enter(d, f, "check", "完成(注意：此项计入工作量统计，一旦选中并保存，则表格不能再修改！)", eval("{完成标志}"));
+                Enter(d, f, "check", "完成(注意：此项计入工作量统计，一旦选中并保存，则表格不能再修改！)", CompleteFlag);
                 Enter(d, f, "text", "医师签名", "{医生签名}");
                 Enter(d, f, "date", "询问日期", "{询问时间}");
 
-
+                /*
                 ClickButton(d, "保存");
 
                 times = 0;
@@ -317,6 +316,9 @@ ext.onReady(function() {
                         window.submitSys.popupMsg('完成妻子一般情况: 妻子:{妻子姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForWifeBasicInfo");
                     }
                 }, 1000);
+                */
+
+                window.submitSys.popupMsg('完成妻子一般情况: 妻子:{妻子姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForWifeBasicInfo");
 
             } catch (e) {
                 window.submitSys.popupMsg("发生错误: " + e.name + ":" + e.message, false, "");

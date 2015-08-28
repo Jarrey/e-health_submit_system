@@ -29,6 +29,13 @@ ext.onReady(function() {
                         CloseTab("临床医生系统");
                         window.submitSys.popupMsg('完成开单丈夫临床检验结果: 丈夫:{丈夫姓名}, 档案编号: {档案编号}', true, "OpenDocTabForHusClinical");
                     }
+
+                    if ($(d).find('.x-window:contains("失败")').length > 0) {
+                        window.clearInterval(save);
+                        CloseTab("完善档案");
+                        CloseTab("临床医生系统");
+                        window.submitSys.popupMsg('开单丈夫临床检验失败: 丈夫:{丈夫姓名}, 档案编号: {档案编号}', true, "OpenDocTabForHusClinical");
+                    }
                 }, 1000);
 
             } catch (e) {

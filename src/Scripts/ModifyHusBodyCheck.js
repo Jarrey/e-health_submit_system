@@ -125,11 +125,11 @@ ext.onReady(function() {
                 }
 
                 Enter(b, f, "textarea", "其他检查", "{其他检查}");
-                ext.getCmp('done').setValue(eval("{完成标志}"));
+                ext.getCmp('done').setValue(CompleteFlag);
                 Enter(b, f, "text", "医师签名", "{医生签名}");
                 Enter(b, f, "date", "检查日期", "{检查时间}");
 
-
+                /*
                 ClickButton(b, "保存");
                 $(d).find('.x-window:contains("您已确认无误，要提交？")').find('button:contains("是")').click();
                 times = 0;
@@ -150,6 +150,9 @@ ext.onReady(function() {
                         window.submitSys.popupMsg('完成丈夫体格检查 - 一般结果: 丈夫:{丈夫姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForHusCheck");
                     }
                 }, 1000);
+                */
+                window.submitSys.popupMsg('完成丈夫体格检查 - 一般结果: 丈夫:{丈夫姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForHusCheck");
+
             } catch (e) {
                 window.submitSys.popupMsg("发生错误: " + e.name + ":" + e.message, false, "");
                 CloseAllTabs();

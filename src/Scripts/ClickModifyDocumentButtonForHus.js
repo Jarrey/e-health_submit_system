@@ -18,13 +18,13 @@ ext.onReady(function() {
 
         if (!IsLoadingData(d)) {
             window.clearInterval(i);
-            if (!CheckDataExist(d, "{丈夫证件号码}")) {
+            if (!CheckDataExist(d, "{档案编号}")) {
                 window.submitSys.popupMsg('数据 - 丈夫姓名: {丈夫姓名}, 档案编号: {档案编号} 不存在', true, "{Status}");
                 CloseTab("临床医生系统");
                 return;
             }
 
-            SelectData(d, f, "{丈夫证件号码}");
+            SelectData(d, f, "{档案编号}");
             ClickButton(f, "完善档案");
             ClickTab(document, "完善档案");
         }
