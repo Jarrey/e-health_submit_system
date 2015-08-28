@@ -51,5 +51,14 @@ namespace SubmitSys.Properties {
                 return ((string)(this["DBConnection"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("[\"fkbc\", \"qzybqk\", \"qztg\", \"qzfk\", \"qzlj\", \"zfybqk\", \"zftg\", \"zfnk\", \"zflj\"]")]
+        public string DBKeys {
+            get {
+                return ((string)(this["DBKeys"]));
+            }
+        }
     }
 }

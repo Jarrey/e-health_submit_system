@@ -125,6 +125,15 @@ namespace SubmitSys.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 读取数据失败，请检查网络和数据连接....
+        /// </summary>
+        internal static string ReadDataError {
+            get {
+                return ResourceManager.GetString("ReadDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 读取文件 {0} 失败，请检查文件格式和内容....
         /// </summary>
         internal static string ReadFileError {

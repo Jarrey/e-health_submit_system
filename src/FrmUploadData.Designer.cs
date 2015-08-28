@@ -205,7 +205,7 @@
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(173, 30);
             this.btnImport.TabIndex = 4;
-            this.btnImport.Text = "导入上传数据文件...";
+            this.btnImport.Text = "导入上传数据...";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.BtnImportClick);
             // 

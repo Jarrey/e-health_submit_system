@@ -16,5 +16,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=192.168.0.16;Initial Catalog=rnyjxt;Persist Security Info=True;User ID=sa;Password=szjszRnlis1508;MultipleActiveResultSets=True</Value>
     </Setting>
+    <Setting Name="DBKeys" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">["fkbc", "qzybqk", "qztg", "qzfk", "qzlj", "zfybqk", "zftg", "zfnk", "zflj"]</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

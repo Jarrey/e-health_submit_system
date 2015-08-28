@@ -21,29 +21,9 @@ namespace SubmitSys.DAL
     internal class DBDocTable : DBTableBase
     {
         public DBDocTable(string config)
-            : base(config)
+            : base(config, "yjdab")
         {
         }
-
-        #region Properties
-
-        protected override string Key
-        {
-            get
-            {
-                return "DocumentTable";
-            }
-        }
-
-        protected override IDictionary<string, string> Fields
-        {
-            get
-            {
-                return JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText("FieldMaps/DBDocTable.map"));
-            }
-        }
-
-        #endregion
 
         internal void UpdateTable(DataTable dt)
         {

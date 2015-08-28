@@ -13,6 +13,7 @@ namespace SubmitSys.DAL
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
+    using System.IO;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
@@ -23,14 +24,18 @@ namespace SubmitSys.DAL
     {
         protected SqlConnection Connection;
 
-        protected DBTableBase(string config)
+        private string mapperFile;
+
+        protected DBTableBase(string config, string key)
         {
+            this.Key = key;
             this.Connection = new SqlConnection(Settings.Default.DBConnection);
             var dbTables = JsonConvert.DeserializeObject<dynamic>(config);
             foreach (dynamic t in dbTables)
             {
-                if (t.Key == this.Key)
+                if (t.Key == key)
                 {
+                    mapperFile = t.Mapper;
                     TableName = t.DBTableName;
                     SqlQueries = (t.Commands as JObject).ToObject<IDictionary<string, string>>();
                 }
@@ -50,19 +55,13 @@ namespace SubmitSys.DAL
             Connection.Close();
         }
 
-        protected virtual string Key
-        {
-            get
-            {
-                return string.Empty;
-            }
-        }
+        protected string Key { get; set; }
 
-        protected virtual IDictionary<string, string> Fields
+        protected IDictionary<string, string> Fields
         {
             get
             {
-                return null;
+                return JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(mapperFile)); ;
             }
         } 
 

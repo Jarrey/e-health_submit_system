@@ -23,12 +23,15 @@ namespace SubmitSys
 
     using Newtonsoft.Json;
 
+    using SubmitSys.DAL;
     using SubmitSys.Properties;
 
     /// <summary> The main form. </summary>
     public partial class FrmUploadData : Form
     {
         #region Fields
+
+        private readonly string[] tableKeys;
 
         private readonly ChromiumWebBrowser webView;
 
@@ -54,6 +57,7 @@ namespace SubmitSys
 
         public FrmUploadData()
         {
+            this.tableKeys = JsonConvert.DeserializeObject<string[]>(Settings.Default.DBKeys);
             this.Text = Resources.FormTitle;
             this.jsObj.OnLogin += OnLogin;
             this.jsObj.OnContinue += OnContinue;
@@ -112,64 +116,30 @@ namespace SubmitSys
 
         private void BtnImportClick(object sender, EventArgs e)
         {
-            using (var openFile = new OpenFileDialog()
-                                {
-                                    CheckFileExists = true,
-                                    CheckPathExists = true,
-                                    Multiselect = false,
-                                    Title = Resources.OpenFileTitle,
-                                    Filter = Resources.SubmitFileFilter
-                                })
+            try
             {
-                if (openFile.ShowDialog() == DialogResult.OK)
+                this.Enabled = false;
+                this.loading = new LoadingDialog(this.Handle, "正在读取数据, 请稍等...");
+                this.loading.ShowModeless(this);
+                this.loading.Refresh();
+
+                var dbMap = File.ReadAllText("FieldMaps/DatabaseTable.map");
+                foreach (var k in this.tableKeys)
                 {
-                    var fileName = openFile.FileName;
-                    if (!File.Exists(fileName))
-                    {
-                        MessageBox.Show(string.Format(Resources.FileNotExistError, fileName), Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    this.Enabled = false;
-                    this.loading = new LoadingDialog(this.Handle, "正在读取文件数据, 请稍等...");
-                    this.loading.ShowModeless(this);
-                    this.loading.Refresh();
-                    try
-                    {
-                        if (string.Compare(Path.GetExtension(fileName), ".zip", StringComparison.OrdinalIgnoreCase) == 0)
-                        {
-                            using (var fs = File.OpenRead(fileName))
-                            {
-                                var zf = new ZipFile(fs);
-                                foreach (ZipEntry zipEntry in zf)
-                                {
-                                    if (!zipEntry.IsFile)
-                                    {
-                                        continue; // Ignore directories
-                                    }
-
-                                    var zipStream = zf.GetInputStream(zipEntry);
-                                    this.AddDataFile(new DataFile(zipStream, zipEntry.Name));
-                                }
-                            }
-                        }
-                        else if (string.Compare(Path.GetExtension(fileName), ".csv", StringComparison.OrdinalIgnoreCase) == 0)
-                        {
-                            this.AddDataFile(new DataFile(fileName));
-                        }
-
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show(string.Format(Resources.ReadFileError, fileName), Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    finally
-                    {
-                        this.loading.Close();
-                        this.Enabled = true;
-                    }
+                    var dbTable = new DBUploadDataTable(dbMap, k);
+                    var table = dbTable.SelectData();
+                    this.AddDataFile(new DataFile(table, k));
                 }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(string.Format(Resources.ReadDataError), Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            finally
+            {
+                this.loading.Close();
+                this.Enabled = true;
             }
         }
 

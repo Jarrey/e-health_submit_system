@@ -45,6 +45,12 @@ namespace SubmitSys
             this.Table = Utility.ReadCsvToDataTable(new FileInfo(file), Mapper);
         }
 
+        public DataFile(DataTable table, string name)
+        {
+            this.name = name;
+            this.Table = table;
+        }
+
         public string Key
         {
             get

@@ -166,4 +166,7 @@
   <data name="UseAdminLoginMessage" xml:space="preserve">
     <value>请使用管理员账号登陆系统下载档案数据...</value>
   </data>
+  <data name="ReadDataError" xml:space="preserve">
+    <value>读取数据失败，请检查网络和数据连接...</value>
+  </data>
 </root>
