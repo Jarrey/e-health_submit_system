@@ -55,6 +55,7 @@ namespace SubmitSys
             this.actions = JsonConvert.DeserializeObject<Actions>(actionsJson);
             this.InitializeComponent();
             this.webView.FrameLoadEnd += this.WebViewOnLoginFrameLoadEnd;
+            this.webView.FrameLoadEnd += this.WebViewOnSetDefaultConditionsFrameLoadEnd;
             this.webView.Dock = DockStyle.Fill;
             this.pnlWebView.Controls.Add(this.webView);
             this.webView.Load(this.actions.LoginUrl);
@@ -80,6 +81,18 @@ namespace SubmitSys
 
                 this.btnDownloadDoc.Enabled = this.account == AccountTypes.Admin;
             }));
+        }
+
+        private void WebViewOnSetDefaultConditionsFrameLoadEnd(object sender, FrameLoadEndEventArgs frameLoadEndEventArgs)
+        {
+            if (frameLoadEndEventArgs.Url.Contains("/entity/basic/prePregnancyService.action"))
+            {
+                // auto set the default conditions
+                this.webView.ExecuteScriptAsync(Resources.RunTime);
+                var step = this.actions.Steps["SetDefaultConsiftions"];
+                var script = File.ReadAllText(Path.Combine("Scripts", step.Script));
+                this.webView.EvaluateScriptAsync(script).Wait();
+            }
         }
 
         private void WebViewOnLoginFrameLoadEnd(object sender, FrameLoadEndEventArgs frameLoadEndEventArgs)

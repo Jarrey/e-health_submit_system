@@ -1,11 +1,11 @@
 ﻿[
-	{
+    {
         "Key": "DocumentTable",
-        "DisplayName": "档案信息表",
-        "DBTableName": "[e_health].[dbo].[Doc]",
-        "Commands": 
-        {
-            "Update": "Update {Name}"
+        "DisplayName": "下载档案信息表",
+        "DBTableName": "[rnyjxt].[dbo].[YJ_XZ_DAB]",
+        "Commands": {
+            "Update": "UPDATE [rnyjxt].[dbo].[YJ_XZ_DAB] SET [JDJG]=N'{JDJG}', [YFDQ]=N'{YFDQ}', [QZXM]=N'{QZXM}', [QZCSNY]='{QZCSNY}', [QZZJHM]=N'{QZZJHM}', [ZFXM]=N'{ZFXM}', [ZFCSNY]='{ZFCSNY}', [ZFZJHM]=N'{ZFZJHM}', [JDRQ]='{JDRQ}', [PGJYZT]=N'{PGJYZT}' WHERE [DABH]='{DABH}'",
+            "Insert": "INSERT INTO [rnyjxt].[dbo].[YJ_XZ_DAB] ([DABH],[JDJG],[YFDQ],[QZXM],[QZCSNY],[QZZJHM],[ZFXM],[ZFCSNY],[ZFZJHM],[JDRQ],[PGJYZT]) VALUES (N'{DABH}', N'{JDJG}', N'{YFDQ}', N'{QZXM}', '{QZCSNY}', N'{QZZJHM}', N'{ZFXM}', '{ZFCSNY}', N'{ZFZJHM}', '{JDRQ}', N'{PGJYZT}')"
         }
     }
 ]

@@ -9,6 +9,7 @@
 
 namespace SubmitSys.DAL
 {
+    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
@@ -51,14 +52,14 @@ namespace SubmitSys.DAL
             {
                 if (this.IsRecordExisted(row[0].ToString()))
                 {
-                    using (var cmd = new SqlCommand(this.BuildUpdateQuery(row), Connection))
+                    using (var cmd = new SqlCommand(this.BuildQuery(row, "Update"), Connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
                 }
                 else
                 {
-                    using (var cmd = new SqlCommand(this.BuildInsertQuery(row), Connection))
+                    using (var cmd = new SqlCommand(this.BuildQuery(row, "Insert"), Connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -86,19 +87,16 @@ namespace SubmitSys.DAL
             return false;
         }
 
-        private string BuildUpdateQuery(DataRow data)
+        private string BuildQuery(DataRow data, string queryKey)
         {
-            var keyColumnName = this.Fields.First().Key;
-            var keyColumnValue = this.Fields.First().Value;
-            var values = string.Join(", ", this.Fields.Select(c => string.Format("[{0}]=N'{1}'", c.Key, data[c.Value])));
-            return string.Format("UPDATE {0} SET {1} WHERE {2}='{3}'", this.TableName, values, keyColumnName, data[keyColumnValue]);
-        }
+            if (!SqlQueries.ContainsKey(queryKey))
+            {
+                throw new Exception("Cannot find query key " + queryKey);
+            }
 
-        private string BuildInsertQuery(DataRow data)
-        {
-            var columns = string.Join(", ", this.Fields.Keys);
-            var values = string.Join(", ", this.Fields.Select(c => string.Format("N'{0}'", data[c.Value])));
-            return string.Format("INSERT INTO {0} ({1}) VALUES ({2})", this.TableName, columns, values);
+            var q = SqlQueries[queryKey];
+            q = this.Fields.Aggregate(q, (c, f) => c.Replace("{" + f.Key + "}", data[f.Value].ToString()));
+            return q;
         }
     }
 }

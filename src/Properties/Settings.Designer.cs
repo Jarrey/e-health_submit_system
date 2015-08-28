@@ -25,7 +25,7 @@ namespace SubmitSys.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool DebugTool {
             get {
                 return ((bool)(this["DebugTool"]));
@@ -34,7 +34,7 @@ namespace SubmitSys.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool AutoTextUserName {
             get {
                 return ((bool)(this["AutoTextUserName"]));
@@ -44,8 +44,8 @@ namespace SubmitSys.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SHALL211\\SQLEXPRESS;Initial Catalog=e_health;Persist Security Info=Tr" +
-            "ue;User ID=sa;Password=$Tata$124;MultipleActiveResultSets=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.16;Initial Catalog=rnyjxt;Persist Security Info=True;User I" +
+            "D=sa;Password=szjszRnlis1508;MultipleActiveResultSets=True")]
         public string DBConnection {
             get {
                 return ((string)(this["DBConnection"]));

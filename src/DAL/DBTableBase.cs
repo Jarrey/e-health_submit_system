@@ -13,8 +13,6 @@ namespace SubmitSys.DAL
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
-    using System.Dynamic;
-    using System.Linq;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;

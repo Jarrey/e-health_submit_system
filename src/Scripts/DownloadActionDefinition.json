@@ -7,7 +7,12 @@
             "script": "AfterLoginForDownloadDoc.js"
         },
 
-        "DownloadDocs": { 
+        "SetDefaultConsiftions": { 
+            "frame_url": "entity/basic/prePregnancyService.action",
+            "script": "SetDefaultConsiftions.js"
+        },
+
+        "DownloadDocs": {
             "frame_url": "entity/manager/index.jsp",
             "script": "DownloadDocs.js"
         }
