@@ -17,7 +17,7 @@ ext.onReady(function() {
             var r = $(d).contents().find('.x-grid3-row:contains("男方首诊临床检验表")');
             var status = $(r).find('td:contains("无操作")');
             if (status.length != 0) {
-                window.submitSys.popupMsg('丈夫首诊临床检验表 - 丈夫姓名: {丈夫姓名}, 丈夫证件号码: {丈夫证件号码}  未开单', true, "OpenDocTabForHusClinical");
+                window.submitSys.popupMsg('丈夫首诊临床检验表 - 丈夫姓名: {丈夫姓名}, 档案编号: {档案编号}  未开单', true, "OpenDocTabForHusClinical");
                 CloseAllTabs();
                 return;
             }

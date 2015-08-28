@@ -142,7 +142,7 @@ if (!f) {
                                     msgBox = $(d).find('.x-window:contains("提示")');
                                     msg = msg + msgBox.find('span.ext-mb-text').text();
                                     msgBox.find('button:contains("确定"), button:contains("是")').click();
-                                    window.submitSys.popupMsg('丈夫首诊临床检验表 - 丈夫姓名: {丈夫姓名}, 丈夫证件号码: {丈夫证件号码} ' + msg, true, "OpenDocTabForHusClinical");
+                                    window.submitSys.popupMsg('丈夫首诊临床检验表 - 丈夫姓名: {丈夫姓名}, 档案编号: {档案编号} ' + msg, true, "OpenDocTabForHusClinical");
                                     CloseAllTabs();
                                 }
                             }, 1000);

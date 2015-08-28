@@ -27,7 +27,7 @@ ext.onReady(function() {
                         $(d).find('.x-window:contains("成功！是否要关闭当前页面？")').find('button:contains("是")').click();
                         CloseTab("完善档案");
                         CloseTab("临床医生系统");
-                        window.submitSys.popupMsg('完成开单丈夫临床检验结果: 丈夫:{丈夫姓名}, 丈夫证件号码: {丈夫证件号码}', true, "OpenDocTabForHusClinical");
+                        window.submitSys.popupMsg('完成开单丈夫临床检验结果: 丈夫:{丈夫姓名}, 档案编号: {档案编号}', true, "OpenDocTabForHusClinical");
                     }
                 }, 1000);
 

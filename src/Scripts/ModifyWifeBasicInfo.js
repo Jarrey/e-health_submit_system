@@ -314,7 +314,7 @@ ext.onReady(function() {
                         $(d).find('.x-window:contains("成功！关闭当前标签页？")').find('button:contains("是")').click();
                         CloseTab("完善档案");
                         CloseTab("临床医生系统");
-                        window.submitSys.popupMsg('完成妻子一般情况: 妻子:{妻子姓名}, 妻子证件号码: {妻子证件号码}  的修改', true, "OpenDocTabForWifeBasicInfo");
+                        window.submitSys.popupMsg('完成妻子一般情况: 妻子:{妻子姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForWifeBasicInfo");
                     }
                 }, 1000);
 

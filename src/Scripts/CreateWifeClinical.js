@@ -38,7 +38,7 @@ ext.onReady(function() {
                         $(d).find('.x-window:contains("成功！是否要关闭当前页面？")').find('button:contains("是")').click();
                         CloseTab("完善档案");
                         CloseTab("临床医生系统");
-                        window.submitSys.popupMsg('完成开单妻子临床检验结果: 妻子:{妻子姓名}, 妻子证件号码: {妻子证件号码}', true, "OpenDocTabForWifeClinical");
+                        window.submitSys.popupMsg('完成开单妻子临床检验结果: 妻子:{妻子姓名}, 档案编号: {档案编号}', true, "OpenDocTabForWifeClinical");
                     }
                 }, 1000);
 

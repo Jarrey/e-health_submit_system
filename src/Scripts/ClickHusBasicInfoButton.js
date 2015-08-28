@@ -17,7 +17,7 @@ ext.onReady(function() {
             var r = $(d).contents().find('.x-grid3-row:contains("丈夫一般情况")');
             var status = $(r).find('td:contains("未")');
             if (status.length == 0) {
-                window.submitSys.popupMsg('丈夫一般情况 - 丈夫姓名: {丈夫姓名}, 丈夫证件号码: {丈夫证件号码}  已完成填写', true, "OpenDocTabForHusBasicInfo");
+                window.submitSys.popupMsg('丈夫一般情况 - 丈夫姓名: {丈夫姓名}, 档案编号: {档案编号}  已完成填写', true, "OpenDocTabForHusBasicInfo");
                 CloseTab("完善档案");
                 CloseTab("临床医生系统");
                 return;

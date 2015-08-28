@@ -147,7 +147,7 @@ ext.onReady(function() {
                         $(d).find('.x-window:contains("成功！继续填写生殖系统检查？")').find('button:contains("否")').click();
                         CloseTab("完善档案");
                         CloseTab("临床医生系统");
-                        window.submitSys.popupMsg('完成妻子体格检查 - 一般结果: 妻子:{妻子姓名}, 妻子证件号码: {妻子证件号码}  的修改', true, "OpenDocTabForWifeCheck");
+                        window.submitSys.popupMsg('完成妻子体格检查 - 一般结果: 妻子:{妻子姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForWifeCheck");
                     }
                 }, 1000);
 

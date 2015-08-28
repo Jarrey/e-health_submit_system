@@ -3,7 +3,7 @@ var d = f.contentDocument;
 var ext = f.contentWindow.Ext;
 ext.onReady(function() {
 
-    Enter(d, f, "text", "男方证件号码", "{丈夫证件号码}");
+    Enter(d, f, "text", "编号", "{档案编号}");
     ClickButton(d, "搜索");
 
     var times = 0;
@@ -18,8 +18,8 @@ ext.onReady(function() {
 
         if (!IsLoadingData(d)) {
             window.clearInterval(i);
-            if (!CheckDataExist(d, "{丈夫证件号码}")) {
-                window.submitSys.popupMsg('数据 - 丈夫姓名: {丈夫姓名}, 丈夫证件号码: {丈夫证件号码} 不存在', true, "{Status}");
+            if (!CheckDataExist(d, "{档案编号}")) {
+                window.submitSys.popupMsg('数据 - 丈夫姓名: {丈夫姓名}, 档案编号: {档案编号} 不存在', true, "{Status}");
                 CloseAllTabs();
                 return;
             }

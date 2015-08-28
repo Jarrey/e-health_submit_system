@@ -218,7 +218,7 @@ ext.onReady(function() {
                         $(d).find('.x-window:contains("成功！关闭当前标签页？")').find('button:contains("是")').click();
                         CloseTab("完善档案");
                         CloseTab("临床医生系统");
-                        window.submitSys.popupMsg('完成丈夫一般情况: 丈夫:{丈夫姓名}, 丈夫证件号码: {丈夫证件号码}  的修改', true, "OpenDocTabForHusBasicInfo");
+                        window.submitSys.popupMsg('完成丈夫一般情况: 丈夫:{丈夫姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForHusBasicInfo");
                     }
                 }, 1000);
 
