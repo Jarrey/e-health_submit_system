@@ -15,7 +15,7 @@
         "DBTableName": "[rnyjxt].[dbo].[VW_FKBC]",
         "Mapper": "FieldMaps/GynaecologyBMod.map",
         "Commands": {
-            "Select": "SELECT [DABH],[QZXM],[JCSJ],[BC],[BCMS],[BCJCH],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_FKBC] WHERE [WCBZ]=1"
+            "Select": "SELECT [DABH],[QZXM],[JCSJ],[BC],[BCMS],[BCJCH],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_FKBC] WHERE [WCBZ]=1 AND [JCSJ]>='{start}' AND [JCSJ]<='{end}'"
         }
     },
     { 
@@ -24,7 +24,7 @@
         "DBTableName": "[rnyjxt].[dbo].[VW_QZYBQK]",
         "Mapper": "FieldMaps/WifeBasicInfo.map",
         "Commands": {
-            "Select": "SELECT [DABH],[QZXM],[XWSJ],[疾病史],[贫血],[高血压],[心脏病],[糖尿病],[癫痫],[甲状腺疾病],[慢性肾炎],[肿瘤],[结核],[乙型肝炎],[淋病/梅毒/衣原体感染等],[精神心理疾患等],[是否有其他疾病],[其他疾病描述],[患有出生缺陷],[具体出生缺陷病名],[妇科疾病],[子宫附件炎],[不孕不育症],[其他妇科疾病],[其他妇科疾病描述],[是否服药],[药物名称],[是否注射过疫苗],[风疹疫苗],[乙肝疫苗],[是否注射其他疫苗],[其他疫苗名称],[是否采用避孕措施],[宫内节育器],[皮下埋植器],[口服避孕药],[避孕套],[外用药],[自然避孕],[是否采用其他避孕措施],[其他避孕措施说明],[避孕持续时间(月)],[避孕停止时间(月)],[初潮年龄],[末次月经时间],[月经是否规律],[JQTS1],[JQTS2],[YJZQ1],[YJZQ2],[月经量],[痛经],[是否曾经怀孕],[是否有不良妊娠],[死胎死产],[自然流产],[人工流产],[其他不良妊娠],[是否分娩过缺陷儿],[子女身体状况],[HYCS],[HCCS],[ZYCS],[ZCCS],[SCCS],[ZRLCCS],[RGLCCS],[YWRSCS],[QXEBZ],[QXEXQ],[ZNS],[ZNJBM],[是否近亲结婚],[JQGX],[家族是否有近亲结婚],[JZJQGX],[家庭成员是否有疾病],[地中海贫血],[白化病],[血友病],[G6PD缺乏症],[先天性心脏病],[唐氏综合症],[家庭成员有糖尿病],[先天性智力低下],[听力障碍],[视力障碍],[新生儿死亡],[其他出生缺陷],[JZCSQX],[YCZGX],[进食肉、蛋类],[厌食蔬菜],[食用生肉],[吸烟],[被动吸烟],[饮酒],[使用毒麻药品],[口臭],[牙龈出血],[未接触不良环境],[放射线],[高温],[噪音],[有机溶剂],[接触宠物等],[震动],[重金属],[农药],[接触其他不良环境],[XYZS],[BDXYSJ],[YJL],[DMYPM],[BLHJ],[生活/工作压力],[人际关系紧张],[经济压力],[是否做好怀孕准备],[QTXLYS],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_QZYBQK] WHERE [WCBZ]=1"
+            "Select": "SELECT [DABH],[QZXM],[XWSJ],[疾病史],[贫血],[高血压],[心脏病],[糖尿病],[癫痫],[甲状腺疾病],[慢性肾炎],[肿瘤],[结核],[乙型肝炎],[淋病/梅毒/衣原体感染等],[精神心理疾患等],[是否有其他疾病],[其他疾病描述],[患有出生缺陷],[具体出生缺陷病名],[妇科疾病],[子宫附件炎],[不孕不育症],[其他妇科疾病],[其他妇科疾病描述],[是否服药],[药物名称],[是否注射过疫苗],[风疹疫苗],[乙肝疫苗],[是否注射其他疫苗],[其他疫苗名称],[是否采用避孕措施],[宫内节育器],[皮下埋植器],[口服避孕药],[避孕套],[外用药],[自然避孕],[是否采用其他避孕措施],[其他避孕措施说明],[避孕持续时间(月)],[避孕停止时间(月)],[初潮年龄],[末次月经时间],[月经是否规律],[JQTS1],[JQTS2],[YJZQ1],[YJZQ2],[月经量],[痛经],[是否曾经怀孕],[是否有不良妊娠],[死胎死产],[自然流产],[人工流产],[其他不良妊娠],[是否分娩过缺陷儿],[子女身体状况],[HYCS],[HCCS],[ZYCS],[ZCCS],[SCCS],[ZRLCCS],[RGLCCS],[YWRSCS],[QXEBZ],[QXEXQ],[ZNS],[ZNJBM],[是否近亲结婚],[JQGX],[家族是否有近亲结婚],[JZJQGX],[家庭成员是否有疾病],[地中海贫血],[白化病],[血友病],[G6PD缺乏症],[先天性心脏病],[唐氏综合症],[家庭成员有糖尿病],[先天性智力低下],[听力障碍],[视力障碍],[新生儿死亡],[其他出生缺陷],[JZCSQX],[YCZGX],[进食肉、蛋类],[厌食蔬菜],[食用生肉],[吸烟],[被动吸烟],[饮酒],[使用毒麻药品],[口臭],[牙龈出血],[未接触不良环境],[放射线],[高温],[噪音],[有机溶剂],[接触宠物等],[震动],[重金属],[农药],[接触其他不良环境],[XYZS],[BDXYSJ],[YJL],[DMYPM],[BLHJ],[生活/工作压力],[人际关系紧张],[经济压力],[是否做好怀孕准备],[QTXLYS],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_QZYBQK] WHERE [WCBZ]=1 AND [XWSJ]>='{start}' AND [XWSJ]<='{end}'"
         }
     },
     { 
@@ -33,7 +33,7 @@
         "DBTableName": "[rnyjxt].[dbo].[VW_QZTG]",
         "Mapper": "FieldMaps/WifePhysique.map",
         "Commands": {
-            "Select": "SELECT [DABH],[QZXM],[JCSJ],[SG],[TZ],[XL],[SZY],[SSY],[JSZT],[YCMS],[ZL],[zl_cs],[zl_pd],[zl_jy],[zl_js],[WG],[WGYC],[TSTT],[TTYC],[TSMR],[MRYC],[PFMF],[PFYC],[JZX],[JZXYC],[FB],[FBYC],[XZJL],[XZJLYC],[XZZY],[XZZYYC],[GP],[GPYC],[SZJZ],[SZYC],[QT],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_QZTG] WHERE [WCBZ]=1"
+            "Select": "SELECT [DABH],[QZXM],[JCSJ],[SG],[TZ],[XL],[SZY],[SSY],[JSZT],[YCMS],[ZL],[zl_cs],[zl_pd],[zl_jy],[zl_js],[WG],[WGYC],[TSTT],[TTYC],[TSMR],[MRYC],[PFMF],[PFYC],[JZX],[JZXYC],[FB],[FBYC],[XZJL],[XZJLYC],[XZZY],[XZZYYC],[GP],[GPYC],[SZJZ],[SZYC],[QT],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_QZTG] WHERE [WCBZ]=1 AND [JCSJ]>='{start}' AND [JCSJ]<='{end}'"
         }
     },
     { 
@@ -42,7 +42,7 @@
         "DBTableName": "[rnyjxt].[dbo].[VW_QZFK]",
         "Mapper": "FieldMaps/WifeGynecologyCheck.map",
         "Commands": {
-            "Select": "SELECT [DABH],[QZXM],[YM],[YMYC],[RF],[RFYC],[WY],[WYYC],[YD],[YDYC],[FMW],[FMWYC],[GJ],[GJYC],[ZGDX],[ZGHD],[ZGBK],[BKYC],[FJ],[FJYC],[JCSJ],[QT],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_QZFK] WHERE [WCBZ]=1"
+            "Select": "SELECT [DABH],[QZXM],[YM],[YMYC],[RF],[RFYC],[WY],[WYYC],[YD],[YDYC],[FMW],[FMWYC],[GJ],[GJYC],[ZGDX],[ZGHD],[ZGBK],[BKYC],[FJ],[FJYC],[JCSJ],[QT],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_QZFK] WHERE [WCBZ]=1 AND [JCSJ]>='{start}' AND [JCSJ]<='{end}'"
         }
     },
     { 
@@ -51,7 +51,7 @@
         "DBTableName": "[rnyjxt].[dbo].[VW_QZLJ]",
         "Mapper": "FieldMaps/WifeClinical.map",
         "Commands": {
-            "Select": "SELECT [DABH],[QZXM],[XSXB],[CAN],[TV],[TT],[WT],[PH],[NG],[CT],[Hb],[RBC],[PLT],[MID],[WBC],[N],[E],[B],[L],[M],[NCG],[NCGYC],[ABO],[RH],[GLU],[HBsAg],[HBsAb],[HBeAg],[HBeAb],[HBcAb],[ALT],[CRE],[TSH],[RVIgG],[TPDNA],[CMVIgG],[CMVIgM],[TOXIgG],[TOXIgM],[QT],[JCSJ],[YSQM],[WCBZ] FROM [rnyjxt].[dbo].[VW_QZLJ] WHERE [WCBZ]=1"
+            "Select": "SELECT [DABH],[QZXM],[XSXB],[CAN],[TV],[TT],[WT],[PH],[NG],[CT],[Hb],[RBC],[PLT],[MID],[WBC],[N],[E],[B],[L],[M],[NCG],[NCGYC],[ABO],[RH],[GLU],[HBsAg],[HBsAb],[HBeAg],[HBeAb],[HBcAb],[ALT],[CRE],[TSH],[RVIgG],[TPDNA],[CMVIgG],[CMVIgM],[TOXIgG],[TOXIgM],[QT],[JCSJ],[YSQM],[WCBZ] FROM [rnyjxt].[dbo].[VW_QZLJ] WHERE [WCBZ]=1 AND [JCSJ]>='{start}' AND [JCSJ]<='{end}'"
         }
     },
     { 
@@ -60,7 +60,7 @@
         "DBTableName": "[rnyjxt].[dbo].[VW_ZFYBQK]",
         "Mapper": "FieldMaps/HusBasicInfo.map",
         "Commands": {
-            "Select": "SELECT [DABH],[ZFXM],[XWSJ],[疾病史],[贫血],[高血压],[心脏病],[糖尿病],[癫痫],[甲状腺疾病],[慢性肾炎],[肿瘤],[结核],[乙型肝炎],[淋病/梅毒/衣原体感染等],[精神心理疾患等],[是否有其他疾病],[其他疾病描述],[患有出生缺陷],[具体出生缺陷病名],[男科疾病],[睾丸炎],[精索静脉曲张],[不育症],[腮腺炎],[其他男科疾病],[其他男科疾病描述],[是否服药],[药物名称],[是否注射过疫苗],[风疹疫苗],[乙肝疫苗],[是否注射其他疫苗],[其他疫苗名称],[JQGX],[家族是否有近亲结婚],[JZJQGX],[家庭成员是否有疾病],[地中海贫血],[白化病],[血友病],[G6PD缺乏症],[先天性心脏病],[唐氏综合症],[家庭成员有糖尿病],[先天性智力低下],[听力障碍],[视力障碍],[新生儿死亡],[其他出生缺陷],[JZCSQX],[YCZGX],[进食肉、蛋类],[厌食蔬菜],[食用生肉],[吸烟],[被动吸烟],[饮酒],[使用毒麻药品],[口臭],[牙龈出血],[未接触不良环境],[放射线],[高温],[噪音],[有机溶剂],[接触宠物等],[震动],[重金属],[农药],[接触其他不良环境],[XYZS],[BDXYSJ],[YJL],[DMYPM],[BLHJ],[生活/工作压力],[人际关系紧张],[经济压力],[是否做好怀孕准备],[QTXLYS],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_ZFYBQK] WHERE [WCBZ]=1"
+            "Select": "SELECT [DABH],[ZFXM],[XWSJ],[疾病史],[贫血],[高血压],[心脏病],[糖尿病],[癫痫],[甲状腺疾病],[慢性肾炎],[肿瘤],[结核],[乙型肝炎],[淋病/梅毒/衣原体感染等],[精神心理疾患等],[是否有其他疾病],[其他疾病描述],[患有出生缺陷],[具体出生缺陷病名],[男科疾病],[睾丸炎],[精索静脉曲张],[不育症],[腮腺炎],[其他男科疾病],[其他男科疾病描述],[是否服药],[药物名称],[是否注射过疫苗],[风疹疫苗],[乙肝疫苗],[是否注射其他疫苗],[其他疫苗名称],[JQGX],[家族是否有近亲结婚],[JZJQGX],[家庭成员是否有疾病],[地中海贫血],[白化病],[血友病],[G6PD缺乏症],[先天性心脏病],[唐氏综合症],[家庭成员有糖尿病],[先天性智力低下],[听力障碍],[视力障碍],[新生儿死亡],[其他出生缺陷],[JZCSQX],[YCZGX],[进食肉、蛋类],[厌食蔬菜],[食用生肉],[吸烟],[被动吸烟],[饮酒],[使用毒麻药品],[口臭],[牙龈出血],[未接触不良环境],[放射线],[高温],[噪音],[有机溶剂],[接触宠物等],[震动],[重金属],[农药],[接触其他不良环境],[XYZS],[BDXYSJ],[YJL],[DMYPM],[BLHJ],[生活/工作压力],[人际关系紧张],[经济压力],[是否做好怀孕准备],[QTXLYS],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_ZFYBQK] WHERE [WCBZ]=1 AND [XWSJ]>='{start}' AND [XWSJ]<='{end}'"
         }
     },
     { 
@@ -69,7 +69,7 @@
         "DBTableName": "[rnyjxt].[dbo].[VW_ZFTG]",
         "Mapper": "FieldMaps/HusPhysique.map",
         "Commands": {
-            "Select": "SELECT [DABH],[ZFXM],[JCSJ],[SG],[TZ],[XL],[SZY],[SSY],[JSZT],[YCMS],[ZL],[zl_cs],[zl_pd],[zl_jy],[zl_js],[WG],[WGYC],[TSTT],[TTYC],[TSMR],[MRYC],[PFMF],[PFYC],[JZX],[JZXYC],[FB],[FBYC],[XZJL],[XZJLYC],[XZZY],[XZZYYC],[GP],[GPYC],[SZJZ],[SZYC],[QT],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_ZFTG] WHERE [WCBZ]=1"
+            "Select": "SELECT [DABH],[ZFXM],[JCSJ],[SG],[TZ],[XL],[SZY],[SSY],[JSZT],[YCMS],[ZL],[zl_cs],[zl_pd],[zl_jy],[zl_js],[WG],[WGYC],[TSTT],[TTYC],[TSMR],[MRYC],[PFMF],[PFYC],[JZX],[JZXYC],[FB],[FBYC],[XZJL],[XZJLYC],[XZZY],[XZZYYC],[GP],[GPYC],[SZJZ],[SZYC],[QT],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_ZFTG] WHERE [WCBZ]=1 AND [JCSJ]>='{start}' AND [JCSJ]<='{end}'"
         }
     },
     { 
@@ -78,7 +78,7 @@
         "DBTableName": "[rnyjxt].[dbo].[VW_ZFNK]",
         "Mapper": "FieldMaps/HusAndrologyCheck.map",
         "Commands": {
-            "Select": "SELECT [DABH],[ZFXM],[JCSJ],[YM],[YMYC],[HJ],[HJYC],[YJ],[YJYC],[BP],[gw_mj],[gw_mjz],[gw_mjy],[GWZ],[GWY],[FG],[FGYC],[SJG],[SJGYC],[JMQZ],[JMQZBW],[JMQZCD],[QT],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_ZFNK] WHERE [WCBZ]=1"
+            "Select": "SELECT [DABH],[ZFXM],[JCSJ],[YM],[YMYC],[HJ],[HJYC],[YJ],[YJYC],[BP],[gw_mj],[gw_mjz],[gw_mjy],[GWZ],[GWY],[FG],[FGYC],[SJG],[SJGYC],[JMQZ],[JMQZBW],[JMQZCD],[QT],[WCBZ],[YSQM] FROM [rnyjxt].[dbo].[VW_ZFNK] WHERE [WCBZ]=1 AND [JCSJ]>='{start}' AND [JCSJ]<='{end}'"
         }
     },
     { 
@@ -87,7 +87,7 @@
         "DBTableName": "[rnyjxt].[dbo].[VW_ZFLJ]",
         "Mapper": "FieldMaps/HusClinical.map",
         "Commands": {
-            "Select": "SELECT [DABH],[ZFXM],[ABO],[RH],[NCG],[NCGYC],[TPDNA],[HBsAg],[HBsAb],[HBeAg],[HBeAb],[HBcAb],[ALT],[CRE],[QT],[JCSJ],[YSQM],[WCBZ] FROM [rnyjxt].[dbo].[VW_ZFLJ] WHERE [WCBZ]=1"
+            "Select": "SELECT [DABH],[ZFXM],[ABO],[RH],[NCG],[NCGYC],[TPDNA],[HBsAg],[HBsAb],[HBeAg],[HBeAb],[HBcAb],[ALT],[CRE],[QT],[JCSJ],[YSQM],[WCBZ] FROM [rnyjxt].[dbo].[VW_ZFLJ] WHERE [WCBZ]=1 AND [JCSJ]>='{start}' AND [JCSJ]<='{end}'"
         }
     }
 ]

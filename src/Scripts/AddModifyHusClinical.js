@@ -1,6 +1,8 @@
 ﻿var f = GetFrame("/entity/exam/labExamM_input.action?");
+var action = "new";
 if (!f) {
     f = GetFrame("/entity/exam/labExamM_toUpdate.action?");
+    action = "update";
 }
 
 if (!f) {
@@ -37,9 +39,9 @@ if (!f) {
                     }
 
                     if ("{RH}" == "0") {
-                        Enter(fields, f, "combo", "Rh", "阴性");
-                    } else if ("{RH}" == "1") {
                         Enter(fields, f, "combo", "Rh", "阳性");
+                    } else if ("{RH}" == "1") {
+                        Enter(fields, f, "combo", "Rh", "阴性");
                     }
 
                     fields = GetFieldSet(fieldSet, "尿液常规检查");
@@ -108,7 +110,11 @@ if (!f) {
                     Enter(d, f, "text", "医师签名", "{医生签名}");
                     Enter(d, f, "date", "检查日期", Today);
 
-                    ClickButton(d, "保  存");
+                    if (action == "new") {
+                        ClickButton(d, "保  存");
+                    } else {
+                        ClickButton(d, "提  交");
+                    }
 
                     times = 0;
                     var save = setInterval(function() {
@@ -137,14 +143,14 @@ if (!f) {
                                     return;
                                 }
                     
-                                if ($(d).find('.x-window:contains("提示")').length > 0) {
+                                if ($(d).find('.x-window:contains("提示"), .x-window:contains("确认")').length > 0) {
                                     window.clearInterval(save);
-                                    msgBox = $(d).find('.x-window:contains("提示")');
+                                    msgBox = $(d).find('.x-window:contains("提示"), .x-window:contains("确认")');
                                     msg = msg + msgBox.find('span.ext-mb-text').text();
                                     msgBox.find('button:contains("确定"), button:contains("是")').click();
                                     window.submitSys.popupMsg('丈夫首诊临床检验表 - 丈夫姓名: {丈夫姓名}, 档案编号: {档案编号} ' + msg, true, "OpenDocTabForHusClinical");
 
-                                    if(CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "ZFLC");
+                                    if(CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "ZFLJ");
 
                                     CloseAllTabs();
                                 }

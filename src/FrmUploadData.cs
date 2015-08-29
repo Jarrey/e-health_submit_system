@@ -51,10 +51,15 @@ namespace SubmitSys
 
         private int currentIndex = -1;
 
+        private IDictionary<string, string> accounts; 
+
         #endregion
 
         public FrmUploadData()
         {
+            this.accounts =
+                JsonConvert.DeserializeObject<IDictionary<string, string>>(File.ReadAllText("Scripts/Accounts.json"));
+
             this.tableKeys = JsonConvert.DeserializeObject<string[]>(Settings.Default.DBKeys);
             this.Text = Resources.FormTitle;
             this.jsObj.OnLogin += OnLogin;
@@ -65,6 +70,11 @@ namespace SubmitSys
             var actionsJson = File.ReadAllText("Scripts/ActionDefinition.json");
             this.actions = JsonConvert.DeserializeObject<Actions>(actionsJson);
             this.InitializeComponent();
+            this.cmbAccount.DataSource = this.accounts.ToList();
+            // set the date time controls
+            dateStart.MaxDate = dateEnd.Value;
+            dateEnd.MinDate = dateStart.Value;
+
             this.webView.FrameLoadEnd += this.WebViewOnLoginFrameLoadEnd;
             this.webView.Dock = DockStyle.Fill;
             this.pnlWebView.Controls.Add(this.webView);
@@ -100,6 +110,7 @@ namespace SubmitSys
                     this.webView.ExecuteScriptAsync(File.ReadAllText(Path.Combine("Scripts", "Login.js")));
                 }
 
+                this.CmbAccountSelectedIndexChanged(this.cmbAccount, new EventArgs());
                 this.currentStatus = 0; // Initialize
             }
             else if (frameLoadEndEventArgs.Url.Contains(this.actions.Steps["Login"].FrameUrlKey))
@@ -116,6 +127,8 @@ namespace SubmitSys
         {
             try
             {
+                var start = dateStart.Value.ToString("yyyy-MM-dd");
+                var end = dateEnd.Value.AddDays(1).ToString("yyyy-MM-dd");
                 this.Enabled = false;
                 this.loading = new LoadingDialog(this.Handle, "正在读取数据, 请稍等...");
                 this.loading.ShowModeless(this);
@@ -125,7 +138,7 @@ namespace SubmitSys
                 foreach (var k in this.tableKeys)
                 {
                     var dbTable = new DBUploadDataTable(dbMap, k);
-                    var table = dbTable.SelectData();
+                    var table = dbTable.SelectData(start, end);
                     this.AddDataFile(new DataFile(table, k));
                 }
             }
@@ -297,6 +310,16 @@ namespace SubmitSys
             MessageBox.Show(e.Ex.Message, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void DateStartValueChanged(object sender, EventArgs e)
+        {
+            dateEnd.MinDate = dateStart.Value;
+        }
+
+        private void DateEndValueChanged(object sender, EventArgs e)
+        {
+            dateStart.MaxDate = dateEnd.Value;
+        }
+
         #endregion
 
         #region Private Methods
@@ -327,14 +350,14 @@ namespace SubmitSys
             this.lstCategory.SelectedItem = dataFile;
         }
 
-        private bool GetSelectedData(DataTable table)
+        private bool GetSelectedData(DataTable table, bool all = false)
         {
             selectedRows.Clear();
             selectedColumns.Clear();
             currentIndex = -1;
             foreach (DataRow row in table.Rows)
             {
-                if ((bool)row[Resources.SelectColumnName])
+                if ((bool)row[Resources.SelectColumnName] || all)
                 {
                     selectedRows.Add(row);
                 }
@@ -404,5 +427,12 @@ namespace SubmitSys
         }
 
         #endregion
+
+        private void CmbAccountSelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.webView.ExecuteScriptAsync(File.ReadAllText(Path.Combine("Scripts", "Login.js")));
+            var v = (KeyValuePair<string, string>)cmbAccount.SelectedItem;
+            this.webView.ExecuteScriptAsync(string.Format("TypeAccount(\"{0}\",\"{1}\");", v.Key, v.Value));
+        }
     }
 }

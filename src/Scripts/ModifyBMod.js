@@ -34,7 +34,6 @@ ext.onReady(function () {
                 Enter(d, f, "date", "检查日期", Today);
                 Enter(d, f, "check", "完成(注意：此项计入工作量统计，一旦选中并保存，则表格不能再修改！)", CompleteFlag);
 
-                /*
                 ClickButton(d, "保存");
     
                 times = 0;
@@ -63,8 +62,8 @@ ext.onReady(function () {
                         window.submitSys.popupMsg('完成妻子妇科B超检查结果失败: 妻子:{妻子姓名}, 档案编号: {档案编号}', true, "OpenDocTabForBMod");
                     }
                 }, 1000);
-                */
-                window.submitSys.popupMsg('完成妻子妇科B超检查结果: 妻子:{妻子姓名}, 档案编号: {档案编号} 的修改', true, "OpenDocTabForBMod");
+                
+                /*window.submitSys.popupMsg('完成妻子妇科B超检查结果: 妻子:{妻子姓名}, 档案编号: {档案编号} 的修改', true, "OpenDocTabForBMod");*/
 
             } catch (e) {
                 window.submitSys.popupMsg("发生错误: " + e.name + ":" + e.message, false, "");

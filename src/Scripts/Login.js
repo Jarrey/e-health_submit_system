@@ -4,14 +4,7 @@
         textbox.setAttribute("value", text);
 }
 
-TypeText("username", "");
-TypeText("password", "");
-
-
-//////TypeText("username", "D341302000");
-//////TypeText("password", "3727990.yq");
-//TypeText("username", "t341302000");
-//TypeText("password", "3727990+yq");
-
-TypeText("username", "i341302000");
-TypeText("password", "3727990+yq");
+function TypeAccount(a, p) {
+    TypeText("username", a);
+    TypeText("password", p);
+}

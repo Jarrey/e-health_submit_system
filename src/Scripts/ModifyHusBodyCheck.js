@@ -129,7 +129,7 @@ ext.onReady(function() {
                 Enter(b, f, "text", "医师签名", "{医生签名}");
                 Enter(b, f, "date", "检查日期", Today);
 
-                /*
+                
                 ClickButton(b, "保存");
                 $(d).find('.x-window:contains("您已确认无误，要提交？")').find('button:contains("是")').click();
                 times = 0;
@@ -150,9 +150,17 @@ ext.onReady(function() {
                         window.submitSys.popupMsg('完成丈夫体格检查 - 一般结果: 丈夫:{丈夫姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForHusCheck");
                         if(CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "ZFTG");
                     }
+
+                    if ($(d).find('.x-window:contains("提示"), .x-window:contains("失败")').length > 0) {
+                        window.clearInterval(save);
+                        $(d).find('.x-window:contains("提示"), .x-window:contains("失败")').find('button:contains("确定")').click();
+                        CloseTab("完善档案");
+                        CloseTab("临床医生系统");
+                        window.submitSys.popupMsg('丈夫体格检查 - 一般结果: 丈夫:{丈夫姓名}, 档案编号: {档案编号}  的修改失败', true, "OpenDocTabForHusCheck");
+                    }
                 }, 1000);
-                */
-                window.submitSys.popupMsg('完成丈夫体格检查 - 一般结果: 丈夫:{丈夫姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForHusCheck");
+                
+                //window.submitSys.popupMsg('完成丈夫体格检查 - 一般结果: 丈夫:{丈夫姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForHusCheck");
 
             } catch (e) {
                 window.submitSys.popupMsg("发生错误: " + e.name + ":" + e.message, false, "");

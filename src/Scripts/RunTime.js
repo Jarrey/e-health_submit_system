@@ -116,12 +116,13 @@ function Enter(r, f, t, n, v, i) {
             } catch (ex) {
                 console.log(ex);
             }
-            var i = c.store.find(c.displayField, new RegExp('.*' + v + '.*'));
-            var field = c.store.data.itemAt(i);
+            var inx = c.store.find(c.displayField, new RegExp('.*' + v + '.*'));
+            var field = c.store.data.itemAt(inx);
             if (field && field.data) {
-                v = field.data[c.valueField];
+                if (c.valueField) v = field.data[c.valueField];
+                else if (c.displayField) v = field.data[c.displayField];
             }
-                c.collapse();
+            c.collapse();
         }
 
         if (t == "date") {

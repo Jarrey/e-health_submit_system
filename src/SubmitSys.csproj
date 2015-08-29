@@ -207,6 +207,9 @@
     <Content Include="Scripts\DownloadActionDefinition.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Accounts.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>

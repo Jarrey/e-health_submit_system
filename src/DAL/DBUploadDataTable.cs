@@ -20,14 +20,16 @@ namespace SubmitSys.DAL
             : base(config, key)
         {
         }
-        
+
         #region Methods
 
-        internal DataTable SelectData()
+        internal DataTable SelectData(string starttime, string endtime)
         {
             var dt = BuildTable();
             this.OpenConnection();
-            using (var cmd = new SqlCommand(SqlQueries["Select"], Connection))
+            var sql = SqlQueries["Select"];
+            sql = sql.Replace("{start}", starttime).Replace("{end}", endtime);
+            using (var cmd = new SqlCommand(sql, Connection))
             {
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -38,7 +40,7 @@ namespace SubmitSys.DAL
                         row[Resources.SelectColumnName] = true;
                         foreach (var f in Fields)
                         {
-                            row[f.Value] = reader[f.Key].ToString();
+                            row[f.Value] = reader[f.Key].ToString().Trim();
                         }
 
                         dt.Rows.Add(row);

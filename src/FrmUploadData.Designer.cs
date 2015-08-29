@@ -32,17 +32,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUploadData));
             this.pnlWebView = new System.Windows.Forms.Panel();
+            this.cmbAccount = new System.Windows.Forms.ComboBox();
             this.mainFrame = new System.Windows.Forms.SplitContainer();
             this.categoryDataFrame = new System.Windows.Forms.SplitContainer();
             this.grbCategory = new System.Windows.Forms.GroupBox();
             this.lstCategory = new System.Windows.Forms.ListBox();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.pnlTool = new System.Windows.Forms.Panel();
+            this.lblTo = new System.Windows.Forms.Label();
+            this.lblDateFrom = new System.Windows.Forms.Label();
+            this.dateEnd = new System.Windows.Forms.DateTimePicker();
+            this.dateStart = new System.Windows.Forms.DateTimePicker();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.btnImport = new System.Windows.Forms.Button();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.pnlWebView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainFrame)).BeginInit();
             this.mainFrame.Panel1.SuspendLayout();
             this.mainFrame.Panel2.SuspendLayout();
@@ -59,11 +65,24 @@
             // pnlWebView
             // 
             this.pnlWebView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlWebView.Controls.Add(this.cmbAccount);
             this.pnlWebView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlWebView.Location = new System.Drawing.Point(0, 0);
             this.pnlWebView.Name = "pnlWebView";
             this.pnlWebView.Size = new System.Drawing.Size(1007, 394);
             this.pnlWebView.TabIndex = 5;
+            // 
+            // cmbAccount
+            // 
+            this.cmbAccount.DisplayMember = "Key";
+            this.cmbAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAccount.FormattingEnabled = true;
+            this.cmbAccount.Location = new System.Drawing.Point(3, 3);
+            this.cmbAccount.Name = "cmbAccount";
+            this.cmbAccount.Size = new System.Drawing.Size(121, 21);
+            this.cmbAccount.TabIndex = 0;
+            this.cmbAccount.ValueMember = "Value";
+            this.cmbAccount.SelectedIndexChanged += new System.EventHandler(this.CmbAccountSelectedIndexChanged);
             // 
             // mainFrame
             // 
@@ -139,17 +158,21 @@
             this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvData.Location = new System.Drawing.Point(0, 36);
+            this.dgvData.Location = new System.Drawing.Point(0, 70);
             this.dgvData.Name = "dgvData";
             this.dgvData.ReadOnly = true;
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(853, 228);
+            this.dgvData.Size = new System.Drawing.Size(853, 194);
             this.dgvData.TabIndex = 2;
             this.dgvData.SelectionChanged += new System.EventHandler(this.DgvDataSelectionChanged);
             // 
             // pnlTool
             // 
+            this.pnlTool.Controls.Add(this.lblTo);
+            this.pnlTool.Controls.Add(this.lblDateFrom);
+            this.pnlTool.Controls.Add(this.dateEnd);
+            this.pnlTool.Controls.Add(this.dateStart);
             this.pnlTool.Controls.Add(this.btnModify);
             this.pnlTool.Controls.Add(this.btnSubmit);
             this.pnlTool.Controls.Add(this.chkSelectAll);
@@ -157,14 +180,54 @@
             this.pnlTool.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTool.Location = new System.Drawing.Point(0, 0);
             this.pnlTool.Name = "pnlTool";
-            this.pnlTool.Size = new System.Drawing.Size(853, 36);
+            this.pnlTool.Size = new System.Drawing.Size(853, 70);
             this.pnlTool.TabIndex = 3;
+            // 
+            // lblTo
+            // 
+            this.lblTo.AutoSize = true;
+            this.lblTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTo.Location = new System.Drawing.Point(202, 8);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(25, 20);
+            this.lblTo.TabIndex = 8;
+            this.lblTo.Text = "到";
+            // 
+            // lblDateFrom
+            // 
+            this.lblDateFrom.AutoSize = true;
+            this.lblDateFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateFrom.Location = new System.Drawing.Point(4, 8);
+            this.lblDateFrom.Name = "lblDateFrom";
+            this.lblDateFrom.Size = new System.Drawing.Size(57, 20);
+            this.lblDateFrom.TabIndex = 8;
+            this.lblDateFrom.Text = "时间从";
+            // 
+            // dateEnd
+            // 
+            this.dateEnd.CustomFormat = "yyyy-MM-dd";
+            this.dateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateEnd.Location = new System.Drawing.Point(233, 8);
+            this.dateEnd.Name = "dateEnd";
+            this.dateEnd.Size = new System.Drawing.Size(129, 20);
+            this.dateEnd.TabIndex = 7;
+            this.dateEnd.ValueChanged += new System.EventHandler(this.DateEndValueChanged);
+            // 
+            // dateStart
+            // 
+            this.dateStart.CustomFormat = "yyyy-MM-dd";
+            this.dateStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateStart.Location = new System.Drawing.Point(67, 8);
+            this.dateStart.Name = "dateStart";
+            this.dateStart.Size = new System.Drawing.Size(129, 20);
+            this.dateStart.TabIndex = 7;
+            this.dateStart.ValueChanged += new System.EventHandler(this.DateStartValueChanged);
             // 
             // btnModify
             // 
             this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModify.Location = new System.Drawing.Point(675, 3);
+            this.btnModify.Location = new System.Drawing.Point(675, 35);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(173, 30);
             this.btnModify.TabIndex = 6;
@@ -177,7 +240,7 @@
             // 
             this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.Location = new System.Drawing.Point(496, 3);
+            this.btnSubmit.Location = new System.Drawing.Point(675, 3);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(173, 30);
             this.btnSubmit.TabIndex = 6;
@@ -190,7 +253,7 @@
             // 
             this.chkSelectAll.AutoSize = true;
             this.chkSelectAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkSelectAll.Location = new System.Drawing.Point(192, 6);
+            this.chkSelectAll.Location = new System.Drawing.Point(182, 38);
             this.chkSelectAll.Name = "chkSelectAll";
             this.chkSelectAll.Size = new System.Drawing.Size(60, 24);
             this.chkSelectAll.TabIndex = 5;
@@ -201,7 +264,7 @@
             // btnImport
             // 
             this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImport.Location = new System.Drawing.Point(4, 3);
+            this.btnImport.Location = new System.Drawing.Point(3, 34);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(173, 30);
             this.btnImport.TabIndex = 4;
@@ -225,6 +288,7 @@
             this.MinimumSize = new System.Drawing.Size(400, 350);
             this.Name = "FrmUploadData";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.pnlWebView.ResumeLayout(false);
             this.mainFrame.Panel1.ResumeLayout(false);
             this.mainFrame.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainFrame)).EndInit();
@@ -255,6 +319,11 @@
         private System.Windows.Forms.SplitContainer categoryDataFrame;
         private System.Windows.Forms.GroupBox grbCategory;
         private System.Windows.Forms.ListBox lstCategory;
+        private System.Windows.Forms.DateTimePicker dateEnd;
+        private System.Windows.Forms.DateTimePicker dateStart;
+        private System.Windows.Forms.Label lblTo;
+        private System.Windows.Forms.Label lblDateFrom;
+        private System.Windows.Forms.ComboBox cmbAccount;
     }
 }
 

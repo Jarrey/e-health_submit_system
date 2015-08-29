@@ -20,7 +20,7 @@ ext.onReady(function() {
                 Enter(d, f, "text", "医师签名", "{医生签名}");
                 Enter(d, f, "date", "询问日期", Today);
                 Enter(d, f, "radio", "血常规（白细胞五分类）", "no");
-                Enter(d, f, "check", "中值细胞", 1);
+                //Enter(d, f, "check", "中值细胞", 1);
 
                 ClickButton(d, "保存");
                 times = 0;

@@ -294,7 +294,6 @@ ext.onReady(function() {
                 Enter(d, f, "text", "医师签名", "{医生签名}");
                 Enter(d, f, "date", "询问日期", Today);
 
-                /*
                 ClickButton(d, "保存");
 
                 times = 0;
@@ -316,10 +315,17 @@ ext.onReady(function() {
                         window.submitSys.popupMsg('完成妻子一般情况: 妻子:{妻子姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForWifeBasicInfo");
                         if(CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "QZYBQK");
                     }
-                }, 1000);
-                */
 
-                window.submitSys.popupMsg('完成妻子一般情况: 妻子:{妻子姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForWifeBasicInfo");
+                    if ($(d).find('.x-window:contains("提示"), .x-window:contains("失败")').length > 0) {
+                        window.clearInterval(save);
+                        $(d).find('.x-window:contains("提示"), .x-window:contains("失败")').find('button:contains("确定")').click();
+                        CloseTab("完善档案");
+                        CloseTab("临床医生系统");
+                        window.submitSys.popupMsg('妻子一般情况: 妻子:{妻子姓名}, 档案编号: {档案编号}  的修改失败', true, "OpenDocTabForWifeBasicInfo");
+                    }
+                }, 1000);
+                
+                //window.submitSys.popupMsg('完成妻子一般情况: 妻子:{妻子姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForWifeBasicInfo");
 
             } catch (e) {
                 window.submitSys.popupMsg("发生错误: " + e.name + ":" + e.message, false, "");

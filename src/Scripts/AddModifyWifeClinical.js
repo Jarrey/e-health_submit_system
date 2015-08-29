@@ -1,6 +1,8 @@
 ﻿var f = GetFrame("/entity/basic/labExamW_inputF.action?");
+var action = "new";
 if (!f) {
     f = GetFrame("/entity/basic/labExamW_toUpdate.action?");
+    action = "update";
 }
 
 if (!f) {
@@ -9,9 +11,9 @@ if (!f) {
 } else {
     var d = f.contentDocument;
     var ext = f.contentWindow.Ext;
-    ext.onReady(function() {
+    ext.onReady(function () {
         var times = 0;
-        var i = setInterval(function() {
+        var i = setInterval(function () {
             times++;
             if (times >= MaxRetryTimes) {
                 window.clearInterval(i);
@@ -66,11 +68,20 @@ if (!f) {
                         Enter(fields, f, "combo", "胺臭味实验", "阳性");
                     }
 
-                    if ("{PH值}" == "0") {
-                        Enter(fields, f, "combo", "PH值", "<4.5");
-                    } else if ("{PH值}" == "1") {
-                        Enter(fields, f, "combo", "PH值", ">=4.5");
+                    if (action == "new") {
+                        if ("{PH值}" == "0") {
+                            Enter(fields, f, "combo", "ph值", "<4.5");
+                        } else if ("{PH值}" == "1") {
+                            Enter(fields, f, "combo", "ph值", ">=4.5");
+                        }
+                    } else {
+                        if ("{PH值}" == "0") {
+                            Enter(fields, f, "combo", "PH值", "<4.5");
+                        } else if ("{PH值}" == "1") {
+                            Enter(fields, f, "combo", "PH值", ">=4.5");
+                        }
                     }
+
 
                     if ("{淋球菌筛查}" == "0") {
                         Enter(fieldSet, f, "combo", "淋球菌筛查", "阴性");
@@ -89,16 +100,18 @@ if (!f) {
                     }
 
                     fields = GetFieldSet(fieldSet, "血细胞分析");
-                    Enter(fields, f, "text", "Hb(g/L)", "{Hb}");
+                    Enter(fields, f, "text", "Hb(g/L)", eval("{Hb}").toFixed(0));
                     Enter(fields, f, "text", "RBC(1012/L)", "{RBC}");
-                    Enter(fields, f, "text", "PLT(109/L)", "{PLT}");
-                    Enter(fields, f, "text", "WBC(109/L)", "{WBC}");
-                    Enter(fields, f, "text", "N(%)", "{N}");
-                    Enter(fields, f, "text", "E(%)", "{E}");
-                    Enter(fields, f, "text", "B(%)", "{B}");
-                    Enter(fields, f, "text", "L(%)", "{L}");
-                    Enter(fields, f, "text", "M(%)", "{M}");
-                    Enter(fields, f, "text", "中值细胞(%)", "{中间细胞数(MID#)}");
+                    Enter(fields, f, "text", "PLT(109/L)", eval("{PLT}").toFixed(0));
+                    Enter(fields, f, "text", "WBC(109/L)", eval("{WBC}").toFixed(1));
+                    Enter(fields, f, "text", "N(%)", eval("{N}").toFixed(1));
+                    Enter(fields, f, "text", "E(%)", eval("{E}").toFixed(1));
+                    Enter(fields, f, "text", "B(%)", eval("{B}").toFixed(1));
+                    Enter(fields, f, "text", "L(%)", eval("{L}").toFixed(1));
+
+                    var M = 100 - eval("{N}").toFixed(1) - eval("{E}").toFixed(1) - eval("{B}").toFixed(1) - eval("{L}").toFixed(1);
+                    Enter(fields, f, "text", "M(%)", M.toFixed(1).toString());
+                    //Enter(fields, f, "text", "中值细胞(%)", "{中间细胞数(MID#)}");
 
                     fields = GetFieldSet(fieldSet, "尿液常规检查");
                     if ("{尿常规}" == "0") {
@@ -110,19 +123,19 @@ if (!f) {
 
                     fields = GetFieldSet(fieldSet, "血型");
                     if ("{血型}" == "0") {
-                        Enter(fields, f, "combo", "ABO", "A型");
+                        Enter(fields, f, "combo", "ABO", "A");
                     } else if ("{血型}" == "1") {
-                        Enter(fields, f, "combo", "ABO", "B型");
+                        Enter(fields, f, "combo", "ABO", "B");
                     } else if ("{血型}" == "2") {
-                        Enter(fields, f, "combo", "ABO", "AB型");
+                        Enter(fields, f, "combo", "ABO", "AB");
                     } else if ("{血型}" == "3") {
-                        Enter(fields, f, "combo", "ABO", "O型");
+                        Enter(fields, f, "combo", "ABO", "O");
                     }
 
                     if ("{RH}" == "0") {
-                        Enter(fields, f, "combo", "Rh", "阴性");
-                    } else if ("{RH}" == "1") {
                         Enter(fields, f, "combo", "Rh", "阳性");
+                    } else if ("{RH}" == "1") {
+                        Enter(fields, f, "combo", "Rh", "阴性");
                     }
 
                     Enter(fieldSet, f, "text", "血糖（mmol/L）", "{血糖}");
@@ -191,11 +204,11 @@ if (!f) {
                     }
 
                     if ("{弓形虫抗体IgG测定}" == "0") {
-                        Enter(fieldSet, f, "combo", "弓形虫IgG", "阴性");
+                        Enter(fieldSet, f, "combo", "弓形体IgG", "阴性");
                     } else if ("{弓形虫抗体IgG测定}" == "1") {
-                        Enter(fieldSet, f, "combo", "弓形虫IgG", "阳性");
+                        Enter(fieldSet, f, "combo", "弓形体IgG", "阳性");
                     } else if ("{弓形虫抗体IgG测定}" == "9") {
-                        Enter(fieldSet, f, "combo", "弓形虫IgG", "可疑");
+                        Enter(fieldSet, f, "combo", "弓形体IgG", "可疑");
                     }
 
                     if ("{梅毒螺旋体筛查}" == "0") {
@@ -228,9 +241,9 @@ if (!f) {
                     Enter(d, f, "date", "检查日期", Today);
 
                     ClickButton(d, "保  存");
-                    
+
                     times = 0;
-                    var save = setInterval(function() {
+                    var save = setInterval(function () {
                         times++;
                         if (times >= MaxRetryTimes) {
                             window.clearInterval(save);
@@ -241,13 +254,13 @@ if (!f) {
 
                         if ($(d).find('.x-window:contains("选择框"), .x-window:contains("提示")').length > 0) {
                             window.clearInterval(save);
-                    
+
                             var msgBox = $(d).find('.x-window:contains("选择框"), .x-window:contains("提示")');
                             var msg = msgBox.find('span.ext-mb-text').text();
                             msgBox.find('button:contains("确定"), button:contains("是")').click();
 
                             times = 0;
-                            save = setInterval(function() {
+                            save = setInterval(function () {
                                 times++;
                                 if (times >= MaxRetryTimes) {
                                     window.clearInterval(save);
@@ -256,14 +269,14 @@ if (!f) {
                                     return;
                                 }
 
-                                if ($(d).find('.x-window:contains("提示")').length > 0) {
+                                if ($(d).find('.x-window:contains("提示"), .x-window:contains("确认")').length > 0) {
                                     window.clearInterval(save);
-                                    msgBox = $(d).find('.x-window:contains("提示")');
+                                    msgBox = $(d).find('.x-window:contains("提示"), .x-window:contains("确认")');
                                     msg = msg + msgBox.find('span.ext-mb-text').text();
                                     msgBox.find('button:contains("确定"), button:contains("是")').click();
                                     window.submitSys.popupMsg('妻子首诊临床检验表 - 妻子姓名: {妻子姓名}, 档案编号: {档案编号} ' + msg, true, "OpenDocTabForWifeClinical");
 
-                                    if (CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "QZLC");
+                                    if (CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "QZLJ");
 
                                     CloseAllTabs();
                                 }
