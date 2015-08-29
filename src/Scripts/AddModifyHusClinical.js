@@ -11,9 +11,9 @@ if (!f) {
 } else {
     var d = f.contentDocument;
     var ext = f.contentWindow.Ext;
-    ext.onReady(function() {
+    ext.onReady(function () {
         var times = 0;
-        var i = setInterval(function() {
+        var i = setInterval(function () {
             times++;
             if (times >= MaxRetryTimes) {
                 window.clearInterval(i);
@@ -104,7 +104,7 @@ if (!f) {
                     fields = GetFieldSet(fieldSet, "肝肾功能检测");
                     Enter(fields, f, "text", "谷丙转氨酶ALT(U/L)", "{谷丙转氨酶}");
                     Enter(fields, f, "text", "肌酐Cr(umol/L)", "{肌酐}");
-                    
+
                     Enter(fieldSet, f, "textarea", "其他检查", "{其他检查}");
                     Enter(fieldSet, f, "check", "完成", CompleteFlag);
                     Enter(d, f, "text", "医师签名", "{医生签名}");
@@ -117,7 +117,7 @@ if (!f) {
                     }
 
                     times = 0;
-                    var save = setInterval(function() {
+                    var save = setInterval(function () {
                         times++;
                         if (times >= MaxRetryTimes) {
                             window.clearInterval(save);
@@ -125,14 +125,20 @@ if (!f) {
                             CloseAllTabs();
                             return;
                         }
-                    
+
                         if ($(d).find('.x-window:contains("选择框"), .x-window:contains("提示")').length > 0) {
                             window.clearInterval(save);
-                    
+
                             var msgBox = $(d).find('.x-window:contains("选择框"), .x-window:contains("提示")');
                             var msg = msgBox.find('span.ext-mb-text').text();
                             msgBox.find('button:contains("确定"), button:contains("是")').click();
-                    
+
+                            setTimeout(function () {
+                                window.submitSys.popupMsg('丈夫首诊临床检验表 - 丈夫姓名: {丈夫姓名}, 档案编号: {档案编号} ' + msg, true, "OpenDocTabForHusClinical");
+                                CloseAllTabs();
+                            }, 1000);
+
+                            /*
                             times = 0;
                             save = setInterval(function() {
                                 times++;
@@ -150,11 +156,11 @@ if (!f) {
                                     msgBox.find('button:contains("确定"), button:contains("是")').click();
                                     window.submitSys.popupMsg('丈夫首诊临床检验表 - 丈夫姓名: {丈夫姓名}, 档案编号: {档案编号} ' + msg, true, "OpenDocTabForHusClinical");
 
-                                    if(CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "ZFLJ");
+                                    // if(CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "ZFLJ");
 
                                     CloseAllTabs();
                                 }
-                            }, 1000);
+                            }, 1000);*/
                         }
                     }, 1000);
                 } catch (e) {
