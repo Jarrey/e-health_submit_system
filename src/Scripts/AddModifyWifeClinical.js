@@ -225,7 +225,7 @@ if (!f) {
                     Enter(fieldSet, f, "textarea", "其他（请描述）", "{其他检查}");
                     Enter(fieldSet, f, "check", "完成", CompleteFlag);
                     Enter(d, f, "text", "医师签名", "{医生签名}");
-                    Enter(d, f, "date", "检查日期", "{检查时间}");
+                    Enter(d, f, "date", "检查日期", Today);
 
                     ClickButton(d, "保  存");
                     

@@ -19,8 +19,6 @@ namespace SubmitSys
     using CefSharp;
     using CefSharp.WinForms;
 
-    using ICSharpCode.SharpZipLib.Zip;
-
     using Newtonsoft.Json;
 
     using SubmitSys.DAL;
@@ -361,6 +359,7 @@ namespace SubmitSys
             if (stepStatus == StepStatus.Init) return;
             var openNewDocStep = this.actions.Steps["OpenDocumentTab"];
             var openClinicalStep = this.actions.Steps["OpenClinicalTab"];
+            var openImageStep = this.actions.Steps["OpenImageTab"];
             if (this.account == AccountTypes.Admin)
             {
                 var script = File.ReadAllText(Path.Combine("Scripts", openNewDocStep.Script));
@@ -370,6 +369,12 @@ namespace SubmitSys
             if (this.account == AccountTypes.Clinical)
             {
                 var script = File.ReadAllText(Path.Combine("Scripts", openClinicalStep.Script));
+                this.webView.ExecuteScriptAsync(script);
+            }
+
+            if (this.account == AccountTypes.Image)
+            {
+                var script = File.ReadAllText(Path.Combine("Scripts", openImageStep.Script));
                 this.webView.ExecuteScriptAsync(script);
             }
 

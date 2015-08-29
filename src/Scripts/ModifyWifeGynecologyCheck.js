@@ -102,7 +102,7 @@ ext.onReady(function() {
                 Enter(b, f, "textarea", "其他检查", "{其他检查}");
                 ext.getCmp('done2').setValue(CompleteFlag);
                 Enter(b, f, "text", "医师签名", "{医生签名}");
-                Enter(b, f, "date", "检查日期", "{检查时间}");
+                Enter(b, f, "date", "检查日期", Today);
 
                 /*
                 ClickButton(b, "保存");

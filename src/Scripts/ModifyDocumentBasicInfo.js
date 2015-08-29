@@ -69,7 +69,7 @@ ext.onReady(function() {
                 Enter(f, f, "text", "邮编", "{邮编}");
                 Enter(f, f, "text", "座机号码", "{固定电话}");
                 Enter(f, f, "text", "医师签名", "{医生签名}");
-                Enter(f, f, "date", "填写日期", "{填写日期}");
+                Enter(f, f, "date", "填写日期", Today);
 
                 CloseTab("修改基础信息表");
                 CloseTab("完善档案");

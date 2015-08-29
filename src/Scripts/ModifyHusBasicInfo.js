@@ -198,7 +198,7 @@ ext.onReady(function() {
 
                 Enter(d, f, "check", "完成(注意：此项计入工作量统计，一旦选中并保存，则表格不能再修改！)", CompleteFlag);
                 Enter(d, f, "text", "医师签名", "{医生签名}");
-                Enter(d, f, "date", "询问日期", "{询问时间}");
+                Enter(d, f, "date", "询问日期", Today);
 
                 /*
                 ClickButton(d, "保存");

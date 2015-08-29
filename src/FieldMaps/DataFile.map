@@ -15,7 +15,7 @@
         "CanNew": false,
         "NewStep": "Init",
         "ModifyStep": "OpenDocTabForBMod",
-        "Account": { "Admin": "上传 && 修改档案" }
+        "Account": { "Image": "上传结果" }
     },
     {
         "Key": "qzybqk",

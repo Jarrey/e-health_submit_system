@@ -18,7 +18,7 @@ ext.onReady(function() {
                 ClickButton(d, "全选");
 
                 Enter(d, f, "text", "医师签名", "{医生签名}");
-                Enter(d, f, "date", "询问日期", "{检查时间}");
+                Enter(d, f, "date", "询问日期", Today);
 
                 ClickButton(d, "保存");
                 var save = setInterval(function() {

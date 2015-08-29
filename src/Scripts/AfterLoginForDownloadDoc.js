@@ -21,6 +21,11 @@
                 window.submitSys.login("临床检验系统帐号登陆,可进行临床检验报告完善操作", "Clinical");
                 return;
             }
+
+            if (ClickTreeNode(document, "影像系统")) {
+                window.submitSys.login("影像系统帐号登陆,可进行B超检验报告完善操作", "Image");
+                return;
+            }
         }
     }, 1000);
 });

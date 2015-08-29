@@ -1,5 +1,6 @@
 ﻿var MaxRetryTimes = 10;
 var CompleteFlag = "1";
+var Today = Ext.util.Format.date(new Date(), 'Y-m-d').toString();
 
 function ClickTreeNode(r, n) {
     var a = $(r).find('.x-tree-node-anchor:contains("' + n + '")');

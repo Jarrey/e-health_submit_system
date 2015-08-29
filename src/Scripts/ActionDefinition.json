@@ -17,6 +17,11 @@
             "script": "OpenClinicalTab.js",
             "pre_status": "Init"
         },
+        "OpenImageTab": {
+            "frame_url": "entity/manager/index.jsp",
+            "script": "OpenImageTab.js",
+            "pre_status": "Init"
+        },
 
         /*
         // Create new basic document steps
@@ -61,23 +66,17 @@
         },
         */
 
-        // Create and update B-Mod result
-        "ClickModifyDocumentButtonForBMod": {
-            "frame_url": "/entity/basic/prePregnancyService.action",
-            "script": "ClickModifyDocumentButtonForBMod.js",
+        // Update B-Mod result
+        "ClickModifyButtonForBMod": {
+            "frame_url": "/entity/image/bmodResult.action",
+            "script": "ClickModifyButtonForBMod.js",
             "pre_status": "OpenDocTabForBMod",
             "next_status": "ClickBMod",
             "has_data": true,
             "increase": true
         },
-        "ClickModifyBMod": {
-            "frame_url": "/entity/archives/editArchives.action?",
-            "script": "ClickBModButton.js",
-            "pre_status": "ClickBMod",
-            "next_status": "ClickBMod"
-        },
         "ModifyBMod": {
-            "frame_url": "/entity/image/bmodResult_watch.action?",
+            "frame_url": "entity/image/bmodResult_input.action?",
             "script": "ModifyBMod.js",
             "pre_status": "ClickBMod",
             "next_status": "OpenDocTabForBMod",
