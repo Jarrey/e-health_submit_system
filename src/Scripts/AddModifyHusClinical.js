@@ -29,13 +29,13 @@ if (!f) {
                     var fieldSet = GetFieldSet(d, "男性临床检验单");
                     var fields = GetFieldSet(fieldSet, "血型");
                     if ("{血型}" == "0") {
-                        Enter(fields, f, "combo", "ABO", "A型");
+                        Enter(fields, f, "combo", "ABO", "A");
                     } else if ("{血型}" == "1") {
-                        Enter(fields, f, "combo", "ABO", "B型");
+                        Enter(fields, f, "combo", "ABO", "B");
                     } else if ("{血型}" == "2") {
-                        Enter(fields, f, "combo", "ABO", "AB型");
+                        Enter(fields, f, "combo", "ABO", "AB");
                     } else if ("{血型}" == "3") {
-                        Enter(fields, f, "combo", "ABO", "O型");
+                        Enter(fields, f, "combo", "ABO", "O");
                     }
 
                     if ("{RH}" == "0") {

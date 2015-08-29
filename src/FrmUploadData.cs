@@ -51,7 +51,7 @@ namespace SubmitSys
 
         private int currentIndex = -1;
 
-        private IDictionary<string, string> accounts; 
+        private IDictionary<string, string> accounts;
 
         #endregion
 
@@ -110,7 +110,8 @@ namespace SubmitSys
                     this.webView.ExecuteScriptAsync(File.ReadAllText(Path.Combine("Scripts", "Login.js")));
                 }
 
-                this.CmbAccountSelectedIndexChanged(this.cmbAccount, new EventArgs());
+                this.Invoke(
+                    new Action(() => this.CmbAccountSelectedIndexChanged(this.cmbAccount, new EventArgs())));
                 this.currentStatus = 0; // Initialize
             }
             else if (frameLoadEndEventArgs.Url.Contains(this.actions.Steps["Login"].FrameUrlKey))
@@ -119,7 +120,6 @@ namespace SubmitSys
                 var step = this.actions.Steps["Login"];
                 var script = File.ReadAllText(Path.Combine("Scripts", step.Script));
                 this.webView.EvaluateScriptAsync(script).Wait();
-                this.webView.FrameLoadEnd -= WebViewOnLoginFrameLoadEnd;
             }
         }
 

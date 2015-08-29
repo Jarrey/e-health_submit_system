@@ -49,10 +49,9 @@ ext.onReady(function () {
                     if ($(d).find('.x-window:contains("成功，是否要关闭当前页面？")').length > 0) {
                         window.clearInterval(save);
                         $(d).find('.x-window:contains("成功，是否要关闭当前页面？")').find('button:contains("是")').click();
-                        CloseTab("填写妻子妇科B超检查结果");
                         CloseTab("影像上报管理");
                         window.submitSys.popupMsg('完成妻子妇科B超检查结果: 妻子:{妻子姓名}, 档案编号: {档案编号} 的修改', true, "OpenDocTabForBMod");
-                        if(CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "FKBC");
+                        if (CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "FKBC");
                     }
     
                     if ($(d).find('.x-window:contains("提示")').length > 0) {
