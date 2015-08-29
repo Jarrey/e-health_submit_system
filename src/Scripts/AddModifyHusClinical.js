@@ -62,48 +62,48 @@ if (!f) {
 
                     fields = GetFieldSet(fieldSet, "乙肝血清学检查");
                     if ("{HBs-Ag}" == "0") {
-                        Enter(fields, f, "combo", "HBs_Ag", "阴性");
+                        Enter(fields, f, "combo", action == "new" ? "HBs-Ag" : "HBs_Ag", "阴性");
                     } else if ("{HBs-Ag}" == "1") {
-                        Enter(fields, f, "combo", "HBs_Ag", "阳性");
+                        Enter(fields, f, "combo", action == "new" ? "HBs-Ag" : "HBs_Ag", "阳性");
                     } else if ("{HBs-Ag}" == "9") {
-                        Enter(fields, f, "combo", "HBs_Ag", "可疑");
+                        Enter(fields, f, "combo", action == "new" ? "HBs-Ag" : "HBs_Ag", "可疑");
                     }
 
                     if ("{HBe-Ab}" == "0") {
-                        Enter(fields, f, "combo", "HBe_Ab", "阴性");
+                        Enter(fields, f, "combo", action == "new" ? "HBe-Ab" : "HBe_Ab", "阴性");
                     } else if ("{HBe-Ab}" == "1") {
-                        Enter(fields, f, "combo", "HBe_Ab", "阳性");
+                        Enter(fields, f, "combo", action == "new" ? "HBe-Ab" : "HBe_Ab", "阳性");
                     } else if ("{HBe-Ab}" == "9") {
-                        Enter(fields, f, "combo", "HBe_Ab", "可疑");
+                        Enter(fields, f, "combo", action == "new" ? "HBe-Ab" : "HBe_Ab", "可疑");
                     }
 
                     if ("{HBs-Ab}" == "0") {
-                        Enter(fields, f, "combo", "HBs_Ab", "阴性");
+                        Enter(fields, f, "combo", action == "new" ? "HBs-Ab" : "HBs_Ab", "阴性");
                     } else if ("{HBs-Ab}" == "1") {
-                        Enter(fields, f, "combo", "HBs_Ab", "阳性");
+                        Enter(fields, f, "combo", action == "new" ? "HBs-Ab" : "HBs_Ab", "阳性");
                     } else if ("{HBs-Ab}" == "9") {
-                        Enter(fields, f, "combo", "HBs_Ab", "可疑");
+                        Enter(fields, f, "combo", action == "new" ? "HBs-Ab" : "HBs_Ab", "可疑");
                     }
 
                     if ("{HBc-Ab}" == "0") {
-                        Enter(fields, f, "combo", "HBc_Ab", "阴性");
+                        Enter(fields, f, "combo", action == "new" ? "HBc-Ab" : "HBc_Ab", "阴性");
                     } else if ("{HBc-Ab}" == "1") {
-                        Enter(fields, f, "combo", "HBc_Ab", "阳性");
+                        Enter(fields, f, "combo", action == "new" ? "HBc-Ab" : "HBc_Ab", "阳性");
                     } else if ("{HBc-Ab}" == "9") {
-                        Enter(fields, f, "combo", "HBc_Ab", "可疑");
+                        Enter(fields, f, "combo", action == "new" ? "HBc-Ab" : "HBc_Ab", "可疑");
                     }
 
                     if ("{HBe-Ag}" == "0") {
-                        Enter(fields, f, "combo", "HBe_Ag", "阴性");
+                        Enter(fields, f, "combo", action == "new" ? "HBe-Ag" : "HBe_Ag", "阴性");
                     } else if ("{HBe-Ag}" == "1") {
-                        Enter(fields, f, "combo", "HBe_Ag", "阳性");
+                        Enter(fields, f, "combo", action == "new" ? "HBe-Ag" : "HBe_Ag", "阳性");
                     } else if ("{HBe-Ag}" == "9") {
-                        Enter(fields, f, "combo", "HBe_Ag", "可疑");
+                        Enter(fields, f, "combo", action == "new" ? "HBe-Ag" : "HBe_Ag", "可疑");
                     }
 
                     fields = GetFieldSet(fieldSet, "肝肾功能检测");
-                    Enter(fields, f, "text", "谷丙转氨酶ALT(U/L)", "{谷丙转氨酶}");
-                    Enter(fields, f, "text", "肌酐Cr(umol/L)", "{肌酐}");
+                    Enter(fields, f, "text", "谷丙转氨酶", "{谷丙转氨酶}");
+                    Enter(fields, f, "text", "肌酐", "{肌酐}");
 
                     Enter(fieldSet, f, "textarea", "其他检查", "{其他检查}");
                     Enter(fieldSet, f, "check", "完成", CompleteFlag);
