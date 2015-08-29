@@ -73,6 +73,7 @@
     <Compile Include="Actions.cs" />
     <Compile Include="DAL\DBDocTable.cs" />
     <Compile Include="DAL\DBTableBase.cs" />
+    <Compile Include="DAL\DBUpdateFlag.cs" />
     <Compile Include="DAL\DBUploadDataTable.cs" />
     <Compile Include="DataFile.cs" />
     <Compile Include="FrmDownloadDoc.cs">

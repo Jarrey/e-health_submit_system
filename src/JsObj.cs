@@ -14,6 +14,8 @@ namespace SubmitSys
 
     using CefSharp;
 
+    using SubmitSys.DAL;
+
     internal class JsObj
     {
         public List<string> Messages = new List<string>();
@@ -37,6 +39,14 @@ namespace SubmitSys
             if (OnContinue != null)
             {
                 OnContinue(this, new ContinueEventArgs("init", parameter));
+            }
+        }
+
+        public void WriteBack(string id, string tableType)
+        {
+            using (var db = new DBUpdateFlag())
+            {
+                db.UpdateFlag(id, tableType);
             }
         }
 

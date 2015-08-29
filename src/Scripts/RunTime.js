@@ -1,5 +1,5 @@
 ﻿var MaxRetryTimes = 10;
-var CompleteFlag = "1";
+var CompleteFlag = "0";
 var Today = Ext.util.Format.date(new Date(), 'Y-m-d').toString();
 
 function ClickTreeNode(r, n) {

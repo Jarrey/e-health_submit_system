@@ -219,6 +219,7 @@ ext.onReady(function() {
                         CloseTab("完善档案");
                         CloseTab("临床医生系统");
                         window.submitSys.popupMsg('完成丈夫一般情况: 丈夫:{丈夫姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForHusBasicInfo");
+                        if(CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "ZFYBQK");
                     }
                 }, 1000);
                 */

@@ -123,6 +123,7 @@ ext.onReady(function() {
                         CloseTab("完善档案");
                         CloseTab("临床医生系统");
                         window.submitSys.popupMsg('完成妻子体格检查 - 一般结果: 妻子:{妻子姓名}, 档案编号: {档案编号}  的修改', true, "OpenDocTabForWifeCheck");
+                        if(CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "QZFK");
                     }
                 }, 1000);
                 */

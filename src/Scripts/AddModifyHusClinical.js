@@ -143,6 +143,9 @@ if (!f) {
                                     msg = msg + msgBox.find('span.ext-mb-text').text();
                                     msgBox.find('button:contains("确定"), button:contains("是")').click();
                                     window.submitSys.popupMsg('丈夫首诊临床检验表 - 丈夫姓名: {丈夫姓名}, 档案编号: {档案编号} ' + msg, true, "OpenDocTabForHusClinical");
+
+                                    if(CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "ZFLC");
+
                                     CloseAllTabs();
                                 }
                             }, 1000);
