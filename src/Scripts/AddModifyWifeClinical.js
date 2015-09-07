@@ -259,6 +259,13 @@ if (!f) {
                             var msg = msgBox.find('span.ext-mb-text').text();
                             msgBox.find('button:contains("确定"), button:contains("是")').click();
 
+                            setTimeout(function () {
+                                window.submitSys.popupMsg('妻子首诊临床检验表 - 妻子姓名: {妻子姓名}, 档案编号: {档案编号} ' + msg, true, "OpenDocTabForWifeClinical");
+                                if (CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "QZLJ");
+                                CloseAllTabs();
+                            }, 1000);
+
+                            /*
                             times = 0;
                             save = setInterval(function () {
                                 times++;
@@ -280,7 +287,7 @@ if (!f) {
 
                                     CloseAllTabs();
                                 }
-                            }, 1000);
+                            }, 1000);*/
                         }
                     }, 1000);
                 } catch (e) {

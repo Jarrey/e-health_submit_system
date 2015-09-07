@@ -4,6 +4,10 @@ using System.Windows.Forms;
 
 namespace SubmitSys
 {
+    using System.IO;
+
+    using Newtonsoft.Json;
+
     public partial class FrmMessages : Form
     {
         public FrmMessages()
@@ -20,6 +24,19 @@ namespace SubmitSys
             this.lstMsg.DataSource = null;
             this.lstMsg.DataSource = Messages;
             base.OnActivated(e);
+        }
+
+        private void BtnSaveClick(object sender, EventArgs e)
+        {
+            using (var saveFileDialog = new SaveFileDialog())
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(
+                        saveFileDialog.FileName,
+                        JsonConvert.SerializeObject(Messages));
+                }
+            }
         }
     }
 }

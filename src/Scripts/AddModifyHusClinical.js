@@ -135,6 +135,7 @@ if (!f) {
 
                             setTimeout(function () {
                                 window.submitSys.popupMsg('丈夫首诊临床检验表 - 丈夫姓名: {丈夫姓名}, 档案编号: {档案编号} ' + msg, true, "OpenDocTabForHusClinical");
+                                if (CompleteFlag == "1") window.submitSys.writeBack("{档案编号}", "ZFLJ");
                                 CloseAllTabs();
                             }, 1000);
 

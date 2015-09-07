@@ -43,21 +43,21 @@ namespace SubmitSys.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.16;Initial Catalog=rnyjxt;Persist Security Info=True;User I" +
-            "D=sa;Password=szjszRnlis1508;MultipleActiveResultSets=True")]
-        public string DBConnection {
+        [global::System.Configuration.DefaultSettingValueAttribute("[\"fkbc\", \"qzybqk\", \"qztg\", \"qzfk\", \"qzlj\", \"zfybqk\", \"zftg\", \"zfnk\", \"zflj\"]")]
+        public string DBKeys {
             get {
-                return ((string)(this["DBConnection"]));
+                return ((string)(this["DBKeys"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("[\"fkbc\", \"qzybqk\", \"qztg\", \"qzfk\", \"qzlj\", \"zfybqk\", \"zftg\", \"zfnk\", \"zflj\"]")]
-        public string DBKeys {
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SHALL211\\CSSQL08;Initial Catalog=rnyjxt;Persist Security Info=True;Us" +
+            "er ID=sa;Password=$Tata$124;MultipleActiveResultSets=True")]
+        public string DBConnection {
             get {
-                return ((string)(this["DBKeys"]));
+                return ((string)(this["DBConnection"]));
             }
         }
     }
