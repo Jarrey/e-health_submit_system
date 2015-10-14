@@ -46,9 +46,9 @@ if (!f) {
 
                     fields = GetFieldSet(fieldSet, "尿液常规检查");
                     if ("{尿常规}" == "0") {
-                        Enter(fieldSet, f, "combo", "尿液常规检查", "未见异常");
+                        Enter(fieldSet, f, "combo", "尿液常规检查", 0);		// "未见异常"
                     } else if ("{尿常规}" == "1") {
-                        Enter(fieldSet, f, "combo", "尿液常规检查", "异常");
+                        Enter(fieldSet, f, "combo", "尿液常规检查", 1);		// "异常"
                         Enter(fieldSet, f, "text", "异常描述", "{尿常规异常}");
                     }
 

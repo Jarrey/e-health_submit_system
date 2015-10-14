@@ -117,7 +117,7 @@ if (!f) {
                     if ("{尿常规}" == "0") {
                         Enter(fields, f, "combo", "尿液常规检查", "未见异常");
                     } else if ("{尿常规}" == "1") {
-                        Enter(fields, f, "combo", "尿液常规检查", "异常");
+                        Enter(fields, f, "combo", "尿液常规检查", "^异常");   // issue with the regexp cannot match correct value in "未见异常" and "异常"
                         Enter(fields, f, "text", "异常描述", "{尿常规异常}");
                     }
 
